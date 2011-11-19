@@ -6,6 +6,8 @@ To make the lists useful for everyone and to get the best use of them please rea
 
 Some stats on the lists are being collected at [[Exim Mailing List Stats]]
 
+The master website's information on mailing-lists is at http://www.exim.org/maillist.html (and a little more limited, but more concise).
+
 ## `exim-announce@exim.org`
 
 This is a very low traffic announcements only list. We strongly suggest that all users of Exim subscribe to this list. The list info page is at http://lists.exim.org/mailman/listinfo/exim-announce and searchable archives are at:
