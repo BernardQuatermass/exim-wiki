@@ -25,7 +25,7 @@ There is an actively used bugzilla instance at http://bugs.exim.org/ -- see [[Bu
 
 ## Mailing List
 
-Development issues are normally discussed on the `exim-dev` [mailing-list](http://www.exim.org/maillist.html). For tracking particular problems or feature requests, we do tend to prefer the use of [[BugZilla]].
+Development issues are normally discussed on the `exim-dev` [[mailing list|Exim Mailing Lists]]. For tracking particular problems or feature requests, we do tend to prefer the use of [[BugZilla]].
 
 ## Release Process
 
