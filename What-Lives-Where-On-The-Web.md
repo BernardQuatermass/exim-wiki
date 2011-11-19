@@ -20,7 +20,7 @@ We are setting up GitHub as a public backup, so that in the event of failure of 
 
 ## Discussion
 
-As Exim is a Mail Transfer Agent, it is perhaps unsurprising that most discussion takes place on [mailing-lists](http://www.exim.org/maillist.html).
+As Exim is a Mail Transfer Agent, it is perhaps unsurprising that most discussion takes place on [[Exim Mailing Lists]].
 
 ## Social Media
 
