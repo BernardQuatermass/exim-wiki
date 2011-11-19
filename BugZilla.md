@@ -13,7 +13,7 @@ Wishlist items are filed as bugs with severity set to wishlist.
 
 You do need to set yourself up an account within BugZilla before you can create or change a bug report (including by email). You can view reports without requiring an account.
 
-Bug reports and changes are generally copied to the exim-dev [[Exim Mailing List]].
+Bug reports and changes are generally copied to the exim-dev [[mailing list|Exim Mailing Lists]].
 
 (Our bug tracking system is shared with PCRE).
 
