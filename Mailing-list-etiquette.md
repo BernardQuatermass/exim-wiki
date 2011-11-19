@@ -2,11 +2,11 @@
 
 The [[Exim Mailing Lists]] are normally reasonably friendly places, but have a few rules to try and keep them on an even keel.  Most of these fall under the category of basic [[Netiquette|http://en.wikipedia.org/wiki/Netiquette]].  You may also wish to look at the [[Mailing List Policies]].
 
-It is worth looking at documents such as [How to keep out of trouble with your e-mail|http://www.penmachine.com/techie/emailtrouble_2003-07.html] and [How to report bugs effectively|http://www.chiark.greenend.org.uk/~sgtatham/bugs.html] since these are very relevant to the lists in general.  The following sections touch on points that are particular bugbears on the lists.
+It is worth looking at documents such as [[How to keep out of trouble with your e-mail|http://www.penmachine.com/techie/emailtrouble_2003-07.html]] and [[How to report bugs effectively|http://www.chiark.greenend.org.uk/~sgtatham/bugs.html]] since these are very relevant to the lists in general.  The following sections touch on points that are particular bugbears on the lists.
 
 ## Check Before You Post
 
-All of the [[Exim Mailing Lists]] have searchable archives. Exim has excellent [manuals|http://www.exim.org/docs.html]. There's an excellent [book|http://books.google.com/books?id=foCRVaMeRMgC]. And, there's this wiki.  Please try and find information before posting questions to the list.  If you find things that are similar, but don't fix your specific problem then mention that in your posting so you don't just get pointed back to the old information.
+All of the [[Exim Mailing Lists]] have searchable archives. Exim has excellent [[manuals|http://www.exim.org/docs.html]]. There's an excellent [[book|http://books.google.com/books?id=foCRVaMeRMgC]]. And, there's this wiki.  Please try and find information before posting questions to the list.  If you find things that are similar, but don't fix your specific problem then mention that in your posting so you don't just get pointed back to the old information.
 
 ## Check Again Before You Post
 
@@ -20,7 +20,7 @@ When asking questions, be polite. Nobody is paid to answer Exim questions on our
 
 Similarly, people don't ask questions for fun, they do it because they don't know the answers. If you aren't answering the question, then your response may be unwelcome. Here are some unwelcome responses to the question 'how do I X?'
 
-* [RTFM|http://en.wikipedia.org/wiki/RTFM] is swearing in a public arena. It doesn't directly answer the question and is felt by some to carry an arrogant tone. It says "don't waste my time", but it's a waste of everybody's time to say it. Better to point someone to the "How to X" section of the manual, with a URL, and an explanation of why the section is relevant to the question (where necessary). Similar comments apply to the wiki and the list archives.
+* [[RTFM|http://en.wikipedia.org/wiki/RTFM]] is swearing in a public arena. It doesn't directly answer the question and is felt by some to carry an arrogant tone. It says "don't waste my time", but it's a waste of everybody's time to say it. Better to point someone to the "How to X" section of the manual, with a URL, and an explanation of why the section is relevant to the question (where necessary). Similar comments apply to the wiki and the list archives.
 
     If you feel you have to say something akin to RTFM, then please use the following:
 
@@ -45,7 +45,7 @@ Similarly, people don't ask questions for fun, they do it because they don't kno
 
 ## Quote Intelligently When Replying
 
-You only need to quote the relevant parts of posts you are replying to. It is far preferable to quote fragments with your contributions added underneath the quotes.  Using the standard [Outlook|http://en.wikipedia.org/wiki/Outlook] form of [Top Posting|http://mailformat.dan.info/quoting/top-posting.html] can be particularly irritating if a long post asking a batch of questions is responded to with a single answer to one question set above the whole original article. If you use Outlook or Outlook Express, you might find [Outlook Quotefix|http://home.in.tum.de/~jain/software/outlook-quotefix/] or [OE Quotefix|http://home.in.tum.de/~jain/software/oe-quotefix/] helps with quoting.
+You only need to quote the relevant parts of posts you are replying to. It is far preferable to quote fragments with your contributions added underneath the quotes.  Using the standard [[Outlook|http://en.wikipedia.org/wiki/Outlook]] form of [[Top Posting|http://mailformat.dan.info/quoting/top-posting.html]] can be particularly irritating if a long post asking a batch of questions is responded to with a single answer to one question set above the whole original article. If you use Outlook or Outlook Express, you might find [[Outlook Quotefix|http://home.in.tum.de/~jain/software/outlook-quotefix/]] or [[OE Quotefix|http://home.in.tum.de/~jain/software/oe-quotefix/]] helps with quoting.
 
 ## Give Sufficient Information In Questions
 
@@ -80,7 +80,7 @@ The lists are managed in the spare time of people who are in general very busy. 
 
 ## Don't Restage Old Flame Wars
 
-Some on the mailing lists think that [Sender Policy Framework (SPF)|http://en.wikipedia.org/wiki/Sender_Policy_Framework] is a really good thing, others are _considerably_ less impressed.  Rehashing these discussions is generally unhelpful.  Discussions of the `Reply-To:` setting of the list are also only going to be fruitful if you find the list manager's price and offer him a sufficient inducement to change the setting.
+Some on the mailing lists think that [[Sender Policy Framework (SPF)|http://en.wikipedia.org/wiki/Sender_Policy_Framework]] is a really good thing, others are _considerably_ less impressed.  Rehashing these discussions is generally unhelpful.  Discussions of the `Reply-To:` setting of the list are also only going to be fruitful if you find the list manager's price and offer him a sufficient inducement to change the setting.
 
 ## Don't disparage the competition
 
