@@ -28,7 +28,7 @@ This is a high traffic general list for all levels of user, with both a normal a
 
 The list is open for posting from members. Non members postings or spammy postings are moderated. Members that are not following [[Mailing List Etiquette]] may be moderated for a while.  Alas, problems with spammers have led to a policy that new members will also be moderated, at least until the moderators see a couple of non-spam posts and clear the moderate bit. We regret that this proved necessary.
 
-If you have questions about Exim or things you want to do with or to Exim this is where you should be posting. If you are using Exim version 3 then take note of [Exim3 Status]]. If you are using a debian distribution you may find that the specific debian mailing lists are better suited - see [[Debian Exim4]].
+If you have questions about Exim or things you want to do with or to Exim this is where you should be posting. If you are using Exim version 3 then take note of [[Exim3 Status]]. If you are using a debian distribution you may find that the specific debian mailing lists are better suited - see [[Debian Exim4]].
 
 Please look at the information on [[Mailing List Etiquette]] before posting.
 
