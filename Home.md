@@ -1,12 +1,54 @@
-We are currently building out this wiki as we migrate content from our old one, with appropriate rewrites and replacements.
+Welcome!
+========
+Welcome to the Exim Wiki. This wiki covers extra information not in the
+official documentation. It allows users of Exim to supplement the
+documentation by adding examples and interfaces to other software and other
+how to information.  For finding resources, try [[What Lives Where On The Web]]
+which describes where the website is, why there are currently two wikis,
+where to find mailing-lists, source code, bug-tracking, etc.
 
-For finding resources, try [[What Lives Where On The Web]] which describes where the website is, why there are currently two wikis, where to find mailing-lists, source code, bug-tracking, etc.
 
-For folks wanting assistance, we suggest [[Exim Mailing Lists]], together with [[Mailing List Etiquette]] and [[Mailing List Policies]].
+On this wiki ...
+================
+-   [Frequently asked questions](FAQ)
+-   Exim [Introduction and feature list](EximIntroduction)
+-   How to [download and install](ObtainingExim) Exim
+-   [Configuring Exim](ConfiguringExim)
+    -   [HowTo's](HowTo) for all sorts of situations
+    -   Debian users should check the [Debian-specific
+        documentation](DebianExim4)
+-   [Exim Security](EximSecurity)
+-   [Testing Exim](TestingExim)
+-   [Exim Development](EximDevelopment)
+-   [Release Policy](EximReleasePolicy)
+-   [Upgrading from Exim 3](Exim3Status)
+-   [Commercial Support for Exim](Commercial)
 
-For folks wishing to contribute code or other development resources, we suggest [[Exim Development]].
+See also
+========
+-   [Exim Home](http://www.exim.org/)
+-   [Exim Documentation](http://www.exim.org/docs.html)
+-   [Exim New Users Information](http://www.exim-new-users.co.uk/)
+-   [Download Exim](http://www.exim.org/mirrors.html)
+-   [Exim Mailing Lists](EximMailingLists)
+    -   the lists have [searchable archives](http://lists.exim.org/)
+    -   before posting, be sure to read the [Mailing List
+        Policies](MailingListPolicies) and [Mailing List
+        Etiquette](MailingListEtiquette) - be nice on the support
+        lists!
+-   [Mail-related RFC
+    documents](http://www.exim-new-users.co.uk/content/category/4/25/39/)
 
-Remember, in Exim the documentation is called _The Exim Specification_ for a reason: if code does not match the documentation, whether because of differences or incomplete documentation, that is unambiguously a bug. The bug might be in the documentation, it might be in the code, but documentation is a first class priority of the project.  We want this wiki to be a useful resource, but also want to ensure that the Specification remains up-to-date.
+* * * * *
 
-Regards,  
--_The Exim Maintainers_
+Wiki Conversion
+===============
+This wiki was converted from the old one hosted on exim.org.  There may be 
+some issues with the conversion - please fix up any formatting or linking problems you discover.
+
+Participate - Learning about Wikis
+==================================
+You too can be part of the documentation process. Do you have a trick
+that you would like to contribute? You can edit these pages and create
+new pages as long as you have a [GitHub](http://github.com/) login. This allows you to share your tricks with everyone else just
+like they shared their tricks with you.

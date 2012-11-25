@@ -16,11 +16,11 @@ This is hosted at [bugs.exim.org](http://bugs.exim.org/).
 
 The [master copy](http://git.exim.org/exim.git) and developer public trees are available at [git.exim.org](http://git.exim.org/).
 
-We are setting up GitHub as a public backup, so that in the event of failure of the master site, an existing site with established reputation as a &ldquo;_legitimate_&rdquo; copy of the Exim code will be available for people to trust.
+We are setting up GitHub alongside exim.org, so that in the event of failure of the master site, an existing site with established reputation as a &ldquo;_legitimate_&rdquo; copy of the Exim code will be available for people to trust.
 
 ## Discussion
 
-As Exim is a Mail Transfer Agent, it is perhaps unsurprising that most discussion takes place on [[Exim Mailing Lists]].
+As Exim is a Mail Transfer Agent, it is perhaps unsurprising that most discussion takes place on [Exim Mailing Lists](EximMailingLists).
 
 ## Social Media
 
