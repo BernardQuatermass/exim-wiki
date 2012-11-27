@@ -1,0 +1,85 @@
+/* greylisting without database for Exim 4.51 or newer.		*/
+/* http://wiki.exim.org/DbLessGreyListingC			*/
+/* version 0.3  May 28, 2008  Lena(at)lena.kiev.ua		*/
+/* BSD license.							*/
+
+/* times in seconds: */
+#define defer_timeout 60*3  /* 3 min - how long to defer delivery */
+#define allow_timeout 60*60*6  /* 6 hours - after passing the	      */
+			       /* greylisting test, how long to allow */
+			       /* (plus up to update_delay)	      */
+#define update_delay 60*30  /* 30 min - minimal time between */
+			    /* (a little expensive) updates  */
+
+/* Changelog:							*/
+/* 0.3 May28,2008 don't write to files, judge by age - faster;	*/
+/*		  update twice a hour is enough			*/
+/* 0.2 May26,2008 test for . and .. dirs by d_name instead	*/
+/*		  of d_namlen for compatibility with Linux	*/
+/* 0.1 May23,2008 first release					*/
+
+#include "local_scan.h"
+#include <string.h>
+#include <dirent.h>
+#include <utime.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <sys/uio.h>
+#include <sys/types.h>
+#include <sys/time.h>
+#include <sys/stat.h>
+
+int grey(uschar **yield, int argc, uschar *argv[])
+{
+struct timeval curtime;
+struct stat mystat;
+DIR *dir_stream;
+struct dirent *dp;
+int i;
+uschar *dir = expand_string(US "$spool_directory/grey");
+size_t dir_len = strlen(dir);
+uschar *filename = US store_get(dir_len+257);
+
+if (argc != 1) {
+  *yield = US "bad number of arguments";
+  return ERROR;
+}
+(void)gettimeofday(&curtime, NULL);
+(void)memcpy(filename, dir, dir_len);
+(void)strcpy(CS filename+dir_len, ".lastupdated");
+if (stat(CCS filename, &mystat)) {   /* if the very first call */
+  if (stat(CCS dir, &mystat) && mkdir(CCS dir, 0750)) {
+    *yield = US "cannot create 'grey' subdir in the spool directory";
+    return ERROR;
+  }
+  (void)close(open(CCS filename, O_WRONLY | O_CREAT, 0644));
+}
+if (curtime.tv_sec-mystat.st_mtime > update_delay) {
+  filename[dir_len] = '/';
+  dir_stream = opendir(CCS dir);
+  while ((dp = readdir(dir_stream)) != NULL)
+    if (*(dp->d_name) != '.') {   /* neither . nor .. directories */
+      (void)strcpy(CS filename+dir_len+1, dp->d_name);
+      (void)stat(CCS filename, &mystat);
+      if (curtime.tv_sec-mystat.st_mtime > defer_timeout+allow_timeout)
+	(void)unlink(CCS filename);
+    }
+  (void)closedir(dir_stream);
+  (void)strcpy(CS filename+dir_len, ".lastupdated");
+  (void)utime(CCS filename, NULL);
+}
+filename[dir_len] = '/';
+(void)strncpy(CS filename+dir_len+1, CCS argv[0], 255);
+filename[dir_len+256] = '\0';   /* filename is truncated if too long */
+for (i=dir_len+1; filename[i]; i++)
+  if (filename[i] == '/')   /* inadmissible in filenames */
+    filename[i] = ';';
+if (stat(CCS filename, &mystat)) {   /* if file doesn't exist */
+  (void)close(open(CCS filename, O_WRONLY | O_CREAT, 0644));
+  *yield = US "1";   /* defer */
+}
+else if (curtime.tv_sec-mystat.st_mtime > defer_timeout)
+  *yield = US "0";   /* allow */
+else *yield = US "1";   /* defer */
+return OK;
+}

@@ -64,8 +64,7 @@ needed for the next step, so don't do `make clean` after reinstall.
 Dynamically linked module
 -------------------------
 
-Download attached source of the module:
-\`attachment:exim-ext-grey.c\`\_exim-ext-grey.c\`attachment:None\`\_ ,
+Download attached source of the module: [exim-ext-grey.c](attachments/exim-ext-grey.c.txt)
 save it for example in the `/root` directory and compile placing the
 binary for example in `/root/bin` :
 

@@ -54,8 +54,7 @@ separately in our internal RBL).
     warn    condition      = ${if eq {$acl_c_grey_host}{1}}
             add_header     = X-Greylist: $sender_host_address passed GREY_MINUTES minute greylist, was greylisted due to missing reverse DNS
 
-Third, create the perl script (attached to this page -
-\`attachment:mod\_exim.pl\`\_mod\_exim.pl\`attachment:None\`\_ ).
+Third, create the perl script (attached to this page - [mod_exim.pl](attachments/mod_exim.pl.txt)
 
 Fourth, create /etc/exim/memcached.conf file:
 

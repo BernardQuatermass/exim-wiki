@@ -31,7 +31,7 @@ organizers:
 You want a picture? Hmm, let's see if I can learn how do that ... Here
 you go...
 
-\`attachment:PhilipHazel3.jpg\`\_
+![](attachments/PhilipHazel3.jpg)
 
 * * * * *
 
