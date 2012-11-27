@@ -10,31 +10,29 @@ where to find mailing-lists, source code, bug-tracking, etc.
 
 On this wiki ...
 ================
--   [Frequently asked questions](FAQ)
--   Exim [Introduction and feature list](EximIntroduction)
--   How to [download and install](ObtainingExim) Exim
--   [Configuring Exim](ConfiguringExim)
-    -   [HowTo's](HowTo) for all sorts of situations
-    -   Debian users should check the [Debian-specific
-        documentation](DebianExim4)
--   [Exim Security](EximSecurity)
--   [Testing Exim](TestingExim)
--   [Exim Development](EximDevelopment)
--   [Release Policy](EximReleasePolicy)
--   [Upgrading from Exim 3](Exim3Status)
--   [Commercial Support for Exim](Commercial)
+-   [[Frequently asked questions|FAQ]]
+-   Exim [[Introduction and feature list|EximIntroduction]]
+-   How to [[download and install|ObtainingExim]] Exim
+-   [[Configuring Exim|ConfiguringExim]]
+    -   [[HowTo's|HowTo]] for all sorts of situations
+    -   Debian users should check the [[Debian-specific documentation|DebianExim4]]
+-   [[Exim Security|EximSecurity]]
+-   [[Testing Exim|TestingExim]]
+-   [[Exim Development|EximDevelopment]]
+-   [[Release Policy|EximReleasePolicy]]
+-   [[Upgrading from Exim 3|Exim3Status]]
+-   [[Commercial Support for Exim|Commercial]]
 
 See also
 ========
--   [Exim Home](http://www.exim.org/)
--   [Exim Documentation](http://www.exim.org/docs.html)
--   [Exim New Users Information](http://www.exim-new-users.co.uk/)
--   [Download Exim](http://www.exim.org/mirrors.html)
--   [Exim Mailing Lists](EximMailingLists)
+-   [[Exim Home|http://www.exim.org/]]
+-   [[Exim Documentation|http://www.exim.org/docs.html]]
+-   [[Exim New Users Information|http://www.exim-new-users.co.uk/]]
+-   [[Download Exim|http://www.exim.org/mirrors.html]]
+-   [[Exim Mailing Lists|EximMailingLists]]
     -   the lists have [searchable archives](http://lists.exim.org/)
-    -   before posting, be sure to read the [Mailing List
-        Policies](MailingListPolicies) and [Mailing List
-        Etiquette](MailingListEtiquette) - be nice on the support
+    -   before posting, be sure to read the [[Mailing List Policies|MailingListPolicies]]
+        and [[Mailing List Etiquette|MailingListEtiquette]] - be nice on the support
         lists!
 -   [Mail-related RFC
     documents](http://www.exim-new-users.co.uk/content/category/4/25/39/)
