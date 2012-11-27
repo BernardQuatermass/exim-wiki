@@ -4,7 +4,7 @@ Mailing List Etiquette
 The [EximMailingLists](EximMailingLists) are normally reasonably
 friendly places, but have a few rules to try and keep them on an even
 keel. Most of these fall under the category of basic
-[Netiquette](wiki:WikiPedia:Netiquette). You may also wish to look at
+[Netiquette](http://www.wikipedia.com/wiki/Netiquette). You may also wish to look at
 the [MailingListPolicies](MailingListPolicies).
 
 It is worth looking at documents such as [How to keep out of trouble
@@ -49,7 +49,7 @@ Similarly, people don't ask questions for fun, they do it because they
 don't know the answers. If you aren't answering the question, then your
 response may be unwelcome. Here are some unwelcome responses to the
 question 'how do I X?'
--   [RTFM](wiki:WikiPedia:RTFM) is swearing in a public arena. It
+-   [RTFM](http://www.wikipedia.com/wiki/RTFM) is swearing in a public arena. It
     doesn't directly answer the question and is felt by some to carry an
     arrogant tone. It says "don't waste my time", but it's a waste of
     everybody's time to say it. Better to point someone to the "How to
@@ -98,7 +98,7 @@ Quote Intelligently When Replying
 You only need to quote the relevant parts of posts you are replying to.
 It is far preferable to quote fragments with your contributions added
 underneath the quotes. Using the standard
-[Outlook](wiki:WikiPedia:Outlook) form of [Top
+[Outlook](http://www.wikipedia.com/wiki/Outlook) form of [Top
 Posting](http://mailformat.dan.info/quoting/top-posting.html) can be
 particularly irritating if a long post asking a batch of questions is
 responded to with a single answer to one question set above the whole
@@ -167,7 +167,7 @@ Don't Restage Old Flame Wars
 ----------------------------
 
 Some on the mailing lists think that
-[SenderPPolicyFFramework](wiki:WikiPedia:Sender_Policy_Framework) is
+[SenderPPolicyFFramework](http://www.wikipedia.com/wiki/Sender_Policy_Framework) is
 a really good thing, others are considerably less impressed. Rehashing
 these discussions is generally unhelpful. Discussions of the `Reply-To:`
 setting of the list are also only going to be fruitful if you find the

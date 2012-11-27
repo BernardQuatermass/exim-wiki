@@ -14,7 +14,7 @@ DomainKeys (DK) support is built into Exim using the `libdomainkeys`
 reference library implementation. It is available at
 [http://domainkeys.sf.net](http://domainkeys.sf.net) - this library is
 licensed with a licence that is incompatible with the
-[GPL](wiki:WikiPedia:GPL) which means that you may not distribute
+[GPL](http://www.wikipedia.com/wiki/GPL) which means that you may not distribute
 copies of Exim linked against `libdomainkeys` (and you will also not be
 able to obtain pre-compiled packages for this reason).
 
