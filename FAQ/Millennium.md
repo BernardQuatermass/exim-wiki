@@ -1,10 +1,4 @@
-Other sections in this FAQ\_: \`[[Navigation(siblings,1)]]\`\_
-
 Millennium
-==========
+====
 
-\`[[Include(\^FAQ/Millennium/.\*,,2,from="\#\#qstart",to="\#\#qend",editlink)]]\`\_
-
-* * * * *
-
-> CategoryFrequentlyAskedQuestions\_
+- [Q2000 - Are there any Y2K issues with Exim?](Q2000)

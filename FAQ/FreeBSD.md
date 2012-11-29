@@ -1,10 +1,6 @@
-Other sections in this FAQ\_: \`[[Navigation(siblings,1)]]\`\_
-
 FreeBSD
-=======
+====
 
-\`[[Include(\^FAQ/FreeBSD/.\*,,2,from="\#\#qstart",to="\#\#qend",editlink)]]\`\_
-
-* * * * *
-
-> CategoryFrequentlyAskedQuestions\_
+- [Q9201 - On FreeBSD, */usr/sbin/sendmail* is a symbolic link to](Q9201)
+- [Q9202 - A script that FreeBSD runs nightly uses *mailq* with the **-Ac**](Q9202)
+- [Q9203 - How can I use Exim for authenticated SMTP using Cyrus on FreeBSD?](Q9203)

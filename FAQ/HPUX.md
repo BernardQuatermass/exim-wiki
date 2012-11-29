@@ -1,10 +1,4 @@
-Other sections in this FAQ\_: \`[[Navigation(siblings,1)]]\`\_
+HPUX
+====
 
-HP-UX
-=====
-
-\`[[Include(\^FAQ/HPUX/.\*,,2,from="\#\#qstart",to="\#\#qend",editlink)]]\`\_
-
-* * * * *
-
-> CategoryFrequentlyAskedQuestions\_
+- [Q9301 - I'm trying to compile on an HP machine and I don't have *gcc* there. So](Q9301)

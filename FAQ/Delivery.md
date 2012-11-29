@@ -1,10 +1,38 @@
-Other sections in this FAQ\_: \`[[Navigation(siblings,1)]]\`\_
-
 Delivery
-========
+====
 
-\`[[Include(\^FAQ/Delivery/.\*,,2,from="\#\#qstart",to="\#\#qend",editlink)]]\`\_
-
-* * * * *
-
-> CategoryFrequentlyAskedQuestions\_
+- [Q0601 - What does the error *Neither the xxx router nor the yyy transport set a](Q0601)
+- [Q0602 - Exim keeps crashing with segmentation errors (signal 11 or 139) during](Q0602)
+- [Q0603 - How can mails that are being routed through routers that do not set](Q0603)
+- [Q0604 - I want to use MMDF-style mailboxes. How can I get Exim to append the](Q0604)
+- [Q0605 - If a user's mailbox is over quota, is there a way for me to set it up so](Q0605)
+- [Q0606 - I'm using tmail to do local deliveries, but when I turned on the](Q0606)
+- [Q0607 - When I activate .. raw:: html](Q0607)
+- [Q0608 - What does the message *retry time not reached [for any host]* on the log](Q0608)
+- [Q0609 - Exim seems to be sending the same message twice, according to the log,](Q0609)
+- [Q0610 - How can I force the next retry time for a host to be now?](Q0610)
+- [Q0611 - I set up `|/bin/grep Subject|/usr/bin/smbclient -M <netbiosname>` as an](Q0611)
+- [Q0612 - Why does the **pipe** transport add a line starting with `>From` to](Q0612)
+- [Q0613 - I have set `fallback_hosts` on my **smtp** transport, but after the](Q0613)
+- [Q0614 - After the holidays my ISP has always hundreds of e-mails waiting for me.](Q0614)
+- [Q0615 - When a message in the queue got to 12h old, Exim wrote *retry timeout](Q0615)
+- [Q0616 - Can Exim add a *Content-Length:* header to messages it delivers?](Q0616)
+- [Q0617 - Exim seems to be trying to deliver a message every 10 minutes, though](Q0617)
+- [Q0618 - I am trying to set exim up to have a automatic failover if it sees that](Q0618)
+- [Q0619 - I can't get Exim to deliver over NFS. I get the error *fcntl() failed:](Q0619)
+- [Q0620 - Why does Exim bounce messages without even attempting delivery, giving](Q0620)
+- [Q0621 - My *.forward* file is `|/usr/bin/procmail -f-` and mail gets delivered,](Q0621)
+- [Q0622 - Can I write an ordinary file when I run a perl script as a transport](Q0622)
+- [Q0623 - My */var/spool/mail* has grown drastically. Is there any possibility of](Q0623)
+- [Q0624 - Sendmail has a program called *smrsh* that restricts what binaries can](Q0624)
+- [Q0625 - I wish to have large emails go out one at a time.](Q0625)
+- [Q0626 - Exim can route local parts independent of their case, but the Cyrus LMTP](Q0626)
+- [Q0627 - Is there a command I can send to Exim to retry all queued messages](Q0627)
+- [Q0628 - I have the default retry rule, which I thought meant that Exim should](Q0628)
+- [Q0629 - I'm having trouble with quotas and Courier, because Exim is not handling](Q0629)
+- [Q0630 - How can I configure Exim to deliver to a Cyrus message store?](Q0630)
+- [Q0631 - I would like to choose a retry rule based on on the sender rather than](Q0631)
+- [Q0632 - What does the error *User 1 set for local\_mbx\_delivery transport is on](Q0632)
+- [Q0633 - Why is *\$domain* not set in the **smtp** transport?](Q0633)
+- [Q0634 - How can I stop a local transport from trying to access the user's home](Q0634)
+- [Q0635 - The log message *error ignored* appears after some delivery failures.](Q0635)

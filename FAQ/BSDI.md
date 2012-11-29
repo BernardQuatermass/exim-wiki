@@ -1,10 +1,4 @@
-Other sections in this FAQ\_: \`[[Navigation(siblings,1)]]\`\_
-
 BSDI
 ====
 
-\`[[Include(\^FAQ/BSDI/.\*,,2,from="\#\#qstart",to="\#\#qend",editlink)]]\`\_
-
-* * * * *
-
-> CategoryFrequentlyAskedQuestions\_
+- [Q9401 - On BSDI 4.0, Exim built with Perl support exits with the error message](Q9401)

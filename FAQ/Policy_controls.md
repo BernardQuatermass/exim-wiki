@@ -1,10 +1,47 @@
-Other sections in this FAQ\_: \`[[Navigation(siblings,1)]]\`\_
-
 Policy controls
-===============
+====
 
-\`[[Include(\^FAQ/Policy\_controls/.\*,,2,from="\#\#qstart",to="\#\#qend",editlink)]]\`\_
-
-* * * * *
-
-> CategoryFrequentlyAskedQuestions\_
+- [Q0701 - How do I block unwanted messages from outside my host?](Q0701)
+- [Q0702 - I don't want to block spam entirely; how can I inspect each message](Q0702)
+- [Q0703 - How can I test that my spam blocks are working?](Q0703)
+- [Q0704 - How can I test that Exim is correctly configured to use a DNS black list](Q0704)
+- [Q0705 - How can I use tcpwrappers in conjunction with Exim?](Q0705)
+- [Q0706 - How can I get POP-auth-before-relay (aka POP-before-SMTP) support in](Q0706)
+- [Q0707 - I have one or two cases where my host correctly rejects messages, but](Q0707)
+- [Q0708 - How can I run customized verification checks on incoming addresses?](Q0708)
+- [Q0709 - Does Exim apply RBL checks to error messages, those with an envelope](Q0709)
+- [Q0710 - I want to reject certain sender-recipient combinations, with a specific](Q0710)
+- [Q0711 - Will Exim allow me to create a file of regexs and match incoming](Q0711)
+- [Q0712 - I've hacked sendmail to make an ioctl call at the time of the SMTP RCPT](Q0712)
+- [Q0713 - I'd like to pass all messages through a virus-scanning system before](Q0713)
+- [Q0714 - Is there a way to configure Exim to reject mail to a certain local host?](Q0714)
+- [Q0715 - How can I get Exim to remove attachments from messages?](Q0715)
+- [Q0716 - How can I arrange for each user to have a file listing the only sender](Q0716)
+- [Q0717 - When using Nessus on a system that runs Exim, a number of security](Q0717)
+- [Q0718 - Could anyone points me to right rules to prevent sending/receiving](Q0718)
+- [Q0719 - I would like to have a per-user limit for the maximum size of messages](Q0719)
+- [Q0720 - I set `accept hosts=192.168.122.96/32` in order to accept mail for](Q0720)
+- [Q0721 - I have POP-before-SMTP set up on my Exim server, but some clients use](Q0721)
+- [Q0722 - I installed Amavis and it is working, but bounces are simply vanishing.](Q0722)
+- [Q0723 - I can't get Pine to work with PLAIN authentication; Exim keeps](Q0723)
+- [Q0724 - I have used `:fail:` in some aliases; when one of these addresses is refused, I see the message on the log, but the response to the remote user is .. raw:: html](Q0724)
+- [Q0725 - I've set up some specific rejection messages for certain recipients, but](Q0725)
+- [Q0726 - My SMTP authentication can be bypassed by sending an unknown user name](Q0726)
+- [Q0727 - When a message has many recipients, how can I stop SpamAssassin\_ from](Q0727)
+- [Q0728 - How do I use Exiscan, SA-Exim, SpamAssassin\_, Clam Antivirus, Sophos](Q0728)
+- [Q0729 - How can I screen out addresses that are neither valid usernames or](Q0729)
+- [Q0730 - How can I use the same passwords for SMTP authentication as I use for](Q0730)
+- [Q0731 - Is there any defence I can use against spam sent through an open proxy?](Q0731)
+- [Q0732 - I would like to either warn or deny when a host uses an underscore in](Q0732)
+- [Q0733 - Is there any way to tell Exim not to lookup the IP address against any](Q0733)
+- [Q0734 - How do MailScanner\_ and Exiscan compare? What are the pros and cons?](Q0734)
+- [Q0735 - How can I block non-FQDNs in HELO/EHLOs?](Q0735)
+- [Q0736 - Is it possible to tell exim to drop the connection after a server](Q0736)
+- [Q0737 - Is there some way to tell Exim not to consider 127.0.0.1 as a valid MX?](Q0737)
+- [Q0738 - How can I configure Exim to delay the SMTP connection if more than 10](Q0738)
+- [Q0739 - Does Exim support SPF?](Q0739)
+- [Q0740 - How can I change the MAIL FROM address that is used for callouts?](Q0740)
+- [Q0741 - How can I get Outlook Express to use TLS when authenticating?](Q0741)
+- [Q0742 - How do I stop Exim being an open relay?](Q0742)
+- [Q0743 - What should I put in my acl\_smtp\_rcpt?](Q0743)
+- [Q0744 - I've got a queue full of "bounce" messages. How do I get rid of them?](Q0744)

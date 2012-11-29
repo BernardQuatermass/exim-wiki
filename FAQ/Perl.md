@@ -1,10 +1,6 @@
-Other sections in this FAQ\_: \`[[Navigation(siblings,1)]]\`\_
-
 Perl
 ====
 
-\`[[Include(\^FAQ/Perl/.\*,,2,from="\#\#qstart",to="\#\#qend",editlink)]]\`\_
-
-* * * * *
-
-> CategoryFrequentlyAskedQuestions\_
+- [Q1301 - Exim built with Perl support exits with the error message *./exim: can't](Q1301)
+- [Q1302 - Exim built with Perl support exits with several error messages of the](Q1302)
+- [Q1303 - When using \${perl, clients sometimes disconnect having been fed](Q1303)

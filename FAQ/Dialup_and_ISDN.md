@@ -1,10 +1,12 @@
-Other sections in this FAQ\_: \`[[Navigation(siblings,1)]]\`\_
+Dialup and ISDN
+====
 
-Dial-up and ISDN
-================
-
-\`[[Include(\^FAQ/Dialup\_and\_ISDN/.\*,,2,from="\#\#qstart",to="\#\#qend",editlink)]]\`\_
-
-* * * * *
-
-> CategoryFrequentlyAskedQuestions\_
+- [Q1401 - When I'm not connected to the Internet, how can I arrange for mail to](Q1401)
+- [Q1402 - I have a dial-up machine, and I use the `queue_smtp_domains` option so](Q1402)
+- [Q1403 - How should Exim be configured when it is acting as a temporary storage](Q1403)
+- [Q1404 - I have `queue_domains` or `queue_smtp_domains` set, and use **-qf** to](Q1404)
+- [Q1405 - I have an ISDN connection and would like a way of running the queue](Q1405)
+- [Q1406 - When I dial up to collect mail from my ISP, only the first 10 messages](Q1406)
+- [Q1407 - RFC 1985 specifies that the SMTP command `ETRN host.domain` causes all](Q1407)
+- [Q1408 - If email has been deferred to a member on a local mailing list](Q1408)
+- [Q1409 - I would like to have a separate queue per domain for hosts which dial in](Q1409)

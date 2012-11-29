@@ -1,10 +1,38 @@
-Other sections in this FAQ\_: \`[[Navigation(siblings,1)]]\`\_
-
 Routing for local delivery
-==========================
+====
 
-\`[[Include(\^FAQ/Routing\_for\_local\_delivery/.\*,,2,from="\#\#qstart",to="\#\#qend",editlink)]]\`\_
-
-* * * * *
-
-> CategoryFrequentlyAskedQuestions\_
+- [Q0401 - I need to have any mail for *virt.dom.ain* that doesn't match one of the](Q0401)
+- [Q0402 - How do I arrange for all incoming email for \**@some.domain* to go into](Q0402)
+- [Q0403 - How do I configure Exim to send messages for unknown local users to a](Q0403)
+- [Q0404 - How can I arrange for messages submitted by (for example) Majordomo to](Q0404)
+- [Q0405 - On a host that accepts mail for several domains, do I have to use fully](Q0405)
+- [Q0406 - Some of my users are using the *.forward* to pipe to a shell command](Q0406)
+- [Q0407 - How can I arrange for a default value when using a query-style lookup](Q0407)
+- [Q0408 - If I don't fully qualify the addresses in a virtual domain's alias file](Q0408)
+- [Q0409 - I want mail for any local part at certain virtual domains to go to a](Q0409)
+- [Q0410 - How can I make Exim look in the alias NIS map instead of */etc/aliases*?](Q0410)
+- [Q0411 - Why will Exim deliver a message locally to any username that is longer](Q0411)
+- [Q0412 - Why am I seeing the error *bad mode (100664) for /home/test/.forward*?](Q0412)
+- [Q0413 - When a user's *.forward* file is syntactially invalid, Exim defers](Q0413)
+- [Q0414 - I have set `caseful_local_part` on the routers that handle my local](Q0414)
+- [Q0415 - Can I use my existing alias files and forward files as well as procmail](Q0415)
+- [Q0416 - What is quickest way to set up Exim so any message sent to a](Q0416)
+- [Q0417 - What do I need to do to make Exim handle */usr/ucb/vacation* processing](Q0417)
+- [Q0418 - I want to use a default entry in my alias file to handle unknown local](Q0418)
+- [Q0419 - I have some obsolete domains which people have been warned not to use](Q0419)
+- [Q0420 - How can I arrange that mail addressed to](Q0420)
+- [Q0421 - I can't get a regular expression to work in a `local_parts` option on](Q0421)
+- [Q0422 - How can I arrange for all addresses in a group of domains](Q0422)
+- [Q0423 - Some of our users have no home directories; the field in the password](Q0423)
+- [Q0424 - How can I disable Exim's de-duplication features? I want it to do two](Q0424)
+- [Q0425 - My users' mailboxes are distributed between several servers according to](Q0425)
+- [Q0426 - One of the things I want to set up is for *anything@onedomain* to](Q0426)
+- [Q0427 - How can I have an address looked up in two different alias files, and](Q0427)
+- [Q0428 - I've converted from Sendmail, and I notice that Exim doesn't make use of](Q0428)
+- [Q0429 - I would like to deliver mail addressed to a given domain to local](Q0429)
+- [Q0430 - Whenever Exim tries to route a local address, it gives a permission](Q0430)
+- [Q0431 - How do I configure Exim to allow arbitrary extensions in local parts, of](Q0431)
+- [Q0432 - I use NIS for my user data. How can I stop Exim rejecting mail when my](Q0432)
+- [Q0433 - How can I arrange for a single address to be processed by both](Q0433)
+- [Q0434 - How can I redirect all local parts that are not in my system aliases to](Q0434)
+- [Q0435 - My alias file contains fully qualified addresses as keys (as it was used](Q0435)

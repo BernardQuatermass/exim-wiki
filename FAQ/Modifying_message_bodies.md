@@ -1,10 +1,5 @@
-Other sections in this FAQ\_: \`[[Navigation(siblings,1)]]\`\_
-
 Modifying message bodies
-========================
+====
 
-\`[[Include(\^FAQ/Modifying\_message\_bodies/.\*,,2,from="\#\#qstart",to="\#\#qend",editlink)]]\`\_
-
-* * * * *
-
-> CategoryFrequentlyAskedQuestions\_
+- [Q1601 - How can I add a disclaimer or an advertisement to a message?](Q1601)
+- [Q1602 - How can I remove attachments from messages?](Q1602)
