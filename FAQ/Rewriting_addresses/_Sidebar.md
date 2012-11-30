@@ -1,7 +1,7 @@
 - [How can I get Exim to strip the hostname from the sender's address?](Q0801)
 - [I have Exim configured to remove the hostname portion of the domain on](Q0802)
 - [I want to rewrite local addresses in mail that goes to the outside](Q0803)
-- [I'm using this rewriting rule to change login names into .. raw:: html](Q0804)
+- [I'm using this rewriting rule to change login names into _friendly_ names](Q0804)
 - [Is it possible to completely fail a message if the rewrite rules fail?](Q0805)
 - [I'm using *\$domain* as the key for a lookup in a rewriting rule, but](Q0806)
 - [I want to rewrite local sender addresses depending on the domain of the](Q0807)
