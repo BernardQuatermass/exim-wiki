@@ -2,7 +2,7 @@ Miscellaneous
 ====
 
 - [Q5001 - How can I arrange to allow a limited set of users to perform a limited](Q5001)
-- [Q5002 - I want to .. raw:: html](Q5002)
+- [Q5002 - I want to  tail the Exim log, but I have a number of other logs I also want to  tail , and the number of tailing windows is getting to be a nuisance.](Q5002)
 - [Q5003 - How can I persuade Exim to accept ETRN commands without the leading \#](Q5003)
 - [Q5004 - I've recently noticed that emails I send with a *Bcc:* line are being](Q5004)
 - [Q5005 - I used *gv* 3.5.8 (*ghostview*) to try printing *spec.ps*. After every printed page, the printer ejects a blank sheet. Is this something to do with using .. raw:: html](Q5005)

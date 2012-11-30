@@ -1,5 +1,5 @@
 - [How can I arrange to allow a limited set of users to perform a limited](Q5001)
-- [I want to .. raw:: html](Q5002)
+- [I want to ](Q5002)
 - [How can I persuade Exim to accept ETRN commands without the leading \#](Q5003)
 - [I've recently noticed that emails I send with a *Bcc:* line are being](Q5004)
 - [I used *gv* 3.5.8 (*ghostview*) to try printing *spec.ps*. After every printed page, the printer ejects a blank sheet. Is this something to do with using .. raw:: html](Q5005)

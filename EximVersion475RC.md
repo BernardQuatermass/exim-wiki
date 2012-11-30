@@ -5,11 +5,9 @@ normally be at least one week between the release of the first Release
 Candidate (RC) for a new release and the final release. The policy
 states:
 
-> &ldquo;
->
-> *Those who test RCs get to ensure that their platform is a first-class supported platform for a release, and the final release should be cleanly buildable and working on their platform*.. raw:: html
-> :   &rdquo;
->
+> *Those who test RCs get to ensure that their platform is a first-class supported platform for a release, and the final release should be cleanly buildable and working on their platform
+
+
 We attempt to work with OS packagers who work with us, and if time
 permits we will try to chase up to get a response from the OSes listed
 here, if there is a contact name to reach (and a reasonable chance of us
