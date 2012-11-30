@@ -4,7 +4,7 @@
 - [I want to use MMDF-style mailboxes. How can I get Exim to append the](Q0604)
 - [If a user's mailbox is over quota, is there a way for me to set it up so](Q0605)
 - [I'm using tmail to do local deliveries, but when I turned on the](Q0606)
-- [When I activate .. raw:: html](Q0607)
+- [When I activate  return receipt > for example in Netscape Mailbox sending options, then I get an error](Q0607)
 - [What does the message *retry time not reached [for any host]* on the log](Q0608)
 - [Exim seems to be sending the same message twice, according to the log,](Q0609)
 - [How can I force the next retry time for a host to be now?](Q0610)

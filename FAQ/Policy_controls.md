@@ -24,7 +24,7 @@ Policy controls
 - [Q0721 - I have POP-before-SMTP set up on my Exim server, but some clients use](Q0721)
 - [Q0722 - I installed Amavis and it is working, but bounces are simply vanishing.](Q0722)
 - [Q0723 - I can't get Pine to work with PLAIN authentication; Exim keeps](Q0723)
-- [Q0724 - I have used `:fail:` in some aliases; when one of these addresses is refused, I see the message on the log, but the response to the remote user is](Q0724)
+- [Q0724 - I have used `:fail:` in some aliases; when one of these addresses is refused, I see the message on the log, but the response to the remote user is  unknown user > instead of the message from the alias file. How can I change this?](Q0724)
 - [Q0725 - I've set up some specific rejection messages for certain recipients, but](Q0725)
 - [Q0726 - My SMTP authentication can be bypassed by sending an unknown user name](Q0726)
 - [Q0727 - When a message has many recipients, how can I stop SpamAssassin\_ from](Q0727)

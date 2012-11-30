@@ -10,6 +10,6 @@ Configuration cookbook
 - [Q9807 - Is there any way to have messages sent to a specific local address](Q9807)
 - [Q9808 - I have a mailing list exploder on one host, and three other hosts where](Q9808)
 - [Q9809 - Can I configure Exim so that my gateway host sends a copy of each](Q9809)
-- [Q9810 - How can I implement .. raw:: html](Q9810)
-- [Q9811 - I would like to .. raw:: html](Q9811)
+- [Q9810 - How can I implement  SMTP-after-POP > with Exim?](Q9810)
+- [Q9811 - I would like to  tap off > a proportion of real mail traffic from my live mail server to use in](Q9811)
 - [Q9812 - How can I lookup data from a single file using both single IP addresses](Q9812)
