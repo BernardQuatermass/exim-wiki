@@ -13,8 +13,7 @@ instance (Perl support isn't needed) but is slightly slower (though much
 faster than Perl).
 
 Michael wrote:
-
-[Table not converted]
+> We're a small organization, and I'm a lazy man. I don't really want to set up and maintain a database server. Especially since for us a greylist only involves keeping track of a few hundred KB of data at any one time. 
 
 It certainly makes sense. A filesystem can be considered as a database
 of sorts, using it for keeping greylisting data requires much less
