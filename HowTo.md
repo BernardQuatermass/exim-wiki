@@ -1,9 +1,8 @@
-
 Exim How To Information
 =======================
 
 See also the [FAQ](FAQ) and the other topics on the [front
-page](FrontPage).
+page](https://github.com/Exim/exim/wiki).
 
 Routing
 -------
@@ -57,3 +56,4 @@ Other Howto
     Dovecot virtual hosting (on Dovecot Wiki)
 -   [Real Time Information Gathering Trick Using
     Exim](InformationGathering)
+-   [Automatic blocking of compromised accounts and auth cracking](BlockCracking)
