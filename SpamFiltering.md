@@ -22,8 +22,8 @@ Greylisting
 -   [E-Z Grey Listing Without A Database](DbLessGreyListing) (using
     Perl)
 -   Greylisting without a database and without Perl: [using
-    \${dlfunc](DbLessGreyListingC) and [using
-    \${run](DbLessGreyListingRun)
+    ${dlfunc](DbLessGreyListingC) and [using
+    ${run](DbLessGreyListingRun)
 -   [Heiko Schlitterman's
     implementation](http://www.schlittermann.de/doc/grey.shtml)
 -   [Jakob Hirsch's Simple Greylisting with
@@ -60,10 +60,10 @@ External Sites with Good Spam Filtering Info
 -   [dlfunc functions for Exim](http://www.ols.es/exim/dlext/)
 -   [More ACL snippets](http://www.ols.es/exim/acl/)
 
-External Sites with \${dlfunc{file}{function}{\<arg\>}{\<arg\>}...}
+External Sites with ${dlfunc{file}{function}{\<arg\>}{\<arg\>}...}
 ===================================================================
--   [\${dlfunc dspam](http://mta.org.ua/exim-conf/dlfunc/dspam/)
--   [\${dlfunc milter](http://mta.org.ua/exim-conf/dlfunc/milter/)
--   [\${dlfunc spamd](http://mta.org.ua/exim-conf/dlfunc/spamd/)
--   [\${dlfunc
+-   [${dlfunc dspam](http://mta.org.ua/exim-conf/dlfunc/dspam/)
+-   [${dlfunc milter](http://mta.org.ua/exim-conf/dlfunc/milter/)
+-   [${dlfunc spamd](http://mta.org.ua/exim-conf/dlfunc/spamd/)
+-   [${dlfunc
     spamoborona2](http://mta.org.ua/exim-conf/dlfunc/spamoborona2/)
