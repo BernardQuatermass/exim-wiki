@@ -1,0 +1,3 @@
+For spam filtering I use selective greylisting (only messages from suspicious senders are deferred), external and local black and white lists, and various checks. I maintain and publish [here](http://lena.kiev.ua/Lena-eximconf-run.txt) excerpts from my Exim config and links to my local black and white lists. If you want to use that code, at first create directory and cron job as described [here](DbLessGreyListingRun).
+
+[Lena](Lena)
