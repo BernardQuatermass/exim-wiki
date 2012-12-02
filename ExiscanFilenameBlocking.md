@@ -12,8 +12,8 @@ To do this, put the following in your `acl_smtp_mime`:
 
 The file `mime_regexes` contains entries like
 
-    ^.*\.exe      executable files are dangerous in email
-    ^.*\.scr      screensavers are dangerous in email
+    ^.*\.exe$     executable files are dangerous in email
+    ^.*\.scr$     screensavers are dangerous in email
     ^.*\s{10}     possible file type hiding attack
     ^.{50}        excessively long
 
