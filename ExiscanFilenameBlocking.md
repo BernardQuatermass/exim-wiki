@@ -20,15 +20,11 @@ The file `mime_regexes` contains entries like
 Or you can just put such all-in-one
 
     deny  message = Unwanted file extension ($found_extension)
-
-> demime =
-> bat:com:lnk:pif:scr:vbs:ade:adep:asd:chm:cmd:cpl:crt:dll:hlp:hta:inf:isp:jse:ocx:pcd:reg:url
+           demime = bat:com:lnk:pif:scr:vbs:ade:adep:asd:chm:cmd:cpl:crt:dll:hlp:hta:inf:isp:jse:ocx:pcd:reg:url
 
 * * * * *
 
-> The configuration files abouve without exim.checkpkt.sh has in
-> [ConfigurationFile](ConfigurationFile) session To filter in zip
-> files:
+The configuration files abouve without exim.checkpkt.sh has in [ConfigurationFile](ConfigurationFile) session To filter in zip files:
 
     #free_arqexec contain emails of permited sender. Example: *@gmail.com
     drop !senders     = wildlsearch;/etc/exim4/lst/fre_arqexec
