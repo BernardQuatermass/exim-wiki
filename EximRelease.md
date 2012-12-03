@@ -86,6 +86,7 @@ Release Steps
 -   add released version to list of bugzilla versions
 -   add next expected version to bugzilla milestones, and make that
     default
+-   if a Security release, then update [[EximSecurity]] with details.
 
 Defunct:
 -   update website - now done automatically (hourly) if you have git
