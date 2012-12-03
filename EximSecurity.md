@@ -12,6 +12,11 @@ Vulnerability History
 Note that a "remote code execution as Exim run-time user" vulnerability
 can be combined with a privilege escalation attack to become even more
 serious.
+
+-   CVE-2012-5671 fixed in 4.80.1, introduced in 4.70: buffer overflow
+    vulnerability in DKIM DNS response processing. Impact: remote code
+    execution as Exim run-time user.
+    [Details post](https://lists.exim.org/lurker/message/20121026.083548.4647373a.en.html)
 -   CVE-2011-1764 fixed in 4.76, introduced in 4.70: format string
     attack in DKIM processing. Impact: remote code execution as Exim
     run-time user. [Bugzilla 1106](http://bugs.exim.org/1106).
