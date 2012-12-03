@@ -2,7 +2,7 @@ Exim Security
 =============
 
 Much consideration of Exim's security is given in
-[Chapter 52 - Security considerations](http://www.exim.org/exim-html-current/doc/html/spec_html/ch52.html)
+[Chapter 54 - Security considerations](http://www.exim.org/exim-html-current/doc/html/spec_html/ch54.html)
 of [The Exim Specification](http://www.exim.org/exim-html-current/doc/html/spec_html/index.html).
  This includes suggested hardening steps.
 
