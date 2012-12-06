@@ -1,0 +1,8 @@
+/var/log/helper/exim*log {
+    missingok
+    notifempty
+    sharedscripts
+    postrotate
+        /etc/init.d/exim-policyd restart > /dev/null 2>/dev/null || true
+    endscript
+}

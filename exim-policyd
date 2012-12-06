@@ -1,0 +1,145 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+use IO::Socket;
+use Log::Handler;
+use Proc::Daemon;
+#use Cache::Memcached;
+use Getopt::Long;
+use Data::Dumper;
+
+my ($client,$log,%opts);
+
+GetOptions( \%opts,
+  'debug',
+  'pidfile:s',
+  'port:i'
+);
+
+$0 = "exim-policyd";
+$SIG{CHLD} = "IGNORE";
+Proc::Daemon::Init();
+$log = Log::Handler->new(
+         file => {
+           filename => "/var/log/helper/exim.log",
+           maxlevel => 'debug',
+           minlevel => 'emergency',
+           timeformat => "%Y/%m/%d %H:%M:%S",
+           message_layout => "%T [%L] %m"
+         } );
+
+$opts{'pidfile'} ||= "/var/run/helper/exim-policyd.pid";
+open(my $pidfh, '>', $opts{'pidfile'}) or do {
+  $log->critical("Unable to write '".$opts{'pidfile'}."': $!");
+  exit(1);
+};
+print $pidfh $$;
+close $pidfh;
+
+$log->info("Started, PID=$$");
+# Future caching
+#my $servers = [ 'mem51:11211', 'mem52:11211' ];
+#my $m = Cache::Memcached->new( {
+#    'servers'            => $servers,
+#    'namespace'          => 'policyd',
+#    'debug'              => 0,
+#    'compress_threshold' => 10_000
+#  } );
+my $port = $opts{'port'} || 8049;
+my $socket = IO::Socket::INET->new(
+               Proto => "tcp",
+               LocalPort => $port,
+               Reuse => 1,
+               Listen => 1) or $log->error("ERROR: $!");
+
+while($client=$socket->accept()) {
+  next if my $pid=fork;
+  $log->error("Cannot fork $!") unless defined $pid;
+  my $host = $client->peerhost();
+  $log->debug("Connection received from ".$host) if $opts{'debug'};
+  while (defined(my $buf=<$client>)) {
+    $log->debug("Received: $buf") if $opts{'debug'};
+    my ($func,@VALS) = parse_input($buf);
+    if ($func eq "CHECK_QUOTA") {
+      my $rv = is_quota_met(@VALS);
+      $client->send("$rv");
+      last;
+    }
+    elsif ($func eq "SHOW_QUOTA") {
+      my $rv = show_quota(@VALS);
+      $client->send("$rv\n");
+    }
+    elsif ($func eq "QUIT") {
+      $client->send("Bye!\n");
+      last;
+    }
+  }
+  $client->shutdown(2);
+  exit;
+}
+
+sub parse_input {
+  my @DATA = split(/\s/,shift());
+  $DATA[0] = uc($DATA[0]) if $DATA[0];
+  return(@DATA);
+}
+
+sub show_quota {
+  my ($size,$quota) = _calculate_quota(@_);
+  return("using=$size limit=$quota available=".($quota-$size));
+}
+
+sub is_quota_met {
+  my ($size,$quota) = _calculate_quota(@_);
+  # 1 => over quota, 0 => still has space left
+  return (($size > $quota) ? 1 : 0);
+}
+
+sub _calculate_quota {
+  # Prints out 0 if not over quota
+  # Prints out 1 if over quota (means "not ok")
+  my $local_part = shift();
+  my $domain     = shift();
+  return(0,0) if (!defined $local_part || !defined $domain);
+  $log->debug("Asked for quota for $local_part\@$domain")
+    if $opts{'debug'};
+
+  ### Construct your mailstore paths here ###
+  # We use hashed subdirectories for mailstores
+  my $home = "/netapp3/mail/maildirs";
+  (my $tmp = $domain) =~ s/^(...).*/$1/;
+  foreach my $char (split(//,$tmp)) {
+    $home .= '/';
+    $home .= $char =~ /\w/ ? $char : '_';
+  }
+  my $file="$home/$domain/$local_part/Maildir/maildirsize";
+  ### Finished constructing mailstore path ###
+
+  -f "$file" or return(0,0);
+  open(my $fh, "<", $file) or return(0,0);
+  my @lines = <$fh>;
+  close($fh);
+  return(0,0) if (scalar @lines == 0);
+  $log->debug("Read ".scalar @lines." lines from $file")
+    if $opts{'debug'};
+
+  my ($quota,$qcount);  # count is calculated, but ignored
+  my @quota = split(/,/,$lines[0]);
+  if (scalar @quota > 0) {
+    $quota  = substr($quota[0],0,-1)
+      if (substr($quota[0],-1) eq 'S');
+    $qcount = substr($quota[0],0,-1)
+      if (substr($quota[0],-1) eq 'C');
+  }
+  return(0,0) if (!defined $quota);
+
+  my $line=my $size=my $msgs=0;
+  do {
+    $line++;
+    (my $msgsize, my $msgcount) = split(" ", $lines[$line]);
+    $size+=$msgsize; $msgs+=$msgcount;
+  } while ($line < $#lines);
+  $log->info("Usage/Quota for $local_part\@$domain is $size / $quota");
+  return($size,$quota);
+}
