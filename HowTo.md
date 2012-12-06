@@ -41,10 +41,14 @@ Compatibility with Other Software
 ---------------------------------
 -   [Making Exim compatible with other Programs](EximCompatibility)
 
+Quota
+---------------------------------
+-   [Check Quota at RCPT Time](Checking-quota-at-RCPT-time)
+-   [Howto use exim with filesystem quotas](EximAndFilesytemQuotas)
+
 Other Howto
 -----------
 -   [Configuring SELinux Policy for Exim](EximAndSeLinux)
--   [Howto use exim with filesystem quotas](EximAndFilesytemQuotas)
 -   [Troubleshooting Exim](TroubleShooting)
 -   [SSL Certificates](EximServerSslCertificate)
 -   [Protect your privacy with Exim](ProtectYourPrivacy)
