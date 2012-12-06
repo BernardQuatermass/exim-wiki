@@ -4,9 +4,6 @@ Greylisting Using Memcached and Perl
 See original mailing list message -
 [http://lists.exim.org/lurker/message/20090727.160342.ac172696.en.html](http://lists.exim.org/lurker/message/20090727.160342.ac172696.en.html)
 
-I have transcribed it directly into this wiki page without checking -
-please correct if there are errors.
-
 Implementation
 --------------
 
@@ -14,16 +11,11 @@ This is an implementation of greylisting that uses memcached. Here are
 what I perceive as advantages:
 
 1.  Uses distributed storage instead of local state files.
-
 2.  Memcached is *FAST*.
-
 3.  Only greylist if reverse IP does not exist for host that is
     connecting.
-
 4.  Uses existing perl module.
-
 5.  Two macros do everything.
-
 6.  Uses config file to set memcache servers.
 
 First, add this to your `exim.conf` somewhere up near the top:
@@ -78,7 +70,8 @@ It will store the key:
 The value stored will be the current timestamp in unix time format (i.e.
 seconds since 1970), and an expiration set to 7 days in the future. The
 quotes in there are due to the way I defined the macro, but it doesn't
-hurt anything that I can see. It defers with the message:
+hurt anything, it just treats it as part of the string. It defers with
+the message:
 
 > No reverse DNS for IP 69.169.219.58, greylist for 5:00 minutes
 
@@ -104,6 +97,4 @@ DNS, this doesn't bother me in the least because the chances that my
 users want your mail is slimmer than a coat of paint.
 
 That's pretty much it. Let me know if you use this or spot anything
-wrong or unsafe. I'd be particularly interested if anybody spots
-anything wrong with my quoting. It seems very unnecessary to me to quote
-the sender address, but I'd rather be safe than exploited.
+wrong or unsafe.
