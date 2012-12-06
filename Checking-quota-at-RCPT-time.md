@@ -23,6 +23,8 @@ Third, somewhere in the *RCPT* acl before first accept statement in `exim.conf`:
 ```
 The `message` modifier is what is displayed to the remote mail server that is attempting to send to this recipient.  The `log_message` modifier is what is logged into your local logs.  The sender and recipient are already present as part of the logged message, so no need to duplicate that info.
 
-Fourth, you need the perl daemon, which I've named [exim-policyd](attachments/exim-policyd).
+Fourth, you need the perl daemon, which I've named [exim-policyd](attachments/exim-policyd.txt).
 
-Fifth, you need an init script to start and stop the daemon [exim-policyd.init](attachments/exim-policyd.init).
+Fifth, you need an init script to start and stop the daemon [exim-policyd.init](attachments/exim-policyd.init.txt).  Download it, put it in `/etc/init.d/` and name it `exim-policyd`.
+
+Finally, for a little bit of housekeeping, the [exim-policyd.logrotate](attachments/exim-policyd.logrotate.txt) file can be placed in `/etc/logrotate.d` for the rotation of the logfile and weekly restart of the daemon.
