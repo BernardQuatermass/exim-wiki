@@ -91,7 +91,7 @@ To check message content
 
     exim -Mvb messageid
 
-added by Nina from [cna training online](http://www.online-cna-classes.org
+added by Nina from [[cna training online|http://www.online-cna-classes.org/]]
 
 Pros
 
