@@ -50,3 +50,53 @@ You too can be part of the documentation process. Do you have a trick
 that you would like to contribute? You can edit these pages and create
 new pages as long as you have a [GitHub](http://github.com/) login. This allows you to share your tricks with everyone else just
 like they shared their tricks with you.
+
+Some SSH tricks for Exim
+==================================
+Removing Bad Mail
+
+    for i in `exiqgrep -i -f nobody`; do exim -Mrm $i; done >> Removes Nobody Mail
+
+    for i in `exiqgrep -i -o 259200`; do exim -Mrm $i; done >> Removes Mail older than 3 Days
+
+    for i in `exiqgrep -i -f “^<>$”`; do exim -Mrm $i; done >> Removes Mail with weird Characters (Spam)
+
+Delete mails from a particular domain
+
+    for i in `exiqgrep -i -f domain.com`; do exim -Mrm $i; done
+
+
+Delete mails to a particular domain
+
+    for i in `exiqgrep -i -r domain.com`; do exim -Mrm $i; done
+
+Flush the entire Mail queue
+
+    for i in `exiqgrep -i -f `; do exim -Mrm $i; done
+
+Run Mail queue
+
+    runq -qqff&
+
+Who is having large number of emails?
+
+    exim -bp | exiqsumm
+
+
+To check message header
+
+    exim -Mvh messageid
+
+To check message content
+
+    exim -Mvb messageid
+
+added by Nina from [cna training online](http://www.online-cna-classes.org
+
+Pros
+
+Many plugins available.
+	
+Cons
+
+Cryptic templates.
