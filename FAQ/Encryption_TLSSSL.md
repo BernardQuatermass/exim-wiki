@@ -9,3 +9,4 @@ Encryption TLSSSL
 - [Q1706 - I have listed some hosts in `tls_verify_hosts` and provided them with](Q1706)
 - [Q1707 - I am trying to use TLS with Evolution as a client, and keep seeing this](Q1707)
 - [Q1708 - I trying to use TLS with Outlook as a client on a box that is running](Q1708)
+- [Forcing TLS with a specific list of domains](https://github.com/Exim/exim/wiki/Forcing-TLS-to-and-from-a-specific-domain)
