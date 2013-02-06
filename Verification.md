@@ -69,7 +69,7 @@ Not block a MX of domain. Use only in `acl_check_mail` before accept
              !spf           = pass
              delay          = 45s
     #-
-    drop   message          = Reverse unchecked (${lookup dnsdb{>: defer_never,ptr=$sender_host_address}\}) is ADSL or DIAL, Helo $sender_helo_name not is $sender_host_address and your ip $sender_host_address not is a MX/SPF of domain <$sender_address_domain>
+    drop   message          = Reverse unchecked (${lookup dnsdb{>: defer_never,ptr=$sender_host_address}}) is ADSL or DIAL, Helo $sender_helo_name not is $sender_host_address and your ip $sender_host_address not is a MX/SPF of domain <$sender_address_domain>
              !senders       = :
              condition      = ${if def:sender_host_name {false}{true}}
              condition      = ${if match {${lookup dnsdb{>: defer_never,ptr=$sender_host_address}}}{\N\d+\.\d+\.\d+\.\d+|\d+-\d+-\d+-\d+|host|dsl|dial|broad|band|user|dhcp|pool|client|cable|pppoe|hsd|dyn|static|ppp|speedy|customer\N}{yes}{no}}

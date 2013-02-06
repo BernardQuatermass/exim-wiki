@@ -35,8 +35,8 @@ prvs=password=[[user@yourrdomain.com.br](mailto:user@yourrdomain.com.br)](mailto
               sender_domains = !: +local_domains : +alias_domains : +relay_to_domains
               condition     = ${if eqi\
                                 {${hash_BATV_SIZE:${hmac{BATV_HASH}{${length_BATV_DATESIZE:$tod_zulu}BATV_PASS}{\
-                                    ${lc:${extract{3}{=}{$sender_address_local_part}}=$sender_address_domain}}\}}\}\
-                                {${extract{2}{=}{$sender_address_local_part}\}}\
+                                    ${lc:${extract{3}{=}{$sender_address_local_part}}=$sender_address_domain}}}}}\
+                                {${extract{2}{=}{$sender_address_local_part}}}\
                                 {no}{yes}}
               message       = Invalid or expired reverse path signature for sender F=${lc:${extract{3}{=}{$sender_address_local_part}}@$sender_address_domain}
               delay         = 45s
@@ -46,8 +46,8 @@ prvs=password=[[user@yourrdomain.com.br](mailto:user@yourrdomain.com.br)](mailto
               sender_domains = !: +local_domains : +alias_domains : +relay_to_domains
               condition     = ${if eqi\
                                 {${hash_BATV_SIZE:${hmac{BATV_HASH}{${length_BATV_DATESIZE:$tod_zulu}BATV_PASS}{\
-                                    ${lc:${extract{3}{=}{$sender_address_local_part}}=$sender_address_domain}\}}\}}\
-                                {${extract{2}{=}{$sender_address_local_part}\}}\
+                                    ${lc:${extract{3}{=}{$sender_address_local_part}}=$sender_address_domain}}}}}\
+                                {${extract{2}{=}{$sender_address_local_part}}}\
                                 {yes}{no}}
               verify        = sender/no_details
               logwrite      = :main: $message_exim_id Batv: accept sender ${lc:${extract{3}{=}{$sender_address_local_part}}@$sender_address_domain} H=$sender_rcvhost
@@ -70,8 +70,8 @@ prvs=password=[[user@yourrdomain.com.br](mailto:user@yourrdomain.com.br)](mailto
               domains       = +local_domains : +alias_domains : +relay_to_domains
               condition     = ${if eqi\
                                 {${hash_BATV_SIZE:${hmac{BATV_HASH}{${length_BATV_DATESIZE:$tod_zulu}BATV_PASS}{\
-                                    ${lc:${extract{3}{=}{$local_part}}=$domain}}\}}\}\
-                                {${extract{2}{=}{$local_part}\}}\
+                                    ${lc:${extract{3}{=}{$local_part}}=$domain}}}}}\
+                                {${extract{2}{=}{$local_part}}}\
                                 {no}{yes}}
               message       = Invalid or expired reverse path signature from <$sender_address> to ${lc:${extract{3}{=}{$local_part}}@$domain}
               delay         = 45s
@@ -81,8 +81,8 @@ prvs=password=[[user@yourrdomain.com.br](mailto:user@yourrdomain.com.br)](mailto
               condition     = ${if eqi {$local_part@$domain} {$sender_address_local_part@$sender_address_domain} {no}{yes}}
               condition     = ${if eqi\
                                 {${hash_BATV_SIZE:${hmac{BATV_HASH}{${length_BATV_DATESIZE:$tod_zulu}BATV_PASS}{\
-                                    ${lc:${extract{3}{=}{$local_part}}=$domain}}\}}\}\
-                                {${extract{2}{=}{$local_part}}\}\
+                                    ${lc:${extract{3}{=}{$local_part}}=$domain}}}}}\
+                                {${extract{2}{=}{$local_part}}}\
                                 {yes}{no}}
               verify        = recipient
               logwrite      = :main: $message_exim_id Batv: accept from <$sender_address> to ${lc:${extract{3}{=}{$local_part}}@$domain} H=$sender_rcvhost
@@ -116,10 +116,10 @@ prvs=password=[[user@yourrdomain.com.br](mailto:user@yourrdomain.com.br)](mailto
                               } {yes}{no}}
               condition     = ${if eqi\
                                 {${hash_BATV_SIZE:${hmac{BATV_HASH}{${length_BATV_DATESIZE:$tod_zulu}BATV_PASS}{\
-                                    ${lc:${extract{3}{=}{${local_part:$recipients}}\}=${domain:$recipients}}\}}\}}\
-                                {${extract{2}{=}{${local_part:$recipients}}\}}\
+                                    ${lc:${extract{3}{=}{${local_part:$recipients}}}=${domain:$recipients}}}}}}\
+                                {${extract{2}{=}{${local_part:$recipients}}}}\
                                 {no}{yes}}
-              message       = Invalid or expired reverse path signature for bounce message from <$sender_address> to ${lc:${extract{3}{=}{${local_part:$recipients}\}}@${domain:$recipients}}
+              message       = Invalid or expired reverse path signature for bounce message from <$sender_address> to ${lc:${extract{3}{=}{${local_part:$recipients}}}@${domain:$recipients}}
               delay         = 45s
        #-ACT: Aceita de dominios ja verificados em servidor com a senha, ou seja, de retorno de mensagem de email.
        # Aqui independe se for bounce ou nao... As vezes um bounce pode ter um sender e as vezes nao
@@ -132,10 +132,10 @@ prvs=password=[[user@yourrdomain.com.br](mailto:user@yourrdomain.com.br)](mailto
                               } {yes}{no}}
               condition     = ${if eqi\
                                 {${hash_BATV_SIZE:${hmac{BATV_HASH}{${length_BATV_DATESIZE:$tod_zulu}BATV_PASS}{\
-                                    ${lc:${extract{3}{=}{${local_part:$recipients}\}}=${domain:$recipients}}\}}\}}\
-                                {${extract{2}{=}{${local_part:$recipients}}\}}\
+                                    ${lc:${extract{3}{=}{${local_part:$recipients}}}=${domain:$recipients}}}}}}\
+                                {${extract{2}{=}{${local_part:$recipients}}}}\
                                 {yes}{no}}
-              logwrite      = :main: $message_exim_id Batv: accept from <$sender_address> to ${lc:${extract{3}{=}{${local_part:$recipients}\}}@${domain:$recipients}} H=$sender_rcvhost
+              logwrite      = :main: $message_exim_id Batv: accept from <$sender_address> to ${lc:${extract{3}{=}{${local_part:$recipients}}}@${domain:$recipients}} H=$sender_rcvhost
       .endif
 
 \#...
@@ -152,10 +152,10 @@ prvs=password=[[user@yourrdomain.com.br](mailto:user@yourrdomain.com.br)](mailto
                               } {yes}{no}}
               condition     = ${if eqi\
                                 {${hash_BATV_SIZE:${hmac{BATV_HASH}{${length_BATV_DATESIZE:$tod_zulu}BATV_PASS}{\
-                                    ${lc:${extract{3}{=}{${local_part:$recipients}}\}=${domain:$recipients}}\}}\}}\
-                                {${extract{2}{=}{${local_part:$recipients}\}}\}\
+                                    ${lc:${extract{3}{=}{${local_part:$recipients}}}=${domain:$recipients}}}}}}\
+                                {${extract{2}{=}{${local_part:$recipients}}}}\
                                 {yes}{no}}
-              logwrite      = :main: $message_exim_id Batv: accept from <$sender_address> to F=${lc:${extract{3}{=}{${local_part:$recipients}\}}@${domain:$recipients}} H=$sender_rcvhost
+              logwrite      = :main: $message_exim_id Batv: accept from <$sender_address> to F=${lc:${extract{3}{=}{${local_part:$recipients}}}@${domain:$recipients}} H=$sender_rcvhost
          .ifdef BLK_MachineNotBounce
                 drop !hosts = +relay_mx_hosts
                    condition = ${if !def:h_from: {no}{yes}}
@@ -180,10 +180,10 @@ prvs=password=[[user@yourrdomain.com.br](mailto:user@yourrdomain.com.br)](mailto
                               } {yes}{no}}
                    condition= ${if eqi\
                                   {${hash_BATV_SIZE:${hmac{BATV_HASH}{${length_BATV_DATESIZE:$tod_zulu}BATV_PASS}{\
-                                      ${lc:${extract{3}{=}{${local_part:$recipients}\}}=${domain:$recipients}}\}}\}}\
-                                   {${extract{2}{=}{${local_part:$recipients}}\}}\
+                                      ${lc:${extract{3}{=}{${local_part:$recipients}}}=${domain:$recipients}}}}}}\
+                                   {${extract{2}{=}{${local_part:$recipients}}}}\
                                 {no}{yes}}
-                 logwrite = :reject: H=$sender_rcvhost Signature invalid or expired for bounce message from <$sender_address>, header <${address:$h_from:}> to <${lc:${extract{3}{=}{${local_part:$recipients}}\}@${domain:$recipients}}>
+                 logwrite = :reject: H=$sender_rcvhost Signature invalid or expired for bounce message from <$sender_address>, header <${address:$h_from:}> to <${lc:${extract{3}{=}{${local_part:$recipients}}}@${domain:$recipients}}>
                  message    = Invalid or expired reverse path signature  from <$sender_address>, header <${address:$h_from:}> to <${address:$recipients}>
                  delay      = 45s
          .endif
@@ -201,14 +201,14 @@ prvs=password=[[user@yourrdomain.com.br](mailto:user@yourrdomain.com.br)](mailto
         mx_domains        = ${domain}
         condition         = ${if eqi\
                                 {${hash_BATV_SIZE:${hmac{BATV_HASH}{${length_BATV_DATESIZE:$tod_zulu}BATV_PASS}{\
-                                    ${lc:${extract{3}{=}{$sender_address_local_part}}=$sender_address_domain}\}}\}}\
-                                {${extract{2}{=}{$sender_address_local_part}}\}\
+                                    ${lc:${extract{3}{=}{$sender_address_local_part}}=$sender_address_domain}}}}}\
+                                {${extract{2}{=}{$sender_address_local_part}}}\
                              {true}fail}
         self              = fail
         transport         = nosign_delivery
         ignore_target_hosts   = +ignore_target_hosts
         cannot_route_message  = Unrouteable address: <${domain}>
-        debug_print       = "R: batv_remote_send from <${extract{3}{=}{${lc:$sender_address_local_part}}\}@$sender_address_domain> for <${local_part}@${domain}>"
+        debug_print       = "R: batv_remote_send from <${extract{3}{=}{${lc:$sender_address_local_part}}}@$sender_address_domain> for <${local_part}@${domain}>"
         headers_remove      = BYPASS_NHEADER
         no_more
 
@@ -219,11 +219,11 @@ prvs=password=[[user@yourrdomain.com.br](mailto:user@yourrdomain.com.br)](mailto
         domains           = +local_domains : +alias_domains : +relay_to_domains
         condition         = ${if eqi\
                                 {${hash_BATV_SIZE:${hmac{BATV_HASH}{${length_BATV_DATESIZE:$tod_zulu}BATV_PASS}{\
-                                    ${lc:${extract{3}{=}{$local_part}}=$domain}}\}}\}\
-                                {${extract{2}{=}{$local_part}\}}\
+                                    ${lc:${extract{3}{=}{$local_part}}=$domain}}}}}\
+                                {${extract{2}{=}{$local_part}}}\
                              {true}fail}
-        data              = ${extract{3}{=}{${lc:$local_part}}\}@$domain
-        debug_print       = "R: batv_redirect from <$sender_address_local_part@$sender_address_domain> for <${extract{3}{=}{${lc:$local_part}}\}@$domain>"
+        data              = ${extract{3}{=}{${lc:$local_part}}}@$domain
+        debug_print       = "R: batv_redirect from <$sender_address_local_part@$sender_address_domain> for <${extract{3}{=}{${lc:$local_part}}}@$domain>"
         no_expn
     .endif
 

@@ -1,5 +1,5 @@
-Several old and new email clients have a bugs. To block messages with
-bugs, put in your acl\_check\_mime:
+Several old and new email clients have bugs. To block messages which trigger those
+bugs, put in your `acl_check_mime`:
 
     # Bounday Space Gap
     drop   condition      = ${if match{$mime_boundary}{^( |\t)}{yes}{no}}

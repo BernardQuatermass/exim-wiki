@@ -78,7 +78,7 @@ i.e. an IP address enclosed in [ ].
 
     drop   message        = Helo name contains a ip address (HELO was $sender_helo_name) and not is valid
            condition      = ${if match{$sender_helo_name}{\N((\d{1,3}[.-]\d{1,3}[.-]\d{1,3}[.-]\d{1,3})|([0-9a-f]{8})|([0-9A-F]{8}))\N}{yes}{no}}
-           condition      = ${if match {${lookup dnsdb{>: defer_never,ptr=$sender_host_address}}\}{$sender_helo_name}{no}{yes}}
+           condition      = ${if match {${lookup dnsdb{>: defer_never,ptr=$sender_host_address}}}{$sender_helo_name}{no}{yes}}
            delay          = 45s
 
 The helo name contain x-x-x-x or x.x.x.x in name and name is fake.
@@ -91,11 +91,11 @@ The helo name contain x-x-x-x or x.x.x.x in name and name is fake.
            condition      = ${if match_domain{$sender_helo_name}{+local_domains:+alias_domains:+relay_to_domains}{yes}{no}}
            delay          = 45s
     drop   message        = No you are not Me or OURS (HELO was $sender_helo_name and the subdomain is my domain ${extract{-3}{.}{$sender_helo_name}}.${extract{-2}{.}{$sender_helo_name}}.${extract{-1}{.}{$sender_helo_name}})
-           condition      = ${if match_domain{${extract{-3}{.}{$sender_helo_name}}.${extract{-2}{.}{$sender_helo_name}}.${extract{-1}{.}{$sender_helo_name}}\}{+local_domains:+alias_domains:+relay_to_domains}{yes}{no}}
+           condition      = ${if match_domain{${extract{-3}{.}{$sender_helo_name}}.${extract{-2}{.}{$sender_helo_name}}.${extract{-1}{.}{$sender_helo_name}}}{+local_domains:+alias_domains:+relay_to_domains}{yes}{no}}
            delay          = 45s
     drop   message        = No you are not ME or OURS (HELO was $sender_helo_name and equal my interface hostname)
            condition      = ${if !def:interface_address {no}{yes}}
-           condition      = ${if match_ip{$interface_address}{${lookup dnsdb{>: defer_never,a=$sender_helo_name}}\}{yes}{no}}
+           condition      = ${if match_ip{$interface_address}{${lookup dnsdb{>: defer_never,a=$sender_helo_name}}}{yes}{no}}
            delay          = 45s
 
 ### HELO not contain a full host (ex: host.domain.com)
@@ -107,7 +107,7 @@ The helo name contain x-x-x-x or x.x.x.x in name and name is fake.
            !authenticated = *
            !senders       = wildlsearch;/etc/exim4/lst/skp_helodot
            !hosts         = +ignore_defer : +ignore_unknown : +relay_from_hosts : net-iplsearch;/etc/exim4/lst/skp_heloadsl
-           condition      = ${if match_ip{$sender_host_address}{${lookup dnsdb{>: defer_lax,a=${lookup dnsdb{>: defer_lax,mxh=$sender_address_domain}}\}}\}{no}{yes}}
+           condition      = ${if match_ip{$sender_host_address}{${lookup dnsdb{>: defer_lax,a=${lookup dnsdb{>: defer_lax,mxh=$sender_address_domain}}}}}{no}{yes}}
            delay          = 45s
 
 To skip check, put a hosts in skp\_heloadsl list. Skip if is a MX of
