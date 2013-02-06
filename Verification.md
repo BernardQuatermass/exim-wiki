@@ -16,7 +16,7 @@ the verification before the RCPT TO: then this ACL won't block it.
             !verify = sender/callout=2m,defer_ok
             condition = ${if eq{recipient}{$sender_verify_failure}}
 
-The no\_verify list is your white list in case there are domains that
+The `no_verify` list is your white list in case there are domains that
 are really badly configured and won't fix their configuration.
 
 Sender Verify Failed and Blacklisted
@@ -48,36 +48,42 @@ Contain ADSL in reverse, checked or unchecked
 =============================================
 
 Or not contain full host (ex: contain localhost, not host.domain.com).
-Not block a MX of domain. Use only in acl\_check\_mail before accept
-relay\_from\_hosts and authenticated.
+Not block a MX of domain. Use only in `acl_check_mail` before accept
+`relay_from_hosts` and authenticated.
 
     drop   message          = Helo is ADSL or DIAL (HELO was $sender_helo_name) and your ip $sender_host_address not is a MX/SPF of domain <$sender_address_domain>
              !senders       = :
-             condition      = ${if match {$sender_helo_name}{\\d+\\.\\d+\\.\\d+\\.\\d+|\\d+-\\d+-\\d+-\\d+|host|dsl|dial|broad|band|user|dhcp|pool|client|cable|pppoe|hsd|dyn|static|ppp|speedy|customer}{yes}{no}}
+             condition      = ${if match {$sender_helo_name}{\N\d+\.\d+\.\d+\.\d+|\d+-\d+-\d+-\d+|host|dsl|dial|broad|band|user|dhcp|pool|client|cable|pppoe|hsd|dyn|static|ppp|speedy|customer\N}{yes}{no}}
              !hosts         = +ignore_defer : +ignore_unknown : net-iplsearch;/etc/exim4/lst/skp_heloadsl
-             condition      = ${if match_ip{$sender_host_address}{${lookup dnsdb{>: defer_lax,a=${lookup dnsdb{>: defer_lax,mxh=$sender_address_domain}}\}}\}{no}{yes}}
-                !spf        = pass
+             condition      = ${if match_ip{$sender_host_address}{${lookup dnsdb{>: defer_lax,a=${lookup dnsdb{>: defer_lax,mxh=$sender_address_domain}}}}}{no}{yes}}
+             !spf           = pass
              delay          = 45s
     #-
     drop   message          = Reverse verified ($sender_host_name) is ADSL or DIAL, Helo $sender_helo_name not is $sender_host_address and your ip $sender_host_address not is a MX/SPF of domain <$sender_address_domain>
              !senders       = :
              condition      = ${if def:sender_host_name {true}{false}}
-             condition      = ${if match {$sender_host_name}{\\d+\\.\\d+\\.\\d+\\.\\d+|\\d+-\\d+-\\d+-\\d+|host|dsl|dial|broad|band|user|dhcp|pool|client|cable|pppoe|hsd|dyn|static|ppp|speedy|customer}{yes}{no}}
+             condition      = ${if match {$sender_host_name}{\N\d+\.\d+\.\d+\.\d+|\d+-\d+-\d+-\d+|host|dsl|dial|broad|band|user|dhcp|pool|client|cable|pppoe|hsd|dyn|static|ppp|speedy|customer\N}{yes}{no}}
              !hosts         = +ignore_defer : +ignore_unknown : net-iplsearch;/etc/exim4/lst/skp_heloadsl
-             condition      = ${if match_ip{$sender_host_address}{${lookup dnsdb{>: defer_lax,a=${lookup dnsdb{>: defer_lax,mxh=$sender_address_domain}}\}}\}{no}{yes}}
-             condition      = ${if match_ip{$sender_host_address}{${lookup dnsdb{>: defer_never,a=$sender_helo_name}\}}{no}{yes}}
-                !spf        = pass
+             condition      = ${if match_ip{$sender_host_address}{${lookup dnsdb{>: defer_lax,a=${lookup dnsdb{>: defer_lax,mxh=$sender_address_domain}}}}}{no}{yes}}
+             condition      = ${if match_ip{$sender_host_address}{${lookup dnsdb{>: defer_never,a=$sender_helo_name}}}{no}{yes}}
+             !spf           = pass
              delay          = 45s
     #-
     drop   message          = Reverse unchecked (${lookup dnsdb{>: defer_never,ptr=$sender_host_address}\}) is ADSL or DIAL, Helo $sender_helo_name not is $sender_host_address and your ip $sender_host_address not is a MX/SPF of domain <$sender_address_domain>
              !senders       = :
              condition      = ${if def:sender_host_name {false}{true}}
-             condition      = ${if match {${lookup dnsdb{>: defer_never,ptr=$sender_host_address}}\}{\\d+\\.\\d+\\.\\d+\\.\\d+|\\d+-\\d+-\\d+-\\d+|host|dsl|dial|broad|band|user|dhcp|pool|client|cable|pppoe|hsd|dyn|static|ppp|speedy|customer}{yes}{no}}
+             condition      = ${if match {${lookup dnsdb{>: defer_never,ptr=$sender_host_address}}}{\N\d+\.\d+\.\d+\.\d+|\d+-\d+-\d+-\d+|host|dsl|dial|broad|band|user|dhcp|pool|client|cable|pppoe|hsd|dyn|static|ppp|speedy|customer\N}{yes}{no}}
              !hosts         = +ignore_defer : +ignore_unknown : net-iplsearch;/etc/exim4/lst/skp_heloadsl
-             condition      = ${if match_ip{$sender_host_address}{${lookup dnsdb{>: defer_lax,a=${lookup dnsdb{>: defer_lax,mxh=$sender_address_domain}}\}}\}{no}{yes}}
-             condition      = ${if match_ip{$sender_host_address}{${lookup dnsdb{>: defer_never,a=$sender_helo_name}\}}{no}{yes}}
-                !spf        = pass
+             condition      = ${if match_ip{$sender_host_address}{${lookup dnsdb{>: defer_lax,a=${lookup dnsdb{>: defer_lax,mxh=$sender_address_domain}}}}}{no}{yes}}
+             condition      = ${if match_ip{$sender_host_address}{${lookup dnsdb{>: defer_never,a=$sender_helo_name}}}{no}{yes}}
+             !spf           = pass
              delay          = 45s
+
+Side-comments: note the use of `\N...\N` to wrap the regexps, to protect against
+backslashes being interpreted by the string-handling layer as well as in the
+regexp library.  Also, this example originally did not make it through a wiki
+format translation intact; the above is a best effort to recreate what should
+work, but please ask on <mailto:exim-users@exim.org> if you encounter issues.
 
 Recipient Verification
 ======================
@@ -99,7 +105,7 @@ more than 3 are wrong it's probably a dictionary attack.
             condition = ${if > {${eval:$rcpt_fail_count}}{3}{yes}{no}}
             !verify = recipient/callout=2m,defer_ok,use_sender
 
-but RSET resets \$rcpt\_fail\_count, thus making any delays after a
+but RSET resets `$rcpt_fail_count`, thus making any delays after a
 certain number of failed recipients useless. So let's do it with an acl
 variable, set the variable in a warn condition:
 
