@@ -2,6 +2,8 @@ There is sometimes a requirement to force TLS to and from a specific list of dom
 
 The assumption here is that you have already got an opportunistic TLS implementation working.
 
+Note that nothing here affects verification of TLS certificates, so you remain subject to Man-in-the-Middle attacks.
+
 In your "domainlist" section add e.g.:
 
 `domainlist tls_force_domains = example.com : *.example.com : forcetls.com : *.forcetls.com
