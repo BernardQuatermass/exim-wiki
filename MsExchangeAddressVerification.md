@@ -88,7 +88,7 @@ This returns something like:
     0 100 3268 dc1.domain.org
     0 100 3268 dc2.domain.org
 
-Which can be refined into <host>:<port> form using **map**, a la:
+Which can be refined into &gt;host&lt;:&gt;port&lt; form using **map**, a la:
 
     ${lookup dnsdb{srv=_gc._tcp.domain.org}\
     {${map{<\n $value} \ 
