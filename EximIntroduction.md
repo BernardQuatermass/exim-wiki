@@ -115,8 +115,8 @@ of the manual, or to configuration options.
     3207) - [tls\_advertise\_hosts]
 -   8BITMIME. "SMTP Service Extension for 8bit MIME Transport" (RFC
     1652) - [accept\_8bitmime]. Setting accept\_8bitmime allows Exim to
-    accept 8 bit messages, but is off by default. Exim doesn't do
-    anything special with such messages.
+    accept 8 bit messages, and is on by default, since version 4.80. Exim doesn't do
+    anything special with such messages. You might want to switch this off if you know that you're sending messages to systems that can't handle 8bitmime, but these appear to be rare.
 
 But does not support:
 -   DSN. "Simple Mail Transfer Protocol (SMTP) Service Extension for
