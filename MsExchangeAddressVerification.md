@@ -228,4 +228,43 @@ The \#\#\#nnn things make log grepping easier.
 
 * * * * *
 
+## Further Refinement
+
+Based on the above, this configuration was created and is running on production exim instances today:
+
+    AD_ROOT_DOMAIN_NAME = domain.tld
+    AD_USER_AND_GROUP = CN=The User Name,cn=users
+    AD_LDAP_DC = ${map{<\n AD_ROOT_DOMAIN_NAME}\
+    {dc=${extract{1}{.}{$item}},dc=${extract{2}{.}{$item}}}}
+
+    AD_GC_SERVERS = ${lookup dnsdb{srv=_gc._tcp.AD_ROOT_DOMAIN_NAME}\
+    {${map{<\n $value} \
+    {${extract{4}{ }{$item}}:\
+    ${extract{3}{ }{$item}}}}}}
+
+    LDAP_AD_BINDDN = "AD_USER_AND_GROUP,AD_LDAP_DC"
+    LDAP_AD_PASSWD = "secret-password"
+    LDAP_AD_BASEDN = ${quote_ldap:AD_LDAP_DC}
+
+    LDAP_AD_MAIL_RCPT = \
+      user=LDAP_AD_BINDDN \
+      pass=LDAP_AD_PASSWD \
+      ldap://AD_GC_SERVERS/LDAP_AD_BASEDN\
+      ?mail?sub?\
+      (&\
+        (|\
+          (objectClass=user)\
+          (objectClass=publicFolder)\
+          (objectClass=group)\
+        )\
+      (proxyAddresses=SMTP:${quote_ldap:${local_part}@${domain}})\
+    )
+
+This config requires only three items to be set for the local environment.  Set AD_ROOT_DOMAIN_NAME to the Windows AD DNS-style domain name, set AD_USER_AND_GROUP to a user who is allowed access to the Global Catalog (many articles suggest the creation of a delegated user for this purpose, and some go as far as suggesting a restricted OU as well.)  Finally, set the user's password in LDAP_AD_PASSWD.  
+
+**Caveats:** 
+- Only the first GC returned will be used; if it's offline or unavailable, the router will fail
+- The password is obviously en clair; future TODO: use certificates and ldap/s?
+- If the root domain is more than two parts, only the left-most two parts will be used, and that'll probably break things; if you're using something like corp.bigcompany.com then, you'll need to update AD_LDAP_DC to include <tt>,dc=${extract{3}{.}{$item}</tt>
+
 > [CategoryHowTo](CategoryHowTo)
