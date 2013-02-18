@@ -88,10 +88,23 @@ This returns something like:
     0 100 3268 dc1.domain.org
     0 100 3268 dc2.domain.org
 
+Which can be refined into <host>:<port> form using **map**, a la:
+
+    ${lookup dnsdb{srv=_gc._tcp.domain.org}\
+    {${map{<\n $value} \ 
+    {${extract{4}{ }{$item}}:\
+    ${extract{3}{ }{$item}}}}}}
+
+Which will return something like:
+
+    dc1.domain.org:3268 dc2.domain.org:3268
+
 One may prefer the static setup using serverless URI's in lookups of
 this kind:
 
     ldap_default_servers = <; dc1.domain.org:3268 ; dc2.domain.org:3268
+
+**IMPORTANT NOTE:**  Though it becomes obvious when one reads the Specification, ldap_default_servers **does not** expand any values.  It's a straight, literal, colon-separated list.  Sticking a DNS lookup in here does not work, and will lead to hair-pulling.
 
 One can declare LDAP\_AD\_BINDDN, LDAP\_AD\_PASS, LDAP\_AD\_BASE\_DN
 macros. Sample:
