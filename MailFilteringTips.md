@@ -76,7 +76,7 @@ nothing hits that at present).
             finish
     endif
 
-Here is the same script translated to Sieve:
+### Here is the same script translated to Sieve:
 
     require [ "regex", "variables", "fileinto", "envelope" ];
 
