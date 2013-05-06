@@ -11,9 +11,11 @@ You have to consider a typical customer's usage when deciding what the max numbe
 
 The design of the script:
 
-1. It uses the time frame of examining for issues to be 1 day, starting at 00:00 and ending at 23:59 for whatever time zone your system is logging into.
+1. It uses the time frame of examining for issues to be 1 day, starting at 00:00 and ending at 23:59 for whatever time zone your system is logging.
 1. It defaults the limit to be 10 different IP addresses over the course of 1 day, but it is adjustable from the commandline.
 1. Either pass the filename to open on the commandline, or pipe the file contents to the script.
-1. It has a debug flag which will scan the logs and print out what it finds, but will not change passwords nor send alerts.
+1. It has a debug commandline option which will scan the logs and print out what it finds, but will not change passwords nor send alerts.
+1. It only checks for plain and login types of SMTP Auth login.  If you use other types, you will have to add it to the regex in the main loop that parses each line.
+1. Run it as a cronjob at some interval, for example: `@hourly /usr/local/bin/detect_hacked_smtp_auth_conns.pl --limit 12 /var/log/exim/main.log`
 
 A copy of the generic perl script can be downloaded from my website at [detect_hacked_smtp_auth_conns.pl](http://downloads.mrball.net/Linux/Exim/detect_hacked_smtp_auth_conns.pl) until I can get the script attached to this page.
