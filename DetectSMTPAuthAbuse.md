@@ -15,3 +15,5 @@ The design of the script:
 1. It defaults the limit to be 10 different IP addresses over the course of 1 day, but it is adjustable from the commandline.
 1. Either pass the filename to open on the commandline, or pipe the file contents to the script.
 1. It has a debug flag which will scan the logs and print out what it finds, but will not change passwords nor send alerts.
+
+A copy of the generic perl script can be downloaded from my website at [detect_hacked_smtp_auth_conns.pl](http://downloads.mrball.net/Linux/Exim/detect_hacked_smtp_auth_conns.pl) until I can get the script attached to this page.
