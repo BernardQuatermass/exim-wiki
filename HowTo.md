@@ -15,6 +15,7 @@ Content / Virus Scanning
 Authentication
 --------------
 -   [Authenticated SMTP Howto](Authentication)
+-   [Detecting and Preventing SMTP Auth Abuse](DetectSMTPAuthAbuse)
 
 Spam Filtering
 --------------
