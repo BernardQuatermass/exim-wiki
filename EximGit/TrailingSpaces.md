@@ -78,6 +78,11 @@ modifies the working copy of any file(s) it finds, does a **git add** to
 stage the new change into the cache, and then commits it like normal.
 All of this is invisible to you the user.
 
+Note that this has a serious flaw: If you made lots of changes to a file
+but only staged a few of them for this commit, the hook script above will
+silently add **all** changes to the file after fixing whitespace. This is
+a Bad Idea[tm].
+
 ### Disable Automatic Whitespace Removal
 
 If you need to disable the whitespace removal once, you add **-n** to
