@@ -62,4 +62,4 @@ Other Howto
 -   [Real Time Information Gathering Trick Using
     Exim](InformationGathering)
 -   [Automatic blocking of compromised accounts and auth cracking](BlockCracking)
--   [How to: use iCloud as an outgoing server](for development machines
+-   [How to: use iCloud as an outgoing server](HowtoICloud)
