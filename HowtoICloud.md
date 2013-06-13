@@ -1,4 +1,4 @@
-# How to use iCloud as an outgoing mail server
+## How to use iCloud as an outgoing mail server
 
 For development machines, it is useful to send each and every mail to the same e-mail adress. This way mails can't "leak" into the real world.
 
