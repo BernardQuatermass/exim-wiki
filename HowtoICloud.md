@@ -1,3 +1,5 @@
+# How to use iCloud as an outgoing mail server
+
 For development machines, it is useful to send each and every mail to the same e-mail adress. This way mails can't "leak" into the real world.
 
 I have set up Exim on my development machines to use Apple iCloud as the outgoing MTA, rewriting all mail to my own e-mail adress. The subject clearly indicates that this mail is coming from a development machine.
