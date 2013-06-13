@@ -4,9 +4,9 @@ For development machines, it is useful to send each and every mail to the same e
 
 I have set up Exim on my development machines to use Apple iCloud as the outgoing MTA, rewriting all mail to my own e-mail adress. The subject clearly indicates that this mail is coming from a development machine.
 
-As setting up exim like this isn't obvious. You need to rewrite all From's and the To, and use the correct authentication method
+Setting up exim like this isn't obvious. You need to rewrite all From's and the To, and use the correct authentication method.
 
-To setup exim like that, use (and modify) the following exim.conf:
+To set up exim like that, use (and modify) the following exim.conf:
 
 ---
 
