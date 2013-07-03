@@ -91,12 +91,11 @@ To check message content
 
     exim -Mvb messageid
 
-added by Nina from [cna training online](http://www.online-cna-classes.org
 
-Pros
+Exim Pros
 
 Many plugins available.
 	
-Cons
+Exim Cons
 
 Cryptic templates.
