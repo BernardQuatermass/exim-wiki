@@ -99,14 +99,23 @@ Immediately after the "begin acl" line insert:
                for bruteforce auth cracking attempt.; \
                \N}\N | EXIMBINARY WARNTO"}}
     
-      accept
+      accept set acl_c_authhash = ${if match{$smtp_command_argument}\
+                      {\N(?i)^(?:plain|login) (.+)$\N}{${nhash_1000:$1}}}
     
     acl_check_quit:
-      warn  condition = ${if def:authentication_failed}
-            condition = $authentication_failed
+      warn  condition = $authentication_failed
+            condition = ${if def:acl_c_authhash}
+            ratelimit = 0 / 5m / strict / $sender_host_address-$acl_c_authhash
+            set acl_c_hashrate = ${sg{$sender_rate}{[.].*}{}}
+    
+      warn  condition = $authentication_failed
             logwrite = :reject: quit after authentication failed: \
                                 ${sg{$sender_rcvhost}{\N[\n\t]+\N}{\040}}
             ratelimit = 7 / 5m / strict / per_conn
+            condition = ${if or{\
+                                {!def:acl_c_authhash}\
+                                {<{$acl_c_hashrate}{2}}\
+                               }}
             continue = ${run{SHELL -c "echo $sender_host_address \
                >>$spool_directory/blocked_IPs; \
                \N{\N echo Subject: $sender_host_address blocked; echo; echo \
@@ -114,12 +123,20 @@ Immediately after the "begin acl" line insert:
                \N}\N | EXIMBINARY WARNTO"}}
     
     acl_check_notquit:
-      warn  condition = ${if def:authentication_failed}
-            condition = $authentication_failed
+      warn  condition = $authentication_failed
+            condition = ${if def:acl_c_authhash}
+            ratelimit = 0 / 5m / strict / $sender_host_address-$acl_c_authhash
+            set acl_c_hashrate = ${sg{$sender_rate}{[.].*}{}}
+    
+      warn  condition = $authentication_failed
             logwrite = :reject: $smtp_notquit_reason after authentication failed: \
                                 ${sg{$sender_rcvhost}{\N[\n\t]+\N}{\040}}
             condition = ${if eq{$smtp_notquit_reason}{connection-lost}}
             ratelimit = 7 / 5m / strict / per_conn
+            condition = ${if or{\
+                                {!def:acl_c_authhash}\
+                                {<{$acl_c_hashrate}{2}}\
+                               }}
             continue = ${run{SHELL -c "echo $sender_host_address \
                >>$spool_directory/blocked_IPs; \
                \N{\N echo Subject: $sender_host_address blocked; echo; echo \
@@ -137,6 +154,13 @@ Immediately after the "begin acl" line insert:
                         {$spool_directory/blocked_IPs}{1}{0}}
     
       accept
+    
+    hash:
+      accept set acl_c_authhash = ${nhash_1000:$acl_arg1}
+
+If you use Exim version 4.81 (not yet released as of this writing) or higher (or freshly compiled Exim from Git) then after the string `begin authenticators` in the paragraph with `PLAIN` append (without a blank) at the very end of `server_condion` line: `${acl{hash}{$auth2,$auth3}}` and in the paragraph with `LOGIN` append at the very end of `server_condion` line: `${acl{hash}{$auth1,$auth2}}`. For example:
+
+      server_condition = ${if pam{$auth2:${sg{$auth3}{:}{::}}}}${acl{hash}{$auth2,$auth3}}
 
 When your staff receives a message with Subject like
 `115.150.81.95 blocked`, just check that the IP-address is
