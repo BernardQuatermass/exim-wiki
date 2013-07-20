@@ -22,7 +22,7 @@ Replace the paragraph with the line `accept  authenticated = *` with three parag
                >>$spool_directory/blocked_authenticated_users; \
                \N{\N echo Subject: user $acl_m_user blocked; echo; echo because \
                has sent mail to LIM invalid recipients during PERIOD.; \
-               \N}\N | EXIMBINARY WARNTO"}}
+               \N}\N | $exim_path -f root WARNTO"}}
             control = freeze/no_tell
             control = submission/domain=
             add_header = X-Authenticated-As: $acl_m_user
@@ -55,7 +55,7 @@ with three paragraphs:
                >>$spool_directory/blocked_relay_users; \
                \N{\N echo Subject: relay user $acl_m_user blocked; echo; echo \
                because has sent mail to LIM invalid recipients during PERIOD.; \
-               \N}\N | EXIMBINARY WARNTO"}}
+               \N}\N | $exim_path -f root WARNTO"}}
             control = freeze/no_tell
             control = submission/domain=
             add_header = X-Relayed-From: $acl_m_user
@@ -73,13 +73,11 @@ Insert into beginning of config:
     LIM = 100
     PERIOD = 1h
     WARNTO = abuse@example.com
-    EXIMBINARY = /usr/local/sbin/exim -f root
     SHELL = /bin/sh
 
 In the WARNTO line replace `abuse@example.com` with your
 abuse or support or sysadmin email address;  
-I specified paths in EXIMBINARY and SHELL lines for FreeBSD,
-adjust for your operating system.
+I specified path in SHELL line for FreeBSD, adjust for your operating system.
 
 Immediately after the "begin acl" line insert:
 
@@ -97,7 +95,7 @@ Immediately after the "begin acl" line insert:
                >>$spool_directory/blocked_IPs; \
                \N{\N echo Subject: $sender_host_address blocked; echo; echo \
                for bruteforce auth cracking attempt.; \
-               \N}\N | EXIMBINARY WARNTO"}}
+               \N}\N | $exim_path -f root WARNTO"}}
     
       accept set acl_c_authhash = ${if match{$smtp_command_argument}\
                       {\N(?i)^(?:plain|login) (.+)$\N}{${nhash_1000:$1}}}
@@ -120,7 +118,7 @@ Immediately after the "begin acl" line insert:
                >>$spool_directory/blocked_IPs; \
                \N{\N echo Subject: $sender_host_address blocked; echo; echo \
                for bruteforce auth cracking attempt.; \
-               \N}\N | EXIMBINARY WARNTO"}}
+               \N}\N | $exim_path -f root WARNTO"}}
     
     acl_check_notquit:
       warn  condition = $authentication_failed
@@ -141,7 +139,7 @@ Immediately after the "begin acl" line insert:
                >>$spool_directory/blocked_IPs; \
                \N{\N echo Subject: $sender_host_address blocked; echo; echo \
                for bruteforce auth cracking attempt.; \
-               \N}\N | EXIMBINARY WARNTO"}}
+               \N}\N | $exim_path -f root WARNTO"}}
     
     acl_check_mail:
       accept set acl_c_authnomail = 0
