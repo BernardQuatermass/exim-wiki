@@ -28,7 +28,7 @@ Replace the paragraph with the line `accept  authenticated = *` with three parag
             add_header = X-Authenticated-As: $acl_m_user
     
       accept authenticated = *
-            control = submission/domain=`
+            control = submission/domain=
 
 If the line `hostlist   relay_from_hosts =`
 contains something besides `localhost` or `127.0.0.1`
