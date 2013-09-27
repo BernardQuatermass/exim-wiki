@@ -156,7 +156,7 @@ Immediately after the "begin acl" line insert:
     hash:
       accept set acl_c_authhash = ${nhash_1000:$acl_arg1}
 
-If you use Exim version 4.81 (not yet released as of this writing) or higher (or freshly compiled Exim from Git) then after the string `begin authenticators` in the paragraph with `PLAIN` append (without a blank) at the very end of `server_condion` line: `${acl{hash}{$auth2,$auth3}}` and in the paragraph with `LOGIN` append at the very end of `server_condion` line: `${acl{hash}{$auth1,$auth2}}`. For example:
+If you use Exim version 4.82 or higher then after the string `begin authenticators` in the paragraph with `PLAIN` append (without a blank) at the very end of `server_condion` line: `${acl{hash}{$auth2,$auth3}}` and in the paragraph with `LOGIN` append at the very end of `server_condion` line: `${acl{hash}{$auth1,$auth2}}`. For example:
 
       server_condition = ${if pam{$auth2:${sg{$auth3}{:}{::}}}}${acl{hash}{$auth2,$auth3}}
 
