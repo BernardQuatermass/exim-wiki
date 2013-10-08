@@ -1,4 +1,3 @@
-
 Sender Verify Fails on "Recipient"
 ==================================
 
@@ -85,6 +84,15 @@ regexp library.  Also, this example originally did not make it through a wiki
 format translation intact; the above is a best effort to recreate what should
 work, but please ask on <mailto:exim-users@exim.org> if you encounter issues.
 
+Another sidenote: this will not work in newer exim since match_ip will _not_ expand string2 due to security problems in configs. It's better rewritten so that 
+
+    condition      = ${if match_ip{$sender_host_address}{${lookup dnsdb{>: defer_never,a=$sender_helo_name}}}{no}{yes}}
+
+became
+
+    hosts = ${lookup dnsdb{>: defer_never,a=$sender_helo_name}}
+
+and similar. (Or see *EXPAND_LISTMATCH_RHS* compile-time setting.)
 Recipient Verification
 ======================
 
