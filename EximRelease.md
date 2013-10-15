@@ -33,11 +33,14 @@ Release Steps
 -   Check version number in source and version number in documentation
     match new release version
 -   Update the documentation date (2 instances near version number) in
-    both spec and filter doc sources, update copyright year if needed.
+    both spec and filter doc sources, update copyright year in
+    src/src/globals.c if needed.
 -   Check that the `NewStuff` and `ChangeLog` and
     `doc-txt/OptionLists.txt` files are up-to-date
 -   Tag git for new release - tag format is `exim` hyphen *version
-    number with underscores* - ie `exim-4_72`
+    number with underscores* - ie `exim-4_72`. You must also have git
+    sign the tag with your exim PGP id - ie `-u you@exim.org` for
+    the tarball to be built correctly.
 -   Ensure git tree (with tags) is pushed to central repo
 -   Build documentation and packages:-
     -   ensure `exim-website` and `exim` git repos checked out within
@@ -50,8 +53,8 @@ Release Steps
         `exim-website/docbook/4.73/` - for a full release this should be
         git add/commit
 -   ideally have limited final test before full distribution
--   sign tarballs - script in
-    `release-process/scripts/sign_exim_packages.sh`
+-   cd into the pkgs directory and sign the tarballs with your key:
+    `EXIM_KEY=you@exim.org ../../release-process/scripts/sign_exim_packages.sh`.
 -   write announcement including changes and cryptographic checksums
     -   SHA256 checksums only for now; 4.80 was the last to use both
         SHA1 and SHA256. We'll add SHA-3 when it's available.
