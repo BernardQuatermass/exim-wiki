@@ -35,10 +35,7 @@ The popular exiscan-acl patch code has been incorporated into Exim from
 version 4.50 onwards. The distributors' patch for dynamically loadable
 lookups has been incorporated into Exim from version 4.74 onwards.
 
-There's a [NewStuff](http://www.exim.org/ftp/ChangeLogs/NewStuff-4.80)
-file, where you can also find documentation for new features. There's
-also a [ChangeLog](http://www.exim.org/ftp/ChangeLogs/ChangeLog-4.80)
-file, with more detailed information on changes.
+[[What's new and change logs|ChangeLog]]
 
 Binary Packages
 ---------------
