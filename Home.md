@@ -13,6 +13,7 @@ On this wiki ...
 -   [[Frequently asked questions|FAQ]]
 -   Exim [[Introduction and feature list|EximIntroduction]]
 -   How to [[download and install|ObtainingExim]] Exim
+-   [[What's new|ChangeLog]] and change logs.
 -   [[Configuring Exim|ConfiguringExim]]
     -   [[HowTo's|HowTo]] for all sorts of situations
     -   Debian users should check the [[Debian-specific documentation|DebianExim4]]
