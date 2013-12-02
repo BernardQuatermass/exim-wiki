@@ -1,4 +1,3 @@
-
 Exim4 Configuration For A SSL Certificate
 =========================================
 
@@ -39,6 +38,32 @@ CAcert.org pages and paste the contents of the file
 Then copy what is generated to the file `/etc/exim4/exim.crt`
 (over-writing its existing contents).
 
+OR: Import a certificate from a pfx file e.g. exported from a Windows server
+----------------------------------------------------------------------------
+`
+root@me:~# openssl pkcs12 -in ExportWithPrivate.pfx -clcerts -nokeys -out servername.crt
+`
+
+IMPORTANT - These files are to be kept SECRET.
+
+`
+root@me:~# openssl pkcs12 -in ExportWithPrivate.pfx -out servername.pem
+`
+
+`
+root@me:~# openssl rsa -in servername.pem -out exim.key
+`
+
+Now concatenate the certificates:
+
+`
+root@me:~# cat servername.crt COMODOSSLCA.crt AddTrustExternalCARoot.crt > exim.crt
+`
+
+Copy the files `exim.key` and `exim.crt` to `/etc/exim`
+
+IMPORTANT: Backup the files to a secure location and delete the remaining files.
+
 Update Exim configuration files
 -------------------------------
 
@@ -62,6 +87,17 @@ configuration file :
     tls_advertise_hosts = *
     tls_certificate = /etc/exim/exim.crt
     tls_privatekey = /etc/exim/exim.key
+
+Change the file security so that only exim can read them (if you are running as exim):
+
+`
+root@myserver:~# chmod 600 exim.*
+`
+
+`
+root@myserver:~# chown exim exim.*
+`https://github.com/Exim/exim/wiki/_preview
+
 
 In either case you need to restart exim:-
 
