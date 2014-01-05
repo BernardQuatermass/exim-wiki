@@ -9,7 +9,7 @@ list data to a central gathering computer. The central gathering
 computer could update in real time a blacklist DNSBL making the
 blacklist information available to the world within seconds of minutes
 after the event occurred. In this example we'll assume that an Exim
-server has detected a virus bot and wants to report the IP address if
+server has detected a virus bot and wants to report the IP address of
 the virus to a centralized blacklist. The centralized blacklist is
 receiving the TCP messages from many reporters who are all part of a
 spam fighting group.
