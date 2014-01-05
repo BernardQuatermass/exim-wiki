@@ -17,7 +17,7 @@ spam fighting group.
 The Exim Sending Code
 ---------------------
 
-In this example we have Exim servers configured to send simple on line
+In this example we have Exim servers configured to send simple one line
 messages to a central location that is gathering the status of IP
 addresses. The message will look like this
 
