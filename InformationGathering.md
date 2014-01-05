@@ -1,7 +1,7 @@
 Using Exim for Real Time Information Gathering
 ==============================================
 
-Exim has a very powerful feature [ReadSocket](ReadSocket) tat allows
+Exim has a very powerful feature [ReadSocket](ReadSocket) that allows
 Exim to send simple TCP/IP messages. These messages can be accepted and
 stored for real time data processing. The idea is that multiple Exim
 installation that are processing email could, for example, send black
