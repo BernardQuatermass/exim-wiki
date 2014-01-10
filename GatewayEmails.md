@@ -3,6 +3,8 @@ Author: Silmar A. Marca
 If you use the SPF, this technology helps to make a bridge of
 communication between e-mails with dual external redirects.
 
+Before, set these in Main Configuration Settings:
+
     #-SRS0 DATESIZE = 4 for dual gateway expire in year, 6 for dual gateway expire in montly, 8 for day expire
     #- Sintaxe: SRS0=secpassword=forwarddomaindest.com.br=user@hostmx.yourdomain.com.br (SIGN_DOMAIN is $qualify_domain as correct)
     SIGN_PREFIX             = SRS0
