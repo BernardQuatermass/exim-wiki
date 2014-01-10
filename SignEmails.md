@@ -1,3 +1,5 @@
+Author: Silmar A. Marca
+
 To block spam from bounce emails, and not block callout to your domain,
 try to use: - Sign all outgoin mail - Permit Callout Check - Permit
 Password, timeout of signed mails etc.
