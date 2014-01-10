@@ -23,7 +23,7 @@ Or you can just put such all-in-one
            demime = bat:com:lnk:pif:scr:vbs:ade:adep:asd:chm:cmd:cpl:crt:dll:hlp:hta:inf:isp:jse:ocx:pcd:reg:url
 
 * * * * *
-<Author: Silmar A. Marca>
+Author: Silmar A. Marca
 
 The configuration files abouve without exim.checkpkt.sh has in [ConfigurationFile](ConfigurationFile) session To filter in zip files:
 
