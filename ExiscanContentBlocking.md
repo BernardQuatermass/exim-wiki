@@ -1,6 +1,7 @@
 Author: Silmar A. Marca
 
 Before, set these in Main Configuration Settings:
+
 EXT_Executaveis_Link	= exe|bat|cmd|ws|wsc|wsf|wsh|js|jse|vb|vbe|vbs|pif|lnk|url|msi|hta|scr|cpl|reg|ins|isp| \
 			  cab|dll|vxd|ole|ocx|sys|ovl|hlp|inf|msc|msp|mst| \
     		          bin|btm|chm|jtd|oft|ops|pcd|prf|scf|sct|shb| \
