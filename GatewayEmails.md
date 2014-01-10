@@ -14,9 +14,8 @@ Before, set these in Main Configuration Settings:
     SIGN_HASH               = md5
     SIGN_DOMAIN             = $qualify_domain
 
-\#--
+\#-- After, put the code in acl_check_rcpt:
 
-    acl_check_rcpt:
       .ifdef SIGN_PASS
         #BLK: Nega se sintaxe errada para dominios tipo forward (ponte de um dominio para outro atraves deste servidor). Geralmente usado em apelidos para
         #evitar bloqueios de SPF
@@ -59,7 +58,7 @@ Before, set these in Main Configuration Settings:
               logwrite      = :main: $message_exim_id Sign: accept sender F=${extract{4}{=}{$sender_address_local_part}}@${extract{3}{=}{$sender_address_local_part}} T=$local_part@$domain H=$sender_rcvhost
       .endif
 
-\#--
+\#-- And, put these code in Router Configuration
 
     .ifdef SIGN_PASS
       #-Envia diretamente os emails ja assinados via SIGN_PASS. Evita fazer re-assinaturas
