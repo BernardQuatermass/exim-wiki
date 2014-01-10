@@ -1,3 +1,5 @@
+Author: Silmar A. Marca
+
 To block spyware and dangerous content, use in acl\_check\_mime:
 
 Executable files: (html or text format: http[s]://\<virus
