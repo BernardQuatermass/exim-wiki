@@ -4,6 +4,8 @@ To block spam from bounce emails, and not block callout to your domain,
 try to use: - Sign all outgoin mail - Permit Callout Check - Permit
 Password, timeout of signed mails etc.
 
+Before, set these in Main Configuration Settings:
+
 \#-prvs - DATESIZE = 4 for year expire, 6 for montly expire, 8 for daily
 expire \#- Sintax of outgoin or inbound:
 prvs=password=[[user@yourrdomain.com.br](mailto:user@yourrdomain.com.br)](mailto:user@yourrdomain.com.br)
