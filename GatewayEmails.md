@@ -1,3 +1,5 @@
+Author: Silmar A. Marca
+
 If you use the SPF, this technology helps to make a bridge of
 communication between e-mails with dual external redirects.
 
