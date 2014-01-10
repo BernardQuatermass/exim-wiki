@@ -34,6 +34,7 @@ Before, set these in Main Configuration Settings:
                                 {no}{yes}}
               message       = Invalid or expired forward signature to send mail from <$sender_address> for external address <${extract{4}{=}{${lc:$local_part}}}@${extract{3}{=}{${lc:$local_part}}}>
               delay         = 45s
+         #ACT: Aceita se ja tem um recipiente com o email validado. Certamente uma resposta direta ao email em questao via gateway. 
          accept senders     = !:
               local_parts   = ^SIGN_PREFIX=*
               domains       = SIGN_DOMAIN : +local_domains : +alias_domains : +relay_to_domains
@@ -46,6 +47,8 @@ Before, set these in Main Configuration Settings:
               verify        = recipient
               control       = queue_only
               logwrite      = :main: $message_exim_id Sign: accept recipient F=${extract{4}{=}{$local_part}}@${extract{3}{=}{$local_part}} T=$sender_address H=$sender_rcvhost
+         
+         #ACT: Aceita se ja e um email validado. O sender eh o email validado. No caso eh util sempre se quem envia eh um Sevidor Relay MX, que nao envia diretamente mas passando por este servidor. 
          accept senders     = !: ^SIGN_PREFIX=*
               sender_domains= SIGN_DOMAIN : +local_domains : +alias_domains : +relay_to_domains
               condition     = ${if eqi {$local_part@$domain} {$sender_address_local_part@$sender_address_domain} {no}{yes}}
