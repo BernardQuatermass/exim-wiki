@@ -1,4 +1,5 @@
 Adapted by Silmar A. Marca
+
 Several old and new email clients have bugs. To block messages which trigger those
 bugs, put in your `acl_check_mime`:
 
