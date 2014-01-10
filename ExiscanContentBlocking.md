@@ -1,7 +1,12 @@
 Author: Silmar A. Marca
 
-To block spyware and dangerous content, use in acl\_check\_mime:
+Before, set these in Main Configuration Settings:
+EXT_Executaveis_Link	= exe|bat|cmd|ws|wsc|wsf|wsh|js|jse|vb|vbe|vbs|pif|lnk|url|msi|hta|scr|cpl|reg|ins|isp| \
+			  cab|dll|vxd|ole|ocx|sys|ovl|hlp|inf|msc|msp|mst| \
+    		          bin|btm|chm|jtd|oft|ops|pcd|prf|scf|sct|shb| \
+			  pl|plx|shb|shs|vss|vst|ade|adp|bas|crt|mda|mdb|mde|mdt|mdw|mdz
 
+To block spyware and dangerous content, use in acl\_check\_mime. 
 Executable files: (html or text format: http[s]://\<virus
 site\>/executable.exe)
 
