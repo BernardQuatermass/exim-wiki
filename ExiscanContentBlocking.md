@@ -1,5 +1,9 @@
 Author: Silmar A. Marca
 
+1) To block spyware and dangerous content, use in acl\_check\_mime. 
+Executable files: (html or text format: http[s]://\<virus
+site\>/executable.exe)
+
 Before, set these in Main Configuration Settings:
 
 EXT_Executaveis_Link	= exe|bat|cmd|ws|wsc|wsf|wsh|js|jse|vb|vbe|vbs|pif|lnk|url|msi|hta|scr|cpl|reg|ins|isp| \
@@ -7,9 +11,7 @@ EXT_Executaveis_Link	= exe|bat|cmd|ws|wsc|wsf|wsh|js|jse|vb|vbe|vbs|pif|lnk|url|
     		          bin|btm|chm|jtd|oft|ops|pcd|prf|scf|sct|shb| \
 			  pl|plx|shb|shs|vss|vst|ade|adp|bas|crt|mda|mdb|mde|mdt|mdw|mdz
 
-To block spyware and dangerous content, use in acl\_check\_mime. 
-Executable files: (html or text format: http[s]://\<virus
-site\>/executable.exe)
+After, put in acl\_check\_mime:
 
     #-BLK: Nega links para arquivos com extensoes perigosas
     drop   condition      = ${if <= {$message_size}{SIZ_LinkExecutaveis}{yes}{no}}
@@ -18,8 +20,12 @@ site\>/executable.exe)
            message        = This message contains an link to unwanted file extension mime
            delay          = 45s
 
-Spyware images style: (html source: \<img src="http[s]://www.\<spyware
+2) Spyware images style: (html source: \<img src="http[s]://www.\<spyware
 site\>/emailvalidationscript.php?id=youridtovalidate\>
+Before, set these in Main Configuration Settings:
+SIZ_EmbebedCGI		= 2M
+
+After, put in acl\_check\_mime:
 
     #-BLK: Nega links com query cgi
     drop   condition      = ${if <= {$message_size}{SIZ_EmbebedCGI}{yes}{no}}
@@ -28,9 +34,14 @@ site\>/emailvalidationscript.php?id=youridtovalidate\>
            message        = This message contains an unwanted Embedded-CGI mime
            delay          = 45s
 
-Block False links: (html source: \<a href="http[s]://www.\<hidden and
+3) Block False links: (html source: \<a href="http[s]://www.\<hidden and
 dangerous\>/redirecttovirus.php\>http[s]://www.\<another inofensive
 link\>/\</a\>
+
+Before, set these in Main Configuration Settings:
+SIZ_LinkFakeShow	= 2M
+
+After, put in acl\_check\_mime:
 
     drop   condition      = ${if <= {$message_size}{SIZ_LinkFakeShow}{yes}{no}}
            mime_regex     = (?ixs)href\\s*=\\s*["']?\\s*(http::\/\/)(.+)([\/](.*))?\\s*["']?(\\s*\\w*)+>(\\s*\\w*)+(http::\/\/)(.*)[\/]*(\\s*\\w*)+<
@@ -38,9 +49,9 @@ link\>/\</a\>
            message        = This message displays a link fake, hidden and insecure
            delay          = 45s
 
-In system\_filter you put:
+4)  Block Singature style virus of outlook:
 
-Block Singature style virus of outlook:
+In system\_filter you put:
 
     #Virus tipo Assinatura OUTLOOK
     if $message_body matches "(?ixm-s)\
@@ -55,7 +66,9 @@ Block Singature style virus of outlook:
       seen finish
     endif
 
-Block Object files embeebed (optional, outlook 2k use it):
+5) Block Object files embeebed (optional, outlook 2k use it):
+
+In system\_filter you put (otional):
 
     #Objetos Vinculados
     #if $message_body matches "(?ixm-s)\
