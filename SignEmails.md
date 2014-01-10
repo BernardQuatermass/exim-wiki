@@ -17,11 +17,18 @@ prvs=password=[[user@yourrdomain.com.br](mailto:user@yourrdomain.com.br)](mailto
     BATV_HASH               = md5
 
     #BATV_HSTPASS is optional
-    BATV_HSTPASS            = +ignore_defer : +ignore_unknown : ${lookup dnsdb{>: defer_never,mxh=optionalexternalwebhostingwithoutsignbounce.com.br}}
+    BATV_HSTPASS            = ${lookup dnsdb{>: defer_never,mxh=optionalexternalwebhostingwithoutsignbounce.com.br}}
 
-    .ifdef BATV_PASS
-        hostlist_cache batv_pass_host = BATV_HSTPASS
+    .ifdef BATV_HSTPASS
+        hostlist_cache batv_pass_host = +ignore_defer : +ignore_unknown : BATV_HSTPASS : /etc/exim4/lst/fre_emptybounce
+    .else 
+        hostlist_cache batv_pass_host = +ignore_defer : +ignore_unknown : /etc/exim4/lst/fre_emptybounce
     .endif
+
+\#..... fre_emptybounce content file
+#Black Berry
+*.blackberry.com
+74.82.85.0/24
 
 \#.....
 
