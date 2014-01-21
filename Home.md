@@ -42,7 +42,7 @@ See also
 
 Wiki Conversion
 ===============
-This wiki was converted from the old one hosted on exim.org.  There may be 
+This wiki was converted from the old one [hosted](http://www.hostgatortalk.com) on exim.org.  There may be 
 some issues with the conversion - please fix up any formatting or linking problems you discover.
 
 Participate - Learning about Wikis
