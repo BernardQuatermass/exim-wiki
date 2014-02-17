@@ -42,6 +42,13 @@ In retry (optional)
 ```
 
 
+PCI Compliance.  You may need to add the following just after tls_privatekey
 
+```
+# We need to disable SSL2 and key lengths < 128 bits for PCI compliance
+
+tls_require_ciphers = ALL:!ADH:RC4+RSA:+HIGH:+MEDIUM:+SHA:!MD5:!LOW:!SSLv2:!EXP:!DES
+
+```
 
 
