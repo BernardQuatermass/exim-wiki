@@ -3,17 +3,15 @@ Exim Frequently Asked Questions
 
 Top Questions
 -------------
--   [How do I stop Exim being an open relay?](Policy_controls/Q0742)
--   [How can I send a copy of all outgoing messages to another
-    mailbox?](Miscellaneous/Q5033)
+-   [How do I stop Exim being an open relay?](Q0742)
+-   [How can I send a copy of all outgoing messages to another mailbox?](Q5033)
 -   [How can I check addresses against a Microsoft Exchange
     server?](MsExchangeAddressVerification)
--   [What should I put in my acl\_smtp\_rcpt
-    ACL?](Policy_controls/Q0743)
+-   [What should I put in my acl\_smtp\_rcpt ACL?](Q0743)
 -   [I've got a queue full of "bounce" messages. How do I get rid of
-    them?](Policy_controls/Q0744)
+    them?](Q0744)
 -   [Does Exim support POP and/or IMAP, or do I have to install
-    something else to do that?](Miscellaneous/Q5021)
+    something else to do that?](Q5021)
 
 If your question wasn't in the list above, try a search, or consult the
 complete categorised list below:
