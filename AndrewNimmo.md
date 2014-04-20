@@ -8,7 +8,7 @@ Andrew Nimmo
 ============
 
 Email: \`[[MailTo(andrew.nimmo AT SPAMFREE gmail DOT com)]]\`\_ Web:
-[Illumas](http://web.illumas.eu/)
+[Illumas](http://illumas.eu/)
 
 Overview
 --------
