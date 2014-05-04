@@ -10,6 +10,7 @@ ACL Related Tricks
 -   [Delay SMTP transactions](DelayTransactions)
 -   [Rcpt ACL](AclSmtpRcpt)
 -   [Data ACL](AclSmtpData)
+-   [Block outgoing spam](BlockCracking)
 -   [A package of checks](LenasConfig)
 
 Spam Assassin
