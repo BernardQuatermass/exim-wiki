@@ -16,6 +16,7 @@ serious.
 -   CVE-2014-2957 fixed in 4.82.1, introduced in 4.82: used untrusted
     data when parsing the From header in Experimental DMARC code and
     allowed macro expansion.
+    [Details post](https://lists.exim.org/lurker/message/20140528.122536.a31d60a4.en.html)
 -   CVE-2012-5671 fixed in 4.80.1, introduced in 4.70: buffer overflow
     vulnerability in DKIM DNS response processing. Impact: remote code
     execution as Exim run-time user.
