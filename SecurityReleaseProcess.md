@@ -11,7 +11,7 @@ First, familiarize yourself with these pages:
 Somehow, you become aware of a previously unknown security vulnerability in
 Exim.  The first step is assessment -- how bad is it, do we need to put out a
 security release?  There's no guidance on that here.  The rest of this page
-assumes that we do.
+assumes that shall be putting out an emergency release.
 
 Writing a patch runs somewhere in the middle of this list and might not happen
 by the person coordinating the rest of the process.  That's fine.  **DO NOT
@@ -24,7 +24,7 @@ reasonable chance of being able to verify identity.
 1. Keep good notes of every step and timeline, we'll need them afterwards for
    writing things up for explaining ourselves to the community.
 2. If reported to you, establish if the reporter has a timeline for public
-   verification and what their preferences are around acknowledgement.  Note
+   announcement and what their preferences are around acknowledgement.  Note
    though that we prefer to move quickly enough that we far exceed any normal
    timeline requirements.  If professional researchers, ask if they've already
    obtained a CVE.
