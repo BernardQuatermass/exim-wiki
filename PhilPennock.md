@@ -19,9 +19,7 @@ If you have an actual verified bug,
 Either accept the default owner or pick me if you have reason to believe
 I'm a good victim.
 
-Regards,
-:   -*Phil, The Grumpy Troll*
+Regards,  
+-*Phil, The Grumpy Troll*
 
-* * * * *
-
-> [CategoryHomepage](CategoryHomepage)
+_(migrated old wiki user profile page)_

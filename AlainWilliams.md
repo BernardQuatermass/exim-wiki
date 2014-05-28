@@ -8,6 +8,4 @@ Email: \`[[MailTo(addw AT SPAMFREE phcomp DOT co DOT uk)]]\`\_
 
 Web: [Parliament Hill Computers](http://www.phcomp.co.uk)
 
-* * * * *
-
-> [CategoryHomepage](CategoryHomepage)
+_(migrated old wiki user profile page)_

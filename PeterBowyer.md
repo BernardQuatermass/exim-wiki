@@ -13,6 +13,4 @@ and so on.
 I'm collecting ideas for improvements to the Exim website
 [here](WebsiteImprovements)
 
-* * * * *
-
-> [CategoryHomepage](CategoryHomepage)
+_(migrated old wiki user profile page)_

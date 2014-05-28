@@ -5,6 +5,4 @@ Email: \`[[MailTo(eximwiki08ag AT SPAMFREE linuxwan DOT net)]]\`\_
 
 ...
 
-* * * * *
-
-> [CategoryHomepage](CategoryHomepage)
+_(migrated old wiki user profile page)_

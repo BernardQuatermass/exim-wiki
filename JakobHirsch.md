@@ -13,6 +13,4 @@ about the easyness and possibilities of Exim.
 Other software I use for mail services is: dovecot (imap-server), mlmmj
 (mailing-list), spamassassin, H+B antivir.
 
-* * * * *
-
-> [CategoryHomepage](CategoryHomepage)
+_(migrated old wiki user profile page)_

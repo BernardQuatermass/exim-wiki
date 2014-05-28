@@ -1,5 +1,3 @@
 I like Exim.
 
-* * * * *
-
-> [CategoryHomepage](CategoryHomepage)
+_(migrated old wiki user profile page)_

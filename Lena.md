@@ -3,8 +3,4 @@ Lena
 
 My email address: Lena()lena.kiev.ua
 
-
-
-* * * * *
-
-> [CategoryHomepage](CategoryHomepage)
+_(migrated old wiki user profile page)_

@@ -9,8 +9,4 @@ servers (mysql), and network/firewall.
 
 I've recently been granted the commit bit for exim because I accidentally contributed a couple of small fixes that were seen by current maintainers  *grin*. I'll try not to break anything *smirk*.
 
-* * * * *
-
-[CategoryHomepage](CategoryHomepage)
-
-* * * * *
+_(migrated old wiki user profile page)_

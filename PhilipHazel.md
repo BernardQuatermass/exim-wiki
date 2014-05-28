@@ -33,8 +33,4 @@ you go...
 
 ![](attachments/PhilipHazel3.jpg)
 
-* * * * *
-
-> [CategoryHomepage](CategoryHomepage)
-
-* * * * *
+_(migrated old wiki user profile page)_
