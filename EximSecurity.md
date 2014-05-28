@@ -13,6 +13,9 @@ Note that a "remote code execution as Exim run-time user" vulnerability
 can be combined with a privilege escalation attack to become even more
 serious.
 
+-   CVE-2014-2957 fixed in 4.82.1, introduced in 4.82: used untrusted
+    data when parsing the From header in Experimental DMARC code and
+    allowed macro expansion.
 -   CVE-2012-5671 fixed in 4.80.1, introduced in 4.70: buffer overflow
     vulnerability in DKIM DNS response processing. Impact: remote code
     execution as Exim run-time user.
