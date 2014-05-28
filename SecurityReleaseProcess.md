@@ -74,6 +74,9 @@ reasonable chance of being able to verify identity.
 9. Prepare a release tarball from local git; prepare a standalone patch.  Also
    sign the standalone patch, not just the tarball.  These should be
    considered "embargoed resources".
+  * Confirm that you used a signed tag in your local git repo and that the
+    built tarball has a sensible version number in `src/version.h`
+  * Build and use this tarball yourself.
 10. Put these embargoed resources behind a web-server with HTTP Basic/Digest
     authentication in front of them.  Create a couple of dedicated usercodes
     with decent passwords, one for each list.
