@@ -40,3 +40,8 @@ serious.
 -   CVE-2010-4344 fixed in 4.70: buffer overflow in string\_format().
     Impact: remote code execution as Exim run-time user. [Bugzilla
     787](http://bugs.exim.org/787).
+
+See Also
+--------
+
+* [[Security Release Process][SecurityReleaseProcess]]
