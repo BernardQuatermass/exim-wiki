@@ -44,4 +44,4 @@ serious.
 See Also
 --------
 
-* [[Security Release Process][SecurityReleaseProcess]]
+* [Security Release Process](SecurityReleaseProcess)

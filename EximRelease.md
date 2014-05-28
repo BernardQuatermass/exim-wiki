@@ -6,7 +6,7 @@ stuff captured...
 
 We follow [EximReleasePolicy](EximReleasePolicy) for releases.
 
-Except for the [[Security Release Process][SecurityReleaseProcess]].
+Except for the [Security Release Process](SecurityReleaseProcess).
 
 
 Each Feature/Bug Fix
