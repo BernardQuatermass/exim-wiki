@@ -92,6 +92,7 @@ reasonable chance of being able to verify identity.
     email to exim-announce and exim-users, update the website; send email to
     the Openwall oss-security list.  Update other places which are on the
     release process wiki page (wikis, etc).
-15. Deal with list fallout.  See if others can take lead on that, while you
+15. Push fixes to public git.
+16. Deal with list fallout.  See if others can take lead on that, while you
     get sleep.
 
