@@ -1,6 +1,5 @@
-## Blocking compromised accounts and auth cracking
-Nowadays users' passwords often are stolen (with drive-by exploits, Windows malware, phishing) and used for spamming. Spam sent with authentication via your server causes it to be blacklisted without notice and sometimes no appeal. Simple rate limiting authenticated users constrains honest users while still allowing spam to trickle through, your server still ends up in blacklists. Each server needs automatic detection and blocking of compromised accounts (stolen passwords). I amended and implemented (for Exim version 4.67 or higher) Andrew Hearn's [idea](https://lists.exim.org/lurker/message/20100226.153132.58ab2e98.en.html) to check not rate of messages or all recipients, but rate of attempts to send to nonexistent recipient email addresses. Vast majority of spammers never try to validate every recipient address. Spammers harvest strings looking like email addresses from webpages and disks of trojaned Windowses, then sell huge lists of email addresses to each other. These lists contain very much email addresses which don't exist anymore or never existed: Message-Ids, corrupted strings in memory and files. In short, spammers' lists of email addresses are much dirtier than lists honest users send to. Honest users are very unlikely to attempt to send to 100 nonexistent email addresses in one hour. Below I explain in detail (for novices at Exim) what to change in
-Exim config for automatic blocking of compromised and spammers' accounts, with automatic email notification to sysadmin or your abuse or support staff.
+## Blocking compromised accounts (outgoing spam) and auth cracking
+Nowadays users' passwords often are stolen (with drive-by exploits, Windows malware, phishing) and used for spamming. Spam sent with authentication via your server causes it to be blacklisted without notice and sometimes no appeal. Simple rate limiting authenticated users constrains honest users while still allowing spam to trickle through, your server still ends up in blacklists. Each server needs automatic detection and blocking of compromised accounts (stolen passwords). I amended and implemented (for Exim version 4.67 or higher) Andrew Hearn's [idea](https://lists.exim.org/lurker/message/20100226.153132.58ab2e98.en.html) to check not rate of messages or all recipients, but rate of attempts to send to nonexistent recipient email addresses. Vast majority of spammers never try to validate every recipient address. Spammers harvest strings looking like email addresses from webpages and disks of trojaned Windowses, then sell huge lists of email addresses to each other. These lists contain very much email addresses which don't exist anymore or never existed: Message-Ids, corrupted strings in memory and files. In short, spammers' lists of email addresses are much dirtier than lists honest users send to. Honest users are very unlikely to attempt to send to 100 nonexistent email addresses in one hour. Below I explain in detail (for novices at Exim) what to change in Exim config for automatic blocking of compromised and spammers' accounts, with automatic email notification to sysadmin or your abuse or support staff.
 
 This code also blocks brute force password cracking via SMTP (it's not as important but a little useful).
 
@@ -76,8 +75,7 @@ Insert into beginning of config:
     SHELL = /bin/sh
 
 In the WARNTO line replace `abuse@example.com` with your
-abuse or support or sysadmin email address;  
-I specified path in SHELL line for FreeBSD, adjust for your operating system.
+abuse or support or sysadmin email address.
 
 Immediately after the "begin acl" line insert:
 
@@ -91,11 +89,18 @@ Immediately after the "begin acl" line insert:
       drop  message = blacklisted for bruteforce cracking attempt
             set acl_c_authnomail = ${eval10:0$acl_c_authnomail+1}
             condition = ${if >{$acl_c_authnomail}{4}}
+            condition = ${if exists{$spool_directory/blocked_IPs}\
+                             ${lookup{$sender_host_address}lsearch\
+                                     {$spool_directory/blocked_IPs}{0}{1}}\
+                             {1}}
             continue = ${run{SHELL -c "echo $sender_host_address \
                >>$spool_directory/blocked_IPs; \
                \N{\N echo Subject: $sender_host_address blocked; echo; echo \
                for bruteforce auth cracking attempt.; \
                \N}\N | $exim_path -f root WARNTO"}}
+
+      drop  message = blacklisted for bruteforce cracking attempt
+            condition = ${if >{$acl_c_authnomail}{4}}
     
       accept set acl_c_authhash = ${if match{$smtp_command_argument}\
                       {\N(?i)^(?:plain|login) (.+)$\N}{${nhash_1000:$1}}}
@@ -114,6 +119,10 @@ Immediately after the "begin acl" line insert:
                                 {!def:acl_c_authhash}\
                                 {<{$acl_c_hashrate}{2}}\
                                }}
+            condition = ${if exists{$spool_directory/blocked_IPs}\
+                             ${lookup{$sender_host_address}lsearch\
+                                     {$spool_directory/blocked_IPs}{0}{1}}\
+                             {1}}
             continue = ${run{SHELL -c "echo $sender_host_address \
                >>$spool_directory/blocked_IPs; \
                \N{\N echo Subject: $sender_host_address blocked; echo; echo \
@@ -135,6 +144,10 @@ Immediately after the "begin acl" line insert:
                                 {!def:acl_c_authhash}\
                                 {<{$acl_c_hashrate}{2}}\
                                }}
+            condition = ${if exists{$spool_directory/blocked_IPs}\
+                             ${lookup{$sender_host_address}lsearch\
+                                     {$spool_directory/blocked_IPs}{0}{1}}\
+                             {1}}
             continue = ${run{SHELL -c "echo $sender_host_address \
                >>$spool_directory/blocked_IPs; \
                \N{\N echo Subject: $sender_host_address blocked; echo; echo \
