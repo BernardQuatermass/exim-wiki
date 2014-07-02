@@ -21,3 +21,5 @@ Building and Installing
 - [Q0118 - I've set `LOOKUP_INCLUDE=-I/client/include` in Local/Makefile, but the](Q0118)
 - [Q0119 - I know there are some 3rd-party patches for Exim, for exiscan and other](Q0119)
 - [Q0120 - I'm trying to compile with LOOKUP\_WHOSON, but I keep getting *In](Q0120)
+- [Q0121 - UNANSWERED I'm trying to include IPV6 support ](Q0121) - can't get the link to work, sorry.  https://github.com/Exim/exim/wiki/Q0121
+
