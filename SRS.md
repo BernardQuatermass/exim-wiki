@@ -8,7 +8,7 @@ library. The current version of the supported library is 0.5.
 
 In order to use SRS, you must get a copy of libsrs\_alt from
 
-[http://srs.mirtol.com](http://srs.mirtol.com)/
+[http://srs.mirtol.com](http://srs.mirtol.com)/ - **The site does not exist!**
 
 Unpack the tarball, then refer to MTAs/README.EXIM to proceed. You need
 to set
