@@ -1,5 +1,4 @@
-The goal is simple. Messages that are marked as spam, but did no get
-enough high score to get rejected: put them in the user SPAM directory.
+The goal is simple. Messages that are marked as spam but do not score high enough to get rejected: put them in the user defined SPAM directory.
 
 Router section:
 
