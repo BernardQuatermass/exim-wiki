@@ -90,8 +90,8 @@ Immediately after the "begin acl" line insert:
             set acl_c_authnomail = ${eval10:0$acl_c_authnomail+1}
             condition = ${if >{$acl_c_authnomail}{4}}
             condition = ${if exists{$spool_directory/blocked_IPs}\
-                             ${lookup{$sender_host_address}lsearch\
-                                     {$spool_directory/blocked_IPs}{0}{1}}\
+                             {${lookup{$sender_host_address}iplsearch\
+                                     {$spool_directory/blocked_IPs}{0}{1}}}\
                              {1}}
             continue = ${run{SHELL -c "echo $sender_host_address \
                >>$spool_directory/blocked_IPs; \
@@ -120,8 +120,8 @@ Immediately after the "begin acl" line insert:
                                 {<{$acl_c_hashrate}{2}}\
                                }}
             condition = ${if exists{$spool_directory/blocked_IPs}\
-                             ${lookup{$sender_host_address}lsearch\
-                                     {$spool_directory/blocked_IPs}{0}{1}}\
+                             {${lookup{$sender_host_address}iplsearch\
+                                     {$spool_directory/blocked_IPs}{0}{1}}}\
                              {1}}
             continue = ${run{SHELL -c "echo $sender_host_address \
                >>$spool_directory/blocked_IPs; \
@@ -145,8 +145,8 @@ Immediately after the "begin acl" line insert:
                                 {<{$acl_c_hashrate}{2}}\
                                }}
             condition = ${if exists{$spool_directory/blocked_IPs}\
-                             ${lookup{$sender_host_address}lsearch\
-                                     {$spool_directory/blocked_IPs}{0}{1}}\
+                             {${lookup{$sender_host_address}iplsearch\
+                                     {$spool_directory/blocked_IPs}{0}{1}}}\
                              {1}}
             continue = ${run{SHELL -c "echo $sender_host_address \
                >>$spool_directory/blocked_IPs; \
@@ -161,7 +161,7 @@ Immediately after the "begin acl" line insert:
       drop  message = $sender_host_address locally blacklisted for a bruteforce \
                       auth (username+password) cracking attempt
             condition = ${if exists{$spool_directory/blocked_IPs}}
-            condition = ${lookup{$sender_host_address}lsearch\
+            condition = ${lookup{$sender_host_address}iplsearch\
                         {$spool_directory/blocked_IPs}{1}{0}}
     
       accept
