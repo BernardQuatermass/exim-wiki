@@ -4,7 +4,7 @@ Sender Rewriting Scheme (SRS)
 SRS support is [Experimental](ExperimentalSpec)
 
 Exiscan currently includes SRS support via Miles Wilton's libsrs\_alt
-library. The current version of the supported library is 0.5.
+library. The current version of the supported library is 1.0.
 
 In order to use SRS, you must get a copy of libsrs\_alt from
 
