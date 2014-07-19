@@ -8,7 +8,8 @@ library. The current version of the supported library is 0.5.
 
 In order to use SRS, you must get a copy of libsrs\_alt from
 
-[http://srs.mirtol.com](http://srs.mirtol.com)/ - **The site does not exist!**
+[http://opsec.eu/src/srs/](http://opsec.eu/src/srs/)
+The old site [http://srs.mirtol.com](http://srs.mirtol.com)/ no longer exists.
 
 Unpack the tarball, then refer to MTAs/README.EXIM to proceed. You need
 to set
@@ -18,7 +19,7 @@ to set
 in your `Local/Makefile`.
 
 Additional Documentation from
-[http://srs.mirtol.com/exim.php](http://srs.mirtol.com/exim.php):
+[http://opsec.eu/src/srs/exim.html](http://opsec.eu/src/srs/exim.html):
 
 Configuring Exim
 ----------------
