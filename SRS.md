@@ -10,7 +10,7 @@ In order to use SRS, you must get a copy of libsrs\_alt from
 
 [http://opsec.eu/src/srs/](http://opsec.eu/src/srs/)
 
-(The old site [http://srs.mirtol.com](http://srs.mirtol.com/) no longer exists.
+(The old site [http://srs.mirtol.com](http://srs.mirtol.com/) no longer exists)
 
 Unpack the tarball, then refer to MTAs/README.EXIM to proceed. You need
 to set
