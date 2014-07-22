@@ -13,6 +13,10 @@ Note that a "remote code execution as Exim run-time user" vulnerability
 can be combined with a privilege escalation attack to become even more
 serious.
 
+-   CVE-2014-2972 fixed in 4.83: mathematical comparison functions were
+    expanding args twice. Impact: local code execution if specific
+    mathematical comparison functions were performing data lookups from
+    user controlled data.
 -   CVE-2014-2957 fixed in 4.82.1, introduced in 4.82: used untrusted
     data when parsing the From header in Experimental DMARC code and
     allowed macro expansion.
