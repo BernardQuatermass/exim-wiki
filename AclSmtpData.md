@@ -79,7 +79,7 @@ Fast Check Mx Headers Address
           !verify         = sender=${address:$h_sender:}/no_details
           delay           = 45s
 
-Slow, but eficiente callout
+Slow, but efficient callout
 ===========================
 
     drop  message         = Header From have a invalid callout ${sender_verify_failure}: <${address:$h_from:}>
@@ -148,7 +148,7 @@ Black List headers
            message        = Header Message-ID <${address:$h_Message-Id:}> black listed: ${lookup{${address:$h_Message-Id:}}wildlsearch{/etc/exim4/lst/blk_sender}}
            delay          = 45s
 
-Bind copy in bounce?
+Blind copy in bounce?
 ====================
 
     drop  message         = Bounce errors never contains bind copy headers!
