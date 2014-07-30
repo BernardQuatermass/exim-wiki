@@ -114,11 +114,11 @@ Immediately after the "begin acl" line insert:
       warn  condition = $authentication_failed
             logwrite = :reject: quit after authentication failed: \
                                 ${sg{$sender_rcvhost}{\N[\n\t]+\N}{\040}}
-            ratelimit = 7 / 5m / strict / per_conn
             condition = ${if or{\
                                 {!def:acl_c_authhash}\
                                 {<{$acl_c_hashrate}{2}}\
                                }}
+            ratelimit = 7 / 5m / strict / per_conn
             condition = ${if exists{$spool_directory/blocked_IPs}\
                              {${lookup{$sender_host_address}iplsearch\
                                      {$spool_directory/blocked_IPs}{0}{1}}}\
@@ -139,11 +139,11 @@ Immediately after the "begin acl" line insert:
             logwrite = :reject: $smtp_notquit_reason after authentication failed: \
                                 ${sg{$sender_rcvhost}{\N[\n\t]+\N}{\040}}
             condition = ${if eq{$smtp_notquit_reason}{connection-lost}}
-            ratelimit = 7 / 5m / strict / per_conn
             condition = ${if or{\
                                 {!def:acl_c_authhash}\
                                 {<{$acl_c_hashrate}{2}}\
                                }}
+            ratelimit = 7 / 5m / strict / per_conn
             condition = ${if exists{$spool_directory/blocked_IPs}\
                              {${lookup{$sender_host_address}iplsearch\
                                      {$spool_directory/blocked_IPs}{0}{1}}}\
