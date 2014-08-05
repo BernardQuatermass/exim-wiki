@@ -1,4 +1,4 @@
-This scenario arose as a result of the ISP providing IPv6 and then not being able to provide reverse PTR records for the IPv6 addresses.  It turns out that RIPE has not given the ISP SOA on that IPv6 subnet yet:
+This scenario arose as a result of the ISP (BTNET 21CN) providing IPv6 and then not being able to provide reverse PTR records for the IPv6 addresses.  It turns out that RIPE has not given the ISP SOA on that IPv6 subnet yet:
 ```
 ;; AUTHORITY SECTION:
 0.a.2.ip6.arpa.         3600    IN      SOA     pri.authdns.ripe.net. dns.ripe.net. 1407144119 3600 600 864000 7200
