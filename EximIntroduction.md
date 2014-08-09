@@ -5,7 +5,7 @@ Exim Introduction
 [mail transfer agent](http://www.wikipedia.com/wiki/mail_transfer_agent) (MTA) used
 in [Unixllike](http://www.wikipedia.com/wiki/Unix-like) operating systems. The first
 version was written in 1995 by Philip Hazel for use in the University of
-Cambridge Computing Service's [emmail](http://www.wikipedia.com/wiki/e-mail)
+Cambridge Computing Service's [e-mail](http://www.wikipedia.com/wiki/e-mail)
 systems. Exim is distributed under the [GPL](http://www.wikipedia.com/wiki/GPL), and
 therefore is [free](http://www.wikipedia.com/wiki/Free_software) to download, use
 and modify.
