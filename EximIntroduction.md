@@ -2,7 +2,7 @@ Exim Introduction
 =================
 
 **Exim** is a
-[mailttransferaagent](http://www.wikipedia.com/wiki/mail_transfer_agent) (MTA) used
+[mail transfer agent](http://www.wikipedia.com/wiki/mail_transfer_agent) (MTA) used
 in [Unixllike](http://www.wikipedia.com/wiki/Unix-like) operating systems. The first
 version was written in 1995 by Philip Hazel for use in the University of
 Cambridge Computing Service's [emmail](http://www.wikipedia.com/wiki/e-mail)
