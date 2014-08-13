@@ -1,13 +1,7 @@
-\#\# information, please see MoinMaster:MoinPagesEditorGroup. \#\#
-master-page:Unknown-Page \#\# master-date:Unknown-Date \#\# acl
-MoinPagesEditorGroup:read,write,delete,revert All:read
-
 This document is describes how to use exim4 as relay server for internal
 network. 1. Creating the perl fuctions: we need to create several perl
 functions to be able check authorization at third party mail servers:
 The internal mail server in this example have the mail. prefix.
-
-* * * * *
 
 > {{{sub check\_mail\_dot(\$){ my \$host=shift; \$host="mail.".\$host;
 > my \$res = Net::DNS::Resolver-\>new(); my \$query =
