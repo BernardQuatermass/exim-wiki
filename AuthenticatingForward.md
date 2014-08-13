@@ -1,5 +1,5 @@
 This document is describes how to use exim4 as relay server for internal
-network. 1. Creating the perl fuctions: we need to create several perl
+network. 1. Creating the perl functions: we need to create several perl
 functions to be able check authorization at third party mail servers:
 The internal mail server in this example have the mail. prefix.
 
