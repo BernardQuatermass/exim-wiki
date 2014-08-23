@@ -135,7 +135,7 @@ Example Configurations
 ----------------------
 
 These are extracts from an Exim config file to give readers an idea of
-how to confgiure their servers. Two examples follow:
+how to configure their servers. Two examples follow:
 
 ### Basic SRS Configuration
 
