@@ -73,6 +73,8 @@ Insert into beginning of config:
     PERIOD = 1h
     WARNTO = abuse@example.com
     SHELL = /bin/sh
+    hostlist blocked_ips = $spool_directory/blocked_IPs
+             # intentionally not cached
 
 In the WARNTO line replace `abuse@example.com` with your
 abuse or support or sysadmin email address.
@@ -90,9 +92,11 @@ Immediately after the "begin acl" line insert:
             set acl_c_authnomail = ${eval10:0$acl_c_authnomail+1}
             condition = ${if >{$acl_c_authnomail}{4}}
             condition = ${if exists{$spool_directory/blocked_IPs}\
-                             {${lookup{$sender_host_address}iplsearch\
-                                     {$spool_directory/blocked_IPs}{0}{1}}}\
+                             {${if match_ip{$sender_host_address}{+blocked_ips}\
+                                   {0}{1}}}\
                              {1}}
+                             # a named list containing $ instead of iplsearch
+                             # in order for the lookup result to be not cached
             continue = ${run{SHELL -c "echo $sender_host_address \
                >>$spool_directory/blocked_IPs; \
                \N{\N echo Subject: $sender_host_address blocked; echo; echo \
@@ -120,8 +124,8 @@ Immediately after the "begin acl" line insert:
                                }}
             ratelimit = 7 / 5m / strict / per_conn
             condition = ${if exists{$spool_directory/blocked_IPs}\
-                             {${lookup{$sender_host_address}iplsearch\
-                                     {$spool_directory/blocked_IPs}{0}{1}}}\
+                             {${if match_ip{$sender_host_address}{+blocked_ips}\
+                                   {0}{1}}}\
                              {1}}
             continue = ${run{SHELL -c "echo $sender_host_address \
                >>$spool_directory/blocked_IPs; \
@@ -145,8 +149,8 @@ Immediately after the "begin acl" line insert:
                                }}
             ratelimit = 7 / 5m / strict / per_conn
             condition = ${if exists{$spool_directory/blocked_IPs}\
-                             {${lookup{$sender_host_address}iplsearch\
-                                     {$spool_directory/blocked_IPs}{0}{1}}}\
+                             {${if match_ip{$sender_host_address}{+blocked_ips}\
+                                   {0}{1}}}\
                              {1}}
             continue = ${run{SHELL -c "echo $sender_host_address \
                >>$spool_directory/blocked_IPs; \
