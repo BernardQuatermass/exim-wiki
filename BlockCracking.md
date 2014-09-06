@@ -231,4 +231,7 @@ Similarly with users on LAN or the ISP's IP-ranges
 (file `blocked_relay_users`,
 notifications with Subject like `relay user 192.168.12.34 blocked`).
 
+How to use this approach to block outgoing spam submitted locally such as from webserver (for web-hosting admins):  
+[https://lists.exim.org/lurker/message/20140903.204348.2335eb78.en.html](https://lists.exim.org/lurker/message/20140903.204348.2335eb78.en.html)
+
 [Lena](Lena)
