@@ -28,7 +28,6 @@ See also
 ========
 -   [[Exim Home|http://www.exim.org/]]
 -   [[Exim Documentation|http://www.exim.org/docs.html]]
--   [[Exim New Users Information|http://www.exim-new-users.co.uk/]]
 -   [[Download Exim|http://www.exim.org/mirrors.html]]
 -   [[Exim Mailing Lists|EximMailingLists]]
     -   the lists have [searchable archives](http://lists.exim.org/)
