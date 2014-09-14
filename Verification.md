@@ -96,7 +96,7 @@ and similar. (Or see *EXPAND_LISTMATCH_RHS* compile-time setting.)
 Recipient Verification
 ======================
 
-Drop at connect time if the Recipient doesn't exist.
+Drop at SMTP time if the Recipient doesn't exist.
 
     deny    message   = REJECTED - Recipient Verify Failed - User Not Found
             domains   = +all_mail_handled_locally
