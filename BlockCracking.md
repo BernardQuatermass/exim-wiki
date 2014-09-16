@@ -8,8 +8,8 @@ Replace the paragraph with the line `accept  authenticated = *` with three parag
       accept authenticated = *
             set acl_m_user = $authenticated_id
             condition = ${if exists{$spool_directory/blocked_authenticated_users}}
-            condition = ${lookup{$acl_m_user}lsearch\
-                        {$spool_directory/blocked_authenticated_users}{1}{0}}
+            condition = ${if match_local_part{$acl_m_user}{+blocked_auth_users}}
+                             # userid may contain @, match_local_part works anyway
             control = freeze/no_tell
             control = submission/domain=
             add_header = X-Authenticated-As: $acl_m_user
@@ -41,8 +41,7 @@ with three paragraphs:
             set acl_m_user = $sender_host_address
                              # or username from RADIUS
             condition = ${if exists{$spool_directory/blocked_relay_users}}
-            condition = ${lookup{$acl_m_user}lsearch\
-                        {$spool_directory/blocked_relay_users}{1}{0}}
+            condition = ${if match_local_part{$acl_m_user}{+blocked_relay_users}}
             control = freeze/no_tell
             control = submission/domain=
             add_header = X-Relayed-From: $acl_m_user
@@ -75,6 +74,8 @@ Insert into beginning of config:
     SHELL = /bin/sh
     hostlist blocked_ips = $spool_directory/blocked_IPs
              # intentionally not cached
+    localpartlist blocked_auth_users = $spool_directory/blocked_authenticated_users
+    localpartlist blocked_relay_users = $spool_directory/blocked_relay_users
 
 In the WARNTO line replace `abuse@example.com` with your
 abuse or support or sysadmin email address.
