@@ -16,11 +16,11 @@ Replace the paragraph with the line `accept  authenticated = *` with three parag
     
       accept authenticated = *
             !verify = recipient/defer_ok/callout=10s,defer_ok,use_sender
-            ratelimit = LIM / PERIOD / per_rcpt / user-$acl_m_user
+            ratelimit = WRONG_RCPT_LIMIT / PERIOD / per_rcpt / user-$acl_m_user
             continue = ${run{SHELL -c "echo $acl_m_user \
                >>$spool_directory/blocked_authenticated_users; \
                \N{\N echo Subject: user $acl_m_user blocked; echo; echo because \
-               has sent mail to LIM invalid recipients during PERIOD.; \
+               has sent mail to WRONG_RCPT_LIMIT invalid recipients during PERIOD.; \
                \N}\N | $exim_path -f root WARNTO"}}
             control = freeze/no_tell
             control = submission/domain=
@@ -48,11 +48,11 @@ with three paragraphs:
     
       accept hosts = !@[] : +relay_from_hosts
             !verify = recipient/defer_ok/callout=10s,defer_ok,use_sender
-            ratelimit = LIM / PERIOD / per_rcpt / relayuser-$acl_m_user
+            ratelimit = WRONG_RCPT_LIMIT / PERIOD / per_rcpt / relayuser-$acl_m_user
             continue = ${run{SHELL -c "echo $acl_m_user \
                >>$spool_directory/blocked_relay_users; \
                \N{\N echo Subject: relay user $acl_m_user blocked; echo; echo \
-               because has sent mail to LIM invalid recipients during PERIOD.; \
+               because has sent mail to WRONG_RCPT_LIMIT invalid recipients during PERIOD.; \
                \N}\N | $exim_path -f root WARNTO"}}
             control = freeze/no_tell
             control = submission/domain=
@@ -68,7 +68,7 @@ Insert into beginning of config:
     acl_smtp_mail = acl_check_mail
     acl_smtp_quit = acl_check_quit
     acl_smtp_notquit = acl_check_notquit
-    LIM = 100
+    WRONG_RCPT_LIMIT = 100
     PERIOD = 1h
     WARNTO = abuse@example.com
     SHELL = /bin/sh
