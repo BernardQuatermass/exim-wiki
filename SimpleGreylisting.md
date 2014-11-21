@@ -110,7 +110,7 @@ various hosts behind the same NAT, or different machines which end up
 with the same dynamic IP address at different times. The `resenders`
 table looks like this:
 
-[Table not converted]
+| IP address | HELO name | time |
 
 We record the time that the host was added to the `resenders` table, in
 case we later decide that we want to expire old entries. I haven't found
@@ -137,7 +137,7 @@ few minutes, so that an *immediate* retry doesn't succeed. They actually
 have to queue it and try again later. That's why we have to store the
 timestamp. So the `greylist` table looks like this:
 
-[Table not converted]
+| Mail ID | Expiry time | Original IP address | Original HELO |
 
 Exim Implementation (users of other MTAs can stop now)
 ------------------------------------------------------
