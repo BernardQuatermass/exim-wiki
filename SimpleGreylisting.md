@@ -87,6 +87,14 @@ overkill, unless you already have one for other reasons (in which case
 you're probably quite capable of switching this example over to your
 preferred database).
 
+Note: putting the `.db` file into `/var/spool/exim/db` (or, more precisely:
+`$(exim -n -bP spool_directory)/db`) will cause it to exist in the same
+directory as other DB files used by Exim; while Exim itself won't care, as
+long as you avoid naming conflicts with Exim's DB files, some of Exim's
+auxiliary tools for DB maintenance will care.  Thus this wiki page has been
+updated from the original author's setup, to use `/var/db/mta-greylist.db`
+instead of `/var/spool/exim/db/greylist.db`.
+
 ### Known resenders
 
 Firstly, there's the database of "known resenders", which lists the
@@ -140,7 +148,7 @@ First you need to create the SQLite database which will contain the
 above tables. You can do this with the `sqlite3` command, and then
 ensure that it's owned by the Exim user/group:
 
-    # sqlite3 /var/spool/exim/db/greylist.db <<EOF
+    # sqlite3 /var/db/mta-greylist.db <<EOF
     CREATE TABLE resenders (
             host            TEXT,
             helo            TEXT,
@@ -155,7 +163,7 @@ ensure that it's owned by the Exim user/group:
             helo            TEXT
     );
     EOF
-    # chown exim.exim /var/spool/exim/db/greylist.db
+    # chown exim.exim /var/db/mta-greylist.db
 
 ### Greylisting ACL 'subroutine'
 
@@ -166,7 +174,7 @@ setting it up and using it are given below.
 
     # $Id: acl-greylist-sqlite,v 1.3 2007/11/25 19:17:28 dwmw2 Exp $
 
-    GREYDB=/var/spool/exim/db/greylist.db
+    GREYDB=/var/db/mta-greylist.db
 
     # ACL for greylisting. Place reason(s) for greylisting into a variable named
     # $acl_m_greylistreasons before invoking with 'require acl = greylist_mail'.
@@ -382,8 +390,8 @@ To prevent the database from growing forever without bound, we something
 simple to expire old entries from the `greylist` table. All you need to
 do is run something like this from cron, daily:
 
-    if [ -r /var/spool/exim/db/greylist.db ]; then
-        sqlite3 /var/spool/exim/db/greylist.db <<EOF
+    if [ -r /var/db/mta-greylist.db ]; then
+        sqlite3 /var/db/mta-greylist.db <<EOF
     .timeout 5000
     DELETE FROM greylist WHERE expire < strftime('%s', 'now', '-14 days');
     EOF
@@ -402,7 +410,7 @@ recipients are using greylisting. But having done that, you can also
 manually add the host to the 'known resenders' table, if you know the IP
 address and the name it will use in its `HELO` greeting. For example:
 
-    sqlite3 /var/spool/exim/db/greylist.db "REPLACE INTO resenders VALUES('127.0.0.1', 'localhost', strftime('%s', 'now'));"
+    sqlite3 /var/db/mta-greylist.db "REPLACE INTO resenders VALUES('127.0.0.1', 'localhost', strftime('%s', 'now'));"
 
 ### Sharing resenders database between hosts
 
@@ -418,11 +426,11 @@ present in the database on another:
             exit 1
     fi
 
-    sqlite3 /var/spool/exim/db/greylist.db 'select * from resenders;' |
+    sqlite3 /var/db/mta-greylist.db 'select * from resenders;' |
             sed 's/|/ /g' | while read IPADDR HOST STAMP ; do
                     echo  "replace into resenders values('$IPADDR','$HOST',$STAMP);";
             done |
-    ssh  $1 sqlite3 /var/spool/exim/db/greylist.db
+    ssh  $1 sqlite3 /var/db/mta-greylist.db
 
 ### Fedora package
 
@@ -461,7 +469,7 @@ mails for the *previous* day (to avoid confusion with mails which are
     DAY=$(($(date +%s)/86400))
 
     echo -n "Mails greylisted and not retried yesterday: "
-    sqlite3 /var/spool/exim/db/greylist.db <<EOF
+    sqlite3 /var/db/mta-greylist.db <<EOF
     SELECT COUNT(*) FROM greylist LEFT OUTER JOIN resenders ON
       (greylist.host = resenders.host AND greylist.helo = resenders.helo)
       WHERE resenders.host IS null
@@ -470,7 +478,7 @@ mails for the *previous* day (to avoid confusion with mails which are
     EOF
 
     echo -n "Mails greylisted and then retried yesterday: "
-    sqlite3 /var/spool/exim/db/greylist.db <<EOF
+    sqlite3 /var/db/mta-greylist.db <<EOF
     SELECT COUNT(*) FROM greylist LEFT OUTER JOIN resenders ON
       (greylist.host = resenders.host AND greylist.helo = resenders.helo)
       WHERE resenders.host IS NOT null
