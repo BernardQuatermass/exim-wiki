@@ -111,6 +111,7 @@ with the same dynamic IP address at different times. The `resenders`
 table looks like this:
 
 | IP address | HELO name | time |
+| ---------- | --------- | ---- |
 
 We record the time that the host was added to the `resenders` table, in
 case we later decide that we want to expire old entries. I haven't found
@@ -138,6 +139,7 @@ have to queue it and try again later. That's why we have to store the
 timestamp. So the `greylist` table looks like this:
 
 | Mail ID | Expiry time | Original IP address | Original HELO |
+| ------- | ----------- | ------------------- | ------------- |
 
 Exim Implementation (users of other MTAs can stop now)
 ------------------------------------------------------
