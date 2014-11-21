@@ -1,13 +1,11 @@
-Contributed by Viraj
+<!-- Contributed by Viraj -->
 
-here we can provide subheadings, such as wacky problems for things that
-might be hard to search for. just a proposal...
+Updates and contributions welcome!
 
-There's certainly a need for some description of debugging procedures -
-'have you tried exim -bh' etc.
+> Suggested addition: walkthrough of how to go about debugging
 
 Useful Exim command-line options
-================================
+--------------------------------
 
 You may like to add some of these to Exim command lines:
 
@@ -15,7 +13,7 @@ You may like to add some of these to Exim command lines:
 | ---------------- | ----------- |
 | `-v`             | more verbose |
 | `-d`             | general debugging |
-| `-d+al`          | maximum debugging |
+| `-d+all`         | maximum debugging |
 | `-d+all-memory`  | max debugging less some tedious memory stuff |
 | `-bV`            | Always run this after making changes to the config file and before restarting Exim.  It will check the syntax for you |
 | `-bhc <ip_addr>` | fake smtp session as though you are at ip_addr. Use this to do a full test before committing changes |
@@ -75,7 +73,8 @@ on:
 > See also the tools listed at [ManagingExim](ManagingExim).
 
 SMTP testing tools
-==================
+------------------
+
 -   [http://www-uxsup.csx.cam.ac.uk/\~fanf2/hermes/src/smtpc](http://www-uxsup.csx.cam.ac.uk/~fanf2/hermes/src/smtpc)/
     - written in C, supports STARTTLS, TLS on connect, AUTHs PLAIN and
     LOGIN, and PIPELINING. Relies on libraries usually installed on most
