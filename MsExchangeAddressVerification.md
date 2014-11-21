@@ -69,7 +69,7 @@ separate OU with restricted security policy:
 
     CN=MTA,OU=Restricted,DC=domain,DC=ORG
 
-[Table not converted]
+** DO NOT GIVE ANY NTFS/DB/ETC PERMISSIONS FOR THIS ACCOUNT.  NEVER USE ADMINISTRATOR'S DN FOR EXIM CREDENTIALS **
 
 The Lookup Macro
 ----------------

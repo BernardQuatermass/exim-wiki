@@ -11,16 +11,14 @@ Useful Exim command-line options
 
 You may like to add some of these to Exim command lines:
 
-<form action="/TroubleShooting" method="GET" name="dbw.form">
-
-optiondescription-v more verbose-d general debugging-d+all maximum
-debugging-d+all-memory max debugging less some tedious memory stuff-bV
-Always run this after making changes to the config file and before
-restarting Exim. It will check the syntax for you-bhc &lt;ip\_addr&gt;
-fake smtp session as though you are at ip\_addr. Use this to do a full
-test before committing changes[Table not converted]
-
-</form>
+| Option           | Description |
+| ---------------- | ----------- |
+| `-v`             | more verbose |
+| `-d`             | general debugging |
+| `-d+al`          | maximum debugging |
+| `-d+all-memory`  | max debugging less some tedious memory stuff |
+| `-bV`            | Always run this after making changes to the config file and before restarting Exim.  It will check the syntax for you |
+| `-bhc <ip_addr>` | fake smtp session as though you are at ip_addr. Use this to do a full test before committing changes |
 
 Examples of using -bhc
 ----------------------

@@ -21,10 +21,22 @@ but are unlikely to chase after them for a response.
 Table mostly sorted alphabetically by OS; specific versions after the
 general case or "official maintainer"
 
-[Table not converted]
+| OS            | Contact Person          | Official/User | Latest RC Tested | Notes |
+| ------------- | ----------------------- | ------------- | ---------------- | ----- |
+| Debian        | ??                      | Official | - | |
+| FreeBSD Ports | ??                      | Official | - | |
+| Gentoo        | ??                      | Official | - | |
+| RHEL 4        | ??                      | Official | - | |
+| RHEL 5        | ??                      | Official | - | |
+| SuSE          | ??                      | Official | - | |
+| Ubuntu        | ??                      | Official | - | |
+
+<!-- This abuse warning was while we were fighting a creaking old wiki setup prone to spam and other abuse and is not really germane to GitHub, where we have persistent identities with reputation attached.
 
 **Abuse**
 
 Abuse of the wiki authorisation model will lead to an upset Release
 Engineer and probably a disinclination to work with that party in the
 future.
+
+-->

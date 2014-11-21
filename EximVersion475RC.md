@@ -5,8 +5,7 @@ normally be at least one week between the release of the first Release
 Candidate (RC) for a new release and the final release. The policy
 states:
 
-> *Those who test RCs get to ensure that their platform is a first-class supported platform for a release, and the final release should be cleanly buildable and working on their platform
-
+> &ldquo;Those who test RCs get to ensure that their platform is a first-class supported platform for a release, and the final release should be cleanly buildable and working on their platform&rdquo;
 
 We attempt to work with OS packagers who work with us, and if time
 permits we will try to chase up to get a response from the OSes listed
@@ -22,10 +21,24 @@ but are unlikely to chase after them for a response.
 Table mostly sorted alphabetically by OS; specific versions after the
 general case or "official maintainer"
 
-[Table not converted]
+| OS            | Contact Person          | Official/User | Latest RC Tested | Notes |
+| ------------- | ----------------------- | ------------- | ---------------- | ----- |
+| Debian        | ??                      | Official      | -   | |
+| FreeBSD Ports | ??                      | Official      | -   | |
+| FreeBSD 7     | Phil Pennock            | User          | -   | |
+| FreeBSD 8     | Oliver&nbsp;Heesakkers  | User          | RC3 | Not a production-server. |
+| Gentoo        | ??                      | Official      | -   | |
+| RHEL 4        | ??                      | Official      | -   | |
+| RHEL 5        | ??                      | Official      | -   | |
+| SuSE          | Nigel (Tahini)          | User          | RC2 |Tahini has more recent PCRE than norm for SUSE 10. |
+| Ubuntu        | ??                      | Official      | -   | |
+
+<!-- This abuse warning was while we were fighting a creaking old wiki setup prone to spam and other abuse and is not really germane to GitHub, where we have persistent identities with reputation attached.
 
 **Abuse**
 
 Abuse of the wiki authorisation model will lead to an upset Release
 Engineer and probably a disinclination to work with that party in the
 future.
+
+-->

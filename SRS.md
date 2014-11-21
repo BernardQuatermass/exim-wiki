@@ -99,7 +99,11 @@ as secure as possible.
 
 `srs = <forward|reverse|reverseandforward>`
 
-[Table not converted]
+| value             | meaning |
+| ----------------- | ------- |
+| forward           | just before the current redirect router succeeds, the reply-to address is rewritten. |
+| reverse           | the redirect router will validate the current address as an SRS address. If the message appears not to be an SRS address, the router fails and processing passed to the next router. If the hash or timestamp prove invalid then the router rejects the mail. |
+| reverseandforward | performs the above two options on the same mail. (Generally, this option is required over and above just simply reverse) |
 
 `srs_condition = <expanded string>`
 

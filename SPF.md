@@ -47,7 +47,15 @@ The spf condition takes a list of strings on its right-hand side. These
 strings describe the outcome of the SPF check for which the spf
 condition should succeed. Valid strings are:
 
-[Table not converted]
+| string     | meaning |
+| ---------- | ------- |
+| `pass`     | The SPF check passed, the sending host is positively verified by SPF. |
+| `fail`     | The SPF check failed, the sending host is NOT allowed to send mail for the domain in the envelope-from address. |
+| `softfail` | The SPF check failed, but the queried domain can't absolutely confirm that this is a forgery. |
+| `none`     | The queried domain does not publish SPF records. |
+| `neutral`  | The SPF check returned a "neutral" state. This means the queried domain has published a SPF record, but wants to allow outside servers to send mail under its domain as well. |
+| `err_perm` | This indicates a syntax error in the SPF record of the queried domain. This should be treated like "none". |
+| `err_temp` | This indicates a temporary error during all processing, including Exim's SPF processing. You may defer messages when this occurs. |
 
 You can prefix each string with an exclamation mark to invert is
 meaning, for example "!fail" will match all results but "fail". The
@@ -77,7 +85,13 @@ SPF draft.
 
 When the spf condition has run, it sets up several expansion variables.
 
-[Table not converted]
+| Variable | Description |
+| -------- | ----------- |
+| `$spf_header_comment` | This contains a human-readable string describing the outcome of the SPF check. You can add it to a custom header or use it for logging purposes. |
+| `$spf_received`       | This contains a complete SPF-Received: header that can be added to the message. Please note that according to the SPF draft, this header must be added at the top of the header list. Please see section 10 on how you can do this. |
+| `$spf_result`         | This contains the outcome of the SPF check in string form, one of pass, fail, softfail, none, neutral, err_perm or err_temp. |
+| `$spf_smtp_comment`   | This contains a string that can be used in a SMTP response to the calling party. Useful for "fail". |
+
 
 Making SPF Useful
 -----------------
