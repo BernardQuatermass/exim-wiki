@@ -8,8 +8,10 @@ Replace the paragraph with the line `accept  authenticated = *` with three parag
       accept authenticated = *
             set acl_m_user = $authenticated_id
             condition = ${if exists{$spool_directory/blocked_authenticated_users}}
-            condition = ${if match_local_part{$acl_m_user}{+blocked_auth_users}}
-                             # userid may contain @, match_local_part works anyway
+            condition = ${lookup{$acl_m_user}lsearch\
+                                {$spool_directory/blocked_authenticated_users}\
+                                {1}{$acl_c_blocked}}
+            # The variable acl_c_blocked is used because lookup can be cached. 
             control = freeze/no_tell
             control = submission/domain=
             add_header = X-Authenticated-As: $acl_m_user
@@ -17,6 +19,7 @@ Replace the paragraph with the line `accept  authenticated = *` with three parag
       accept authenticated = *
             !verify = recipient/defer_ok/callout=10s,defer_ok,use_sender
             ratelimit = WRONG_RCPT_LIMIT / PERIOD / per_rcpt / user-$acl_m_user
+            set acl_c_blocked = 1
             continue = ${run{SHELL -c "echo $acl_m_user \
                >>$spool_directory/blocked_authenticated_users; \
                \N{\N echo Subject: user $acl_m_user blocked; echo; echo because \
@@ -41,7 +44,9 @@ with three paragraphs:
             set acl_m_user = $sender_host_address
                              # or username from RADIUS
             condition = ${if exists{$spool_directory/blocked_relay_users}}
-            condition = ${if match_local_part{$acl_m_user}{+blocked_relay_users}}
+            condition = ${lookup{$acl_m_user}lsearch\
+                                {$spool_directory/blocked_relay_users}\
+                                {1}{$acl_c_blocked}}  
             control = freeze/no_tell
             control = submission/domain=
             add_header = X-Relayed-From: $acl_m_user
@@ -49,6 +54,7 @@ with three paragraphs:
       accept hosts = !@[] : +relay_from_hosts
             !verify = recipient/defer_ok/callout=10s,defer_ok,use_sender
             ratelimit = WRONG_RCPT_LIMIT / PERIOD / per_rcpt / relayuser-$acl_m_user
+            set acl_c_blocked = 1
             continue = ${run{SHELL -c "echo $acl_m_user \
                >>$spool_directory/blocked_relay_users; \
                \N{\N echo Subject: relay user $acl_m_user blocked; echo; echo \
@@ -72,10 +78,6 @@ Insert into beginning of config:
     PERIOD = 1h
     WARNTO = abuse@example.com
     SHELL = /bin/sh
-    hostlist blocked_ips = $spool_directory/blocked_IPs
-             # intentionally not cached
-    localpartlist blocked_auth_users = $spool_directory/blocked_authenticated_users
-    localpartlist blocked_relay_users = $spool_directory/blocked_relay_users
 
 In the WARNTO line replace `abuse@example.com` with your
 abuse or support or sysadmin email address.
@@ -92,12 +94,9 @@ Immediately after the "begin acl" line insert:
       drop  message = blacklisted for bruteforce cracking attempt
             set acl_c_authnomail = ${eval10:0$acl_c_authnomail+1}
             condition = ${if >{$acl_c_authnomail}{4}}
-            condition = ${if exists{$spool_directory/blocked_IPs}\
-                             {${if match_ip{$sender_host_address}{+blocked_ips}\
-                                   {0}{1}}}\
-                             {1}}
-                             # a named list containing $ instead of iplsearch
-                             # in order for the lookup result to be not cached
+            condition = ${if exists{$spool_directory/blocked_IPs}}
+            condition = ${lookup{$sender_host_address}iplsearch\
+                                {$spool_directory/blocked_IPs}{0}{1}}
             continue = ${run{SHELL -c "echo $sender_host_address \
                >>$spool_directory/blocked_IPs; \
                \N{\N echo Subject: $sender_host_address blocked; echo; echo \
@@ -124,10 +123,9 @@ Immediately after the "begin acl" line insert:
                                 {<{$acl_c_hashrate}{2}}\
                                }}
             ratelimit = 7 / 5m / strict / per_conn
-            condition = ${if exists{$spool_directory/blocked_IPs}\
-                             {${if match_ip{$sender_host_address}{+blocked_ips}\
-                                   {0}{1}}}\
-                             {1}}
+            condition = ${if exists{$spool_directory/blocked_IPs}}
+            condition = ${lookup{$sender_host_address}iplsearch\
+                                {$spool_directory/blocked_IPs}{0}{1}}
             continue = ${run{SHELL -c "echo $sender_host_address \
                >>$spool_directory/blocked_IPs; \
                \N{\N echo Subject: $sender_host_address blocked; echo; echo \
@@ -149,10 +147,9 @@ Immediately after the "begin acl" line insert:
                                 {<{$acl_c_hashrate}{2}}\
                                }}
             ratelimit = 7 / 5m / strict / per_conn
-            condition = ${if exists{$spool_directory/blocked_IPs}\
-                             {${if match_ip{$sender_host_address}{+blocked_ips}\
-                                   {0}{1}}}\
-                             {1}}
+            condition = ${if exists{$spool_directory/blocked_IPs}}
+            condition = ${lookup{$sender_host_address}iplsearch\
+                                {$spool_directory/blocked_IPs}{0}{1}}
             continue = ${run{SHELL -c "echo $sender_host_address \
                >>$spool_directory/blocked_IPs; \
                \N{\N echo Subject: $sender_host_address blocked; echo; echo \
@@ -167,7 +164,8 @@ Immediately after the "begin acl" line insert:
                       auth (username+password) cracking attempt
             condition = ${if exists{$spool_directory/blocked_IPs}}
             condition = ${lookup{$sender_host_address}iplsearch\
-                        {$spool_directory/blocked_IPs}{1}{0}}
+                         {/var/..$spool_directory/blocked_IPs}{1}{0}}
+            # Another path to the same file in order to circumvent lookup caching.
     
       accept
     
