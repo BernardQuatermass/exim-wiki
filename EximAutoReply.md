@@ -207,8 +207,8 @@ interested reader may like to make this addition.
         { match {$h_Subject:} {\Nis out of the office.$\N} } \
         { match {$h_From:} {\N(via the vacation program)\N } } \
         } \
-                           } {no} {yes} \
-                   }
+        {no} {yes} \
+      }
       require_files = <location_of_user_home_directory>/.vacation.msg
       user = ${lc:$local_part}
       senders = !+noautoreply_senders
