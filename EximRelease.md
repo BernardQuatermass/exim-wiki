@@ -79,6 +79,7 @@ Release Steps
         other than Phil does a release
 -   put tarballs and signatures up for distribution - in
     `/home/services/ftp/pub/exim/exim4/`
+-   unpack PDF documentation from distro tarball into `/srv/www/vhosts/www.exim.org` and update `exim-pdf-current` symlink **This needs automating**
 -   ChangeLog/NewStuff distro on ftp site - in
     `/home/services/ftp/pub/exim/ChangeLogs/`
     -   `.gz` files too, but not `.bz2`; note gzip on tahini does not
