@@ -8,7 +8,7 @@ describe the Exim Configuration file.
 Examples
 ========
 
-The example here has been removed as it was rather old and apparently unmaintained.
+[Full Running Example Version 01/2015](https://drive.google.com/open?id=0ByL79RGNiMu5aTI5bG1CWVlDVFU&authuser=0)
 
 Tools
 =====
