@@ -114,3 +114,84 @@ The content of exim.checkpkt.sh file is:
     else
         exit 0
     fi
+
+The content of exim.checkpkt.sh file is (English Version):
+
+	##########################################################################
+	# Please verify if your system have a unzip, zipinfo, rar, arj, unarj, tar...
+	###########################################################################
+	#Definitions
+	EXTENS='(ad[ep]|asd|ba[st]|chm|cmd|com|cpl|crt|dll|exe|hlp|hta|in[fs]|isp|jse?|jar|lib|lnk|md[bez]|ms[cipt]|ole|ocx|pcd|pif|reg|sc[rt]|sh[sb]|sys|url|vb[es]?|vxd|ws[cfh]|cab)'
+	#Extensions currently recognized
+	COMPAC='(zip|rar|arj|tgz|tar|gz|bz2)'
+	
+	#Prevents compressed files inside compressed
+	EXTENS='[.]('${EXTENS}'|'${COMPAC}')'
+	
+	#Tests whether this among known extensions
+	if [ "`echo .$1 | egrep -i "[.]${COMPAC}$"`" = "" ]; then
+	    echo -n 'File Extension <.'$1'> is unknown compact type!\n'
+	    exit 0
+	fi
+	
+	#change directories
+	if [ ! -z "$2" ]; then
+	    if [ -d /var/spool/exim4/scan/$2 ]; then
+	        cd /var/spool/exim4/scan/$2
+	    else
+	        echo -n 'Directory not found /var/spool/exim4/scan/'$2'\n'
+	        exit 1
+	    fi
+	fi
+	
+	#All files from the compressed file
+	for i in `ls | egrep -i ".${COMPAC}$"`; do
+	   EXTFILE="`basename $i | sed -e 's/.*\.//' | tr [A-Z] [a-z]`"
+	   case "${EXTFILE}" in
+	     zip)
+	        CMD_TST="unzip -t $i"
+	        CMD_VRF="zipinfo -1 $i"
+	        ;;
+	     rar)
+	        CMD_TST="rar t $i"
+	        CMD_VRF="rar vt $i"
+	        ;;
+	     arj)
+	        CMD_TST="unarj t $i"
+	        CMD_VRF="arj l $i"
+	        ;;
+	     tar)
+	        CMD_VRF="tar --list -f $i"
+	        ;;
+	     tgz|gz)
+	        CMD_VRF="tar --list -zf $i"
+	        ;;
+	     bz2)
+	        CMD_VRF="tar --list -jf $i"
+	        ;;
+	     *)
+	        echo -n '* Extension of File <'$i'> is unknown archive compact!\n'
+	   esac
+	
+	   #Test to see if this file OK
+	   if [ ! -z "${CMD_VRF}" ]; then
+	        ${CMD_TST} 2> /dev/null > /dev/null
+	        if [ ! $? -eq 0 -o ]; then
+	            echo -n '* The file <'$i'> is not '${EXTFILE}' archive!\n'
+	            FOUND=1
+	        fi
+	   fi
+	
+	   #See if there executables in the same content
+	    ARQS="`${CMD_VRF} 2> /dev/null | gawk '{ print $1 }' | egrep -i "${EXTENS}$"`"
+	    if [ ! -z "$ARQS" ]; then
+	        echo -n '* File(s) in <'$i'>: '$ARQS'\n'
+	        FOUND=1
+	    fi
+	done
+	
+	if [ ! -z "${FOUND}" ]; then
+	    exit 1
+	else
+	    exit 0
+	fi
