@@ -5,8 +5,20 @@ This code also blocks brute force password cracking via SMTP (it's not as import
 
 Replace the paragraph with the line `accept  authenticated = *` with three paragraphs:
 
+      drop  authenticated = *
+            set acl_m_user = ${sg{$authenticated_id}{\N[^\w.=@-]\N}{}}
+            condition = ${if exists{$spool_directory/blocked_authenticated_users}}
+            set acl_m_wasfree = ${if def:acl_c_blocked{$acl_c_spoolfree}\
+                          {${lookup{$acl_m_user}lsearch\
+                          {$spool_directory/blocked_authenticated_users}}}}
+            condition = ${if match{$acl_m_wasfree}{\N^\d+$\N}}
+            condition = ${if match{$spool_space}{\N^\d+$\N}}
+            condition = ${if <={$spool_space}{$eval:$acl_m_wasfree/2}}
+            log_message = free space on spool disk $spool_space KB - less than \
+                          half than it was when the user $acl_m_user was blocked
+            message = spool disk too full
+    
       accept authenticated = *
-            set acl_m_user = $authenticated_id
             condition = ${if exists{$spool_directory/blocked_authenticated_users}}
             condition = ${lookup{$acl_m_user}lsearch\
                                 {$spool_directory/blocked_authenticated_users}\
@@ -20,7 +32,8 @@ Replace the paragraph with the line `accept  authenticated = *` with three parag
             !verify = recipient/defer_ok/callout=10s,defer_ok,use_sender
             ratelimit = WRONG_RCPT_LIMIT / PERIOD / per_rcpt / user-$acl_m_user
             set acl_c_blocked = 1
-            continue = ${run{SHELL -c "echo $acl_m_user \
+            set acl_c_spoolfree = $spool_space
+            continue = ${run{SHELL -c "echo $acl_m_user:$acl_c_spoolfree \
                >>$spool_directory/blocked_authenticated_users; \
                \N{\N echo Subject: user $acl_m_user blocked; echo; echo because \
                has sent mail to WRONG_RCPT_LIMIT invalid recipients during PERIOD.; \
@@ -40,9 +53,21 @@ then replace the paragraph with the line
 `accept  hosts         = +relay_from_hosts`
 with three paragraphs:
 
-      accept hosts = !@[] : +relay_from_hosts
+      drop  hosts = !@[] : +relay_from_hosts
             set acl_m_user = $sender_host_address
                              # or username from RADIUS
+            condition = ${if exists{$spool_directory/blocked_relay_users}}
+            set acl_m_wasfree = ${if def:acl_c_blocked{$acl_c_spoolfree}\
+                          {${lookup{$acl_m_user}lsearch\
+                          {$spool_directory/blocked_relay_users}}}}
+            condition = ${if match{$acl_m_wasfree}{\N^\d+$\N}}
+            condition = ${if match{$spool_space}{\N^\d+$\N}}
+            condition = ${if <={$spool_space}{$eval:$acl_m_wasfree/2}}
+            log_message = free space on spool disk $spool_space KB - less than \
+                          half than it was when the user $acl_m_user was blocked
+            message = spool disk too full
+    
+      accept hosts = !@[] : +relay_from_hosts
             condition = ${if exists{$spool_directory/blocked_relay_users}}
             condition = ${lookup{$acl_m_user}lsearch\
                                 {$spool_directory/blocked_relay_users}\
@@ -55,7 +80,8 @@ with three paragraphs:
             !verify = recipient/defer_ok/callout=10s,defer_ok,use_sender
             ratelimit = WRONG_RCPT_LIMIT / PERIOD / per_rcpt / relayuser-$acl_m_user
             set acl_c_blocked = 1
-            continue = ${run{SHELL -c "echo $acl_m_user \
+            set acl_c_spoolfree = $spool_space
+            continue = ${run{SHELL -c "echo $acl_m_user:$acl_c_spoolfree \
                >>$spool_directory/blocked_relay_users; \
                \N{\N echo Subject: relay user $acl_m_user blocked; echo; echo \
                because has sent mail to WRONG_RCPT_LIMIT invalid recipients during PERIOD.; \
