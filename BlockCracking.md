@@ -3,7 +3,7 @@ Nowadays users' passwords often are stolen (with drive-by exploits, Windows malw
 
 This code also blocks brute force password cracking via SMTP (it's not as important but a little useful).
 
-Replace the paragraph with the line `accept  authenticated = *` with three paragraphs:
+Replace the paragraph with the line `accept  authenticated = *` with four paragraphs:
 
       drop  authenticated = *
             set acl_m_user = ${sg{$authenticated_id}{\N[^\w.=@-]\N}{}}
@@ -51,7 +51,7 @@ or this server's IP-address, i.e. your server is a relay for
 your LAN or users on your company's IP-addresses,
 then replace the paragraph with the line
 `accept  hosts         = +relay_from_hosts`
-with three paragraphs:
+with four paragraphs:
 
       drop  hosts = !@[] : +relay_from_hosts
             set acl_m_user = $sender_host_address
