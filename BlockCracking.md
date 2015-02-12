@@ -256,7 +256,81 @@ Similarly with users on LAN or the ISP's IP-ranges
 (file `blocked_relay_users`,
 notifications with Subject like `relay user 192.168.12.34 blocked`).
 
-How to use this approach to block outgoing spam submitted locally such as from webserver (for web-hosting admins):  
-[https://lists.exim.org/lurker/message/20140903.204348.2335eb78.en.html](https://lists.exim.org/lurker/message/20140903.204348.2335eb78.en.html)
+### How to use this approach to block outgoing spam submitted locally such as from web-server (for web-hosting admins):  
+
+After reading the above, a web-hosting admin asked me how to use
+this approach to block outgoing spam from webhosting accounts -
+malicious or compromised because a webhosting user installed
+vulnerable version of soft such as WordPress or Joomla.
+Web scripts can submit mail either via SMTP to localhost or not via SMTP
+(via pipe to `sendmail` binary which calls exim).
+I was told that PHP's `mail()` function submits not via SMTP, at least usually.
+When not via SMTP, instead of the `rcpt` ACL for each recipient,
+the `not_smtp` ACL is executed once per message with possibly several
+email addresses in `$recipients`, but each recipient needs to be
+verified separately - I contrived how:
+
+If not via SMTP, and each webhosting user/client's scripts run under
+unique userid, and Exim version 4.82 or higher, then (untested):
+
+    acl_not_smtp = acl_check_not_smtp
+    UNLIMITED_USERIDS = root : toor : cron : mailnull : mail : exim : somethingelse
+    # "mailnull" is Exim user id under FreeBSD, "mail" under some other OSes.
+    WRONG_RCPT_LIMIT = 100
+    PERIOD = 1h
+    WARNTO = abuse@example.com
+    SHELL = /bin/sh
+    
+    begin acl
+    acl_check_not_smtp:
+      accept set acl_m_user = $authenticated_id
+            condition = ${if inlist{$acl_m_user}{UNLIMITED_USERIDS}}
+    
+      discard condition = ${if exists{$spool_directory/blocked_notsmtp_users}}
+            set acl_m_wasfree = ${lookup{$acl_m_user}lsearch\
+                          {$spool_directory/blocked_notsmtp_users}}
+            condition = ${if match{$acl_m_wasfree}{\N^\d+$\N}}
+            condition = ${if match{$spool_space}{\N^\d+$\N}}
+            condition = ${if <={$spool_space}{$eval:$acl_m_wasfree/2}}
+            log_message = free space on spool disk $spool_space KB - less than \
+                          half than it was when the user $acl_m_user was blocked
+    
+      accept condition = ${if exists{$spool_directory/blocked_notsmtp_users}}
+            condition = ${lookup{$acl_m_user}lsearch\
+                        {$spool_directory/blocked_notsmtp_users}{1}{0}}
+            control = freeze/no_tell
+            add_header = X-Username: $acl_m_user
+    
+      accept condition = ${if forany{<, $recipients}\
+                                    {eq{${acl{recipient}{$item}}}{caught}}}
+            continue = ${run{SHELL -c "echo $acl_m_user:$spool_space \
+               >>$spool_directory/blocked_notsmtp_users; \
+               \N{\N echo Subject: local user $acl_m_user blocked; echo; echo because \
+               has sent mail to WRONG_RCPT_LIMIT invalid recipients during PERIOD.; \
+               \N}\N | $exim_path -f root WARNTO"}}
+            control = freeze/no_tell
+            add_header = X-Username: $acl_m_user
+    
+      accept
+    
+    recipient:
+      accept condition = ${if match{$acl_arg1}{\N[$/"'`\\]\N}}
+    
+      accept !verify = sender=$acl_arg1/defer_ok/callout=10s,defer_ok
+            ratelimit = WRONG_RCPT_LIMIT / PERIOD / per_cmd / notsmtpuser-$acl_m_user
+            message = caught
+    
+      accept
+
+You can either disable mail from webserver via SMTP to localhost
+or use `identd` daemon, then username should be in `$sender_ident`.
+In case of FreeBSD the `ident` service is provided by inetd, see `man inetd`:
+in `/etc/inetd.conf` uncomment after `Provide internally a real "ident" service`,
+in `/etc/rc.conf` `inetd_enable="YES"` and
+`/etc/rc.d/inetd start`
+or `restart`), in Exim config
+
+    rfc1413_hosts = *
+    rfc1413_query_timeout = 2s
 
 [Lena](Lena)
