@@ -21,7 +21,7 @@ For the first, add the following to the top level of the configuration:
     tls_verify_certificates = /etc/ssl/certs/
     tls_try_verify_hosts = *
 
-Copy the SSL certificate of the client and index the directory:
+Copy the SSL certificate of the client to the directory you gave, and index the directory:
 
     server# cd /etc/ssl/certs
     server# scp client:/etc/ssl/certs/client.pem ./
