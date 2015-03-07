@@ -75,7 +75,6 @@ First ensure the client trusts the server's certificate. If you're using self-si
 
     client# cd /etc/ssl/certs
     client# scp server:/etc/ssl/certs/server.pem ./
-    client# c_rehash
 
 Add an explicit check in the SMTP driver:
 
