@@ -5,6 +5,7 @@ authenticating your exim users, click on the link "MySQL."
 -   [Pam and Passwords](AuthenticatedSmtpUsingPamAndPasswords)
 -   [pwauth (easily authenticate against /etc/shadow without running as
     root)](AuthenticatedSmtpUsingPwauth)
+-   [Certificates](AuthenticatedSmtpUsingCert)
 -   [Dovecot](AuthenticatedSmtpUsingDovecot)
 -   [Courier](AuthenticatedSmtpUsingCourier)
 -   [MySQL](AuthenticatedSmtpUsingMysql)
