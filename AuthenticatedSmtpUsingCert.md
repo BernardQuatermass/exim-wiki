@@ -2,7 +2,7 @@ Scenario: you want a server (acting as a relay) and a client (also running Exim)
 
 The client could be a portable computer that may want to send mail from any network (eg. public WiFi that is untrusted.) This method allows for an encrypted connection; the server to restrict relaying to that client; and also for the client to know for sure that it is talking to the correct server and not some man-in-the-middle.
 
-The clients exim.conf can be readable by all users, and doesn't contain any secret information like a plaintext key. This method works with self-signed certificates, making it thoroughly useful for a personal mail server.
+The client configuration can be readable by all users, and doesn't contain any secret information like a plaintext key. This method works with self-signed certificates, making it thoroughly useful for a personal mail server.
 
 There are two methods used for the client to trust the server, and the server to trust the client. You can use both of these, or just a single one. So they are described here separately.
 
