@@ -6,6 +6,10 @@ The client configuration can be readable by all users, and doesn't contain any s
 
 There are two methods used for the client to trust the server, and the server to trust the client. You can use both of these, or just a single one. So they are described here separately.
 
+## Certificates
+
+You'll need your client and relay server to each have a valid certificate pair (the public and private part). Plenty of other documents describe how to do this.
+
 ## Relay server to trust the client
 
 There are two steps to establishing the trust. They are checking if the certificate
