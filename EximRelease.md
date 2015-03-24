@@ -90,9 +90,9 @@ Release Steps
     (link others here too)
 -   Update [Wikipedia](http://en.wikipedia.org/wiki/Exim) version
     information, because we're nice like that
--   add released version to list of bugzilla versions
+-   add released version to list of bugzilla versions (Edit:Products/Exim/Edit_Versions/Add)
 -   add next expected version to bugzilla milestones, and make that
-    default
+    default (Edit:Products/Exim/Edit_Milestones/Add)
 -   if a Security release, then update [[EximSecurity]] with details.
 
 Defunct:
