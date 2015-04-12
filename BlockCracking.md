@@ -55,10 +55,11 @@ with four paragraphs:
 
       drop  hosts = !@[] : +relay_from_hosts
             set acl_m_user = $sender_host_address
-                             # or username from RADIUS
+                             # or username from RADIUS, then change
+                             # iplsearch to lsearch in this and next paragraphs
             condition = ${if exists{$spool_directory/blocked_relay_users}}
             set acl_m_wasfree = ${if def:acl_c_blocked{$acl_c_spoolfree}\
-                          {${lookup{$acl_m_user}lsearch\
+                          {${lookup{$acl_m_user}iplsearch\
                           {$spool_directory/blocked_relay_users}}}}
             condition = ${if match{$acl_m_wasfree}{\N^\d+$\N}}
             condition = ${if match{$spool_space}{\N^\d+$\N}}
@@ -69,7 +70,7 @@ with four paragraphs:
     
       accept hosts = !@[] : +relay_from_hosts
             condition = ${if exists{$spool_directory/blocked_relay_users}}
-            condition = ${lookup{$acl_m_user}lsearch\
+            condition = ${lookup{$acl_m_user}iplsearch\
                                 {$spool_directory/blocked_relay_users}\
                                 {1}{$acl_c_blocked}}  
             control = freeze/no_tell
