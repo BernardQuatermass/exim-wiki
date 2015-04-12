@@ -13,7 +13,7 @@ Replace the paragraph with the line `accept  authenticated = *` with four paragr
                           {$spool_directory/blocked_authenticated_users}}}}
             condition = ${if match{$acl_m_wasfree}{\N^\d+$\N}}
             condition = ${if match{$spool_space}{\N^\d+$\N}}
-            condition = ${if <={$spool_space}{$eval:$acl_m_wasfree/2}}
+            condition = ${if <={$spool_space}{${eval:$acl_m_wasfree/2}}}
             log_message = free space on spool disk $spool_space KB - less than \
                           half than it was when the user $acl_m_user was blocked
             message = spool disk too full
@@ -62,7 +62,7 @@ with four paragraphs:
                           {$spool_directory/blocked_relay_users}}}}
             condition = ${if match{$acl_m_wasfree}{\N^\d+$\N}}
             condition = ${if match{$spool_space}{\N^\d+$\N}}
-            condition = ${if <={$spool_space}{$eval:$acl_m_wasfree/2}}
+            condition = ${if <={$spool_space}{${eval:$acl_m_wasfree/2}}}
             log_message = free space on spool disk $spool_space KB - less than \
                           half than it was when the user $acl_m_user was blocked
             message = spool disk too full
@@ -81,11 +81,11 @@ with four paragraphs:
             ratelimit = WRONG_RCPT_LIMIT / PERIOD / per_rcpt / relayuser-$acl_m_user
             set acl_c_blocked = 1
             set acl_c_spoolfree = $spool_space
-            continue = ${run{SHELL -c "echo $acl_m_user:$acl_c_spoolfree \
+            continue = ${run{SHELL -c 'echo \\\"$acl_m_userMASKL\\\":$acl_c_spoolfree \
                >>$spool_directory/blocked_relay_users; \
                \N{\N echo Subject: relay user $acl_m_user blocked; echo; echo \
                because has sent mail to WRONG_RCPT_LIMIT invalid recipients during PERIOD.; \
-               \N}\N | $exim_path -f root WARNTO"}}
+               \N}\N | $exim_path -f root WARNTO'}}
             control = freeze/no_tell
             control = submission/domain=
             add_header = X-Relayed-From: $acl_m_user
@@ -104,6 +104,11 @@ Insert into beginning of config:
     PERIOD = 1h
     WARNTO = abuse@example.com
     SHELL = /bin/sh
+    # these two masks are used only in case of IPv6:
+    # how many IPv6 addresses you give to your single user:
+    MASKL = ${if match{$acl_m_user}{:}{/64}}
+    # how many external IPv6 addresses you treat as one attacker:
+    MASKW = ${if match{$sender_host_address}{:}{/56}}
 
 In the WARNTO line replace `abuse@example.com` with your
 abuse or support or sysadmin email address.
@@ -123,11 +128,11 @@ Immediately after the "begin acl" line insert:
             condition = ${if exists{$spool_directory/blocked_IPs}}
             condition = ${lookup{$sender_host_address}iplsearch\
                                 {$spool_directory/blocked_IPs}{0}{1}}
-            continue = ${run{SHELL -c "echo $sender_host_address \
+            continue = ${run{SHELL -c 'echo \\\"$sender_host_addressMASKW\\\" \
                >>$spool_directory/blocked_IPs; \
                \N{\N echo Subject: $sender_host_address blocked; echo; echo \
                for bruteforce auth cracking attempt.; \
-               \N}\N | $exim_path -f root WARNTO"}}
+               \N}\N | $exim_path -f root WARNTO'}}
 
       drop  message = blacklisted for bruteforce cracking attempt
             condition = ${if >{$acl_c_authnomail}{4}}
@@ -152,11 +157,11 @@ Immediately after the "begin acl" line insert:
             condition = ${if exists{$spool_directory/blocked_IPs}}
             condition = ${lookup{$sender_host_address}iplsearch\
                                 {$spool_directory/blocked_IPs}{0}{1}}
-            continue = ${run{SHELL -c "echo $sender_host_address \
+            continue = ${run{SHELL -c 'echo \\\"$sender_host_addressMASKW\\\" \
                >>$spool_directory/blocked_IPs; \
                \N{\N echo Subject: $sender_host_address blocked; echo; echo \
                for bruteforce auth cracking attempt.; \
-               \N}\N | $exim_path -f root WARNTO"}}
+               \N}\N | $exim_path -f root WARNTO'}}
     
     acl_check_notquit:
       warn  condition = $authentication_failed
@@ -176,11 +181,11 @@ Immediately after the "begin acl" line insert:
             condition = ${if exists{$spool_directory/blocked_IPs}}
             condition = ${lookup{$sender_host_address}iplsearch\
                                 {$spool_directory/blocked_IPs}{0}{1}}
-            continue = ${run{SHELL -c "echo $sender_host_address \
+            continue = ${run{SHELL -c 'echo \\\"$sender_host_addressMASKW\\\" \
                >>$spool_directory/blocked_IPs; \
                \N{\N echo Subject: $sender_host_address blocked; echo; echo \
                for bruteforce auth cracking attempt.; \
-               \N}\N | $exim_path -f root WARNTO"}}
+               \N}\N | $exim_path -f root WARNTO'}}
     
     acl_check_mail:
       accept set acl_c_authnomail = 0
@@ -291,7 +296,7 @@ unique userid, and Exim version 4.82 or higher, then (untested):
                           {$spool_directory/blocked_notsmtp_users}}
             condition = ${if match{$acl_m_wasfree}{\N^\d+$\N}}
             condition = ${if match{$spool_space}{\N^\d+$\N}}
-            condition = ${if <={$spool_space}{$eval:$acl_m_wasfree/2}}
+            condition = ${if <={$spool_space}{${eval:$acl_m_wasfree/2}}}
             log_message = free space on spool disk $spool_space KB - less than \
                           half than it was when the user $acl_m_user was blocked
     
