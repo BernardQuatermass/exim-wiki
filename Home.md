@@ -73,6 +73,7 @@ Delete mails to a particular domain
 Flush the entire Mail queue
 
     for i in `exiqgrep -i -f `; do exim -Mrm $i; done
+    exim -bp | exiqgrep -i | xargs exim -Mrm
 
 Run Mail queue
 
