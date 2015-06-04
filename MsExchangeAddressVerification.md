@@ -198,9 +198,11 @@ up. A callout causes your Exim system to do a connection to the
 destination mail system and asks it if it will accept mail for this
 particular user.
 
-The down side to this is that Exchange may be setup in such a way that
+The downside to this is that Exchange may be setup in such a way that
 it will decide that your Exim system is trying to do address harvesting
 on it, so be careful!
+
+The setting in Exchange (2007,2010 and probably beyond) is Organization Configuration -> Hub Transport -> Anti-Spam (tab) -> Recipient Filtering (enable it and open it) -> Blocked Recipients (tab).  Tick "Block messages sent to recipients that do not exist in the directory".  If you do not enable that then Exchange will happily say "yes" to all callouts, which is undesirable.  If anti-spam is unavailable (eg SBS) then search the web for how to enable it - there are lots of howtos.
 
 Put these into a RCPT acl. The first stanza will drop the connection on
 the fourth incorrect address, Which limits the effectiveness of address
