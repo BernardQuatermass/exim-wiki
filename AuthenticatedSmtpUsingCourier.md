@@ -2,7 +2,7 @@ Have exim authenticate against courier authdaemon (thanks to Mark
 Bergsma)
 
 Another (and probably better) way to do this is show in
-[FAQ/Policy\_controls/Q0730](FAQ/Policy_controls/Q0730)
+[[Q0730]]
 
     plain:
             driver = plaintext
