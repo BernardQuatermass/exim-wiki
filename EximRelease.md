@@ -81,7 +81,7 @@ Release Steps
     `/home/services/ftp/pub/exim/exim4/`
 -   unpack PDF documentation from distro tarball into `/srv/www/vhosts/www.exim.org` and update `exim-pdf-current` symlink **This needs automating**
 -   ChangeLog/NewStuff distro on ftp site - in
-    `/home/services/ftp/pub/exim/ChangeLogs/`
+    `/srv/ftp/pub/exim/exim4/`
     -   `.gz` files too, but not `.bz2`; note gzip on tahini does not
         support `-k`, so compress before copy or compress to stdout,
         redirecting onto the target filename
