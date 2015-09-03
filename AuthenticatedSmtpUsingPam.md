@@ -42,7 +42,7 @@ Make sure you have the following in the exim config file
 (note: I am using the certificate that courier installs for itself, you
 will probably wish to point to your own certificate)
 
-    auth_advertise_hosts = ${if eq {$tls_cipher}{}{}{*}}
+    auth_advertise_hosts = ${if def:tls_in_cipher {*}{}}
 
 (This means only connections over ssl will be offered authentication,
 you do not need this but we do not want users sending their password
@@ -50,19 +50,17 @@ over unencrypted connections so we use it)
 
     begin authenticators
 
-    plain:
+    PLAIN:
        driver = plaintext
-       public_name = PLAIN
        server_prompts = :
-       server_condition = "${if pam{$2:$3}{1}{0}}"
-       server_set_id = $2
+       server_condition = "${if pam{$auth2:$auth3}{yes}{no}}"
+       server_set_id = $auth2
 
-    login:
+    LOGIN:
        driver = plaintext
-       public_name = LOGIN
        server_prompts = "Username:: : Password::"
-       server_condition = "${if pam{$1:$2}{1}{0}}"
-       server_set_id = $1
+       server_condition = "${if pam{$auth1:$auth2}{yes}{no}}"
+       server_set_id = $auth1
 
 Also I have exim run as group exim this group needs read access on
 
