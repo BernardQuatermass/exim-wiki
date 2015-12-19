@@ -59,7 +59,7 @@ Release Steps
 -   cd into the pkgs directory and sign the tarballs with your key:
     `EXIM_KEY=you@exim.org ../../release-process/scripts/sign_exim_packages.sh`.
 -   put tarballs and signatures up for distribution - in
-    `/srv/ftp/pub/exim/exim4/test/'
+    `/srv/ftp/pub/exim/exim4/test/`
 -   unpack PDF documentation from distro tarball into `/srv/www/vhosts/www.exim.org` and update `exim-pdf-current` symlink **This needs automating**
 -   write announcement including changes and cryptographic checksums
     -   SHA256 checksums only for now; 4.80 was the last to use both
