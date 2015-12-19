@@ -64,6 +64,7 @@ Release Steps
 -   write announcement including changes and cryptographic checksums
     -   SHA256 checksums only for now; 4.80 was the last to use both
         SHA1 and SHA256. We'll add SHA-3 when it's available.
+        `sha256 exim*bz2 exim*gz`
     -   mail should be signed by a key with an @exim.org uid, that has
         been signed by the other Exim Maintainers.
     -   mail **must** be sent PGP/inline, as PGP/MIME will be rejected
