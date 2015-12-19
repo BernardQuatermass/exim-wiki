@@ -58,6 +58,9 @@ Release Steps
 -   ideally have limited final test before full distribution
 -   cd into the pkgs directory and sign the tarballs with your key:
     `EXIM_KEY=you@exim.org ../../release-process/scripts/sign_exim_packages.sh`.
+-   put tarballs and signatures up for distribution - in
+    `/srv/ftp/pub/exim/exim4/test/'
+-   unpack PDF documentation from distro tarball into `/srv/www/vhosts/www.exim.org` and update `exim-pdf-current` symlink **This needs automating**
 -   write announcement including changes and cryptographic checksums
     -   SHA256 checksums only for now; 4.80 was the last to use both
         SHA1 and SHA256. We'll add SHA-3 when it's available.
@@ -77,9 +80,6 @@ Release Steps
         Exim](https://plus.google.com/b/101257968735428844827/) page --
         hopefully Google have shared admin rights by the time someone
         other than Phil does a release
--   put tarballs and signatures up for distribution - in
-    `/home/services/ftp/pub/exim/exim4/`
--   unpack PDF documentation from distro tarball into `/srv/www/vhosts/www.exim.org` and update `exim-pdf-current` symlink **This needs automating**
 -   ChangeLog/NewStuff distro on ftp site - in
     `/srv/ftp/pub/exim/exim4/`
     -   `.gz` files too, but not `.bz2`; note gzip on tahini does not
