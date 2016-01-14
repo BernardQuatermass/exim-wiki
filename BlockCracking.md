@@ -97,12 +97,12 @@ with four paragraphs:
 Insert into beginning of config:
 
     acl_smtp_connect = acl_check_connect
-    acl_smtp_helo = acl_check_helo
     acl_smtp_auth = acl_check_auth
     acl_smtp_mail = acl_check_mail
     acl_smtp_quit = acl_check_quit
     acl_smtp_notquit = acl_check_notquit
-    auth_advertise_hosts = ${if eq{$auth_helo_name}{ylmf-pc}{}{*}}
+    auth_advertise_hosts = ${if eq{$sender_helo_name}{ylmf-pc}{}{*}}
+                           # Cutwail/PushDo bot often bruteforces passwords
     IPNOTIF = echo Subject: blocked $sender_host_address $dnslist_text \
       ${sg{${lookup dnsdb{>, defer_never,ptr=$sender_host_address}}}{\N[^\w.,-]\N}{}}; \
       echo; echo for bruteforce auth cracking attempt.; 
@@ -203,14 +203,7 @@ Immediately after the "begin acl" line insert:
             # Another path to the same file in order to circumvent lookup caching.
     
       accept
-    
-    acl_check_helo:
-      drop  message = Cutwail/PushDo bot
-                      # often bruteforces passwords
-            condition = ${if eq{$sender_helo_name}{ylmf-pc}}
-    
-      accept
-    
+   
     hash:
       accept set acl_c_authhash = ${nhash_1000:$acl_arg1}
 
