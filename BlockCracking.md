@@ -102,6 +102,10 @@ Insert into beginning of config:
     acl_smtp_mail = acl_check_mail
     acl_smtp_quit = acl_check_quit
     acl_smtp_notquit = acl_check_notquit
+    auth_advertise_hosts = ${if eq{$auth_helo_name}{ylmf-pc}{}{*}}
+    IPNOTIF = echo Subject: blocked $sender_host_address $dnslist_text \
+      ${sg{${lookup dnsdb{>, defer_never,ptr=$sender_host_address}}}{\N[^\w.,-]\N}{}}; \
+      echo; echo for bruteforce auth cracking attempt.; 
     WRONG_RCPT_LIMIT = 100
     PERIOD = 1h
     WARNTO = abuse@example.com
@@ -130,11 +134,11 @@ Immediately after the "begin acl" line insert:
             condition = ${if exists{$spool_directory/blocked_IPs}}
             condition = ${lookup{$sender_host_address}iplsearch\
                                 {$spool_directory/blocked_IPs}{0}{1}}
+            dnslists = zz.countries.nerd.dk!=6.7.8.9
+    # this list never gives this code, so just $dnslist_text is set to country code
             continue = ${run{SHELL -c 'echo \\\"$sender_host_addressMASKW\\\" \
                >>$spool_directory/blocked_IPs; \
-               \N{\N echo Subject: $sender_host_address blocked; echo; echo \
-               for bruteforce auth cracking attempt.; \
-               \N}\N | $exim_path -f root WARNTO'}}
+               \N{\N IPNOTIF \N}\N | $exim_path -f root WARNTO'}}
 
       drop  message = blacklisted for bruteforce cracking attempt
             condition = ${if >{$acl_c_authnomail}{4}}
@@ -159,11 +163,10 @@ Immediately after the "begin acl" line insert:
             condition = ${if exists{$spool_directory/blocked_IPs}}
             condition = ${lookup{$sender_host_address}iplsearch\
                                 {$spool_directory/blocked_IPs}{0}{1}}
+            dnslists = zz.countries.nerd.dk!=6.7.8.9
             continue = ${run{SHELL -c 'echo \\\"$sender_host_addressMASKW\\\" \
                >>$spool_directory/blocked_IPs; \
-               \N{\N echo Subject: $sender_host_address blocked; echo; echo \
-               for bruteforce auth cracking attempt.; \
-               \N}\N | $exim_path -f root WARNTO'}}
+               \N{\N IPNOTIF \N}\N | $exim_path -f root WARNTO'}}
     
     acl_check_notquit:
       warn  condition = $authentication_failed
@@ -183,11 +186,10 @@ Immediately after the "begin acl" line insert:
             condition = ${if exists{$spool_directory/blocked_IPs}}
             condition = ${lookup{$sender_host_address}iplsearch\
                                 {$spool_directory/blocked_IPs}{0}{1}}
+            dnslists = zz.countries.nerd.dk!=6.7.8.9
             continue = ${run{SHELL -c 'echo \\\"$sender_host_addressMASKW\\\" \
                >>$spool_directory/blocked_IPs; \
-               \N{\N echo Subject: $sender_host_address blocked; echo; echo \
-               for bruteforce auth cracking attempt.; \
-               \N}\N | $exim_path -f root WARNTO'}}
+               \N{\N IPNOTIF \N}\N | $exim_path -f root WARNTO'}}
     
     acl_check_mail:
       accept set acl_c_authnomail = 0
@@ -219,7 +221,7 @@ If you use Exim version 4.82 or higher then after the string `begin authenticato
       server_condition = ${if pam{$auth2:${sg{$auth3}{:}{::}}}}${acl{hash}{$auth2,$auth3}}
 
 When your staff receives a message with Subject like
-`115.150.81.95 blocked`, just check that the IP-address is
+`blocked 115.150.81.95 CN`, just check that the IP-address is
 unknown for you (in this example China) - it's who attempted
 to crack passwords.
 
