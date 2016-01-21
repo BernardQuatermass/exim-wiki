@@ -171,7 +171,7 @@ Immediately after the "begin acl" line insert:
     acl_check_notquit:
       warn  condition = $authentication_failed
             condition = ${if def:acl_c_authhash}
-            ratelimit = 0 / 5m / strict / $sender_host_address-$acl_c_authhash
+            ratelimit = 0 / 2h / strict / $sender_host_address-$acl_c_authhash
             set acl_c_hashrate = ${sg{$sender_rate}{[.].*}{}}
     
       warn  condition = $authentication_failed
@@ -182,7 +182,7 @@ Immediately after the "begin acl" line insert:
                                 {!def:acl_c_authhash}\
                                 {<{$acl_c_hashrate}{2}}\
                                }}
-            ratelimit = 7 / 5m / strict / per_conn
+            ratelimit = 7 / 2h / strict / per_conn
             condition = ${if exists{$spool_directory/blocked_IPs}}
             condition = ${lookup{$sender_host_address}iplsearch\
                                 {$spool_directory/blocked_IPs}{0}{1}}
@@ -214,7 +214,7 @@ If you use Exim version 4.82 or higher then after the string `begin authenticato
       server_condition = ${if pam{$auth2:${sg{$auth3}{:}{::}}}}${acl{hash}{$auth2,$auth3}}
 
 When your staff receives a message with Subject like
-`blocked 115.150.81.95 CN`, just check that the IP-address is
+`blocked 115.150.81.95 cn`, just check that the IP-address is
 unknown for you (in this example China) - it's who attempted
 to crack passwords.
 
