@@ -34,8 +34,6 @@ See also
     -   before posting, be sure to read the [[Mailing List Policies|MailingListPolicies]]
         and [[Mailing List Etiquette|MailingListEtiquette]] - be nice on the support
         lists!
--   [Mail-related RFC
-    documents](http://www.exim-new-users.co.uk/content/category/4/25/39/)
 
 * * * * *
 
