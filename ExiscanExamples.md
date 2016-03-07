@@ -13,7 +13,7 @@ possibilities, most notably the acl\_m variables --*
 [ZugSchlus](ZugSchlus)
 
 The exiscan website is at
-[http://duncanthrax.net/exiscan/](http://duncanthrax.net/exiscan/). You
+[http://duncanthrax.net/exiscan-acl/](http://duncanthrax.net/exiscan-acl/). You
 will find the latest patch versions, as well as links to the mailing
 list and its archives there. Please notice that since Exim 4.50, exiscan
 is part of the Exim distribution, so additional patches are not
