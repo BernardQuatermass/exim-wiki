@@ -1,7 +1,7 @@
 Have exim authenticate against courier authdaemon (thanks to Mark
 Bergsma)
 
-Another (and probably better) way to do this is show in
+Another (and probably better) way to do this is shown in
 [[Q0730]]
 
     plain:
