@@ -60,6 +60,7 @@ Release Steps
     `EXIM_KEY=you@exim.org ../../release-process/scripts/sign_exim_packages.sh`.
 -   put tarballs and signatures up for distribution - in
     `/srv/ftp/pub/exim/exim4/test/` for RCs or `/srv/ftp/pub/exim/exim4/` for full release
+    - For a full release also unpack ChangeLog and NewStuff to `/srv/ftp/pub/exim/exim4/` and make .gz versions **This needs automating**
 -   unpack PDF documentation from distro tarball into `/srv/www/vhosts/www.exim.org` and update `exim-pdf-current` symlink **This needs automating**
 -   ditto the HTML documentation
 -   write announcement including changes and cryptographic checksums
