@@ -61,8 +61,8 @@ Release Steps
 -   put tarballs and signatures up for distribution - in
     `/srv/ftp/pub/exim/exim4/test/` for RCs or `/srv/ftp/pub/exim/exim4/` for full release
     - For a full release also unpack ChangeLog and NewStuff to `/srv/ftp/pub/exim/exim4/` and make .gz versions **This needs automating**
--   unpack PDF documentation from distro tarball into `/srv/www/vhosts/www.exim.org` and update `exim-pdf-current` symlink **This needs automating**
--   the HTML docs are done by a cronjob
+-   unpack PDF documentation from distro tarball into `/srv/www/vhosts/www.exim.org`, the exim-pdf-current link is done during (auto) update of the website
+-   the HTML docs are done by the (auto) update of the website
 -   write announcement including changes and cryptographic checksums
     -   SHA256 checksums only for now; 4.80 was the last to use both
         SHA1 and SHA256. We'll add SHA-3 when it's available.
@@ -100,8 +100,8 @@ Release Steps
 -   if a Security release, then update [[EximSecurity]] with details.
 
 Defunct:
--   update website - now done automatically (hourly) if you have git
-    add/commit/push the doc sources above
+-   update website - now done automatically (hourly 23 * * * *) if you have git
+    add/commit/push the doc sources above (see `~nm4/bin/check_update_website.sh`)
     -   docs website - needs links to new docs - in
         `/srv/www/vhosts/docs.exim.org/`
         -   symlink to html docs as per other versions
@@ -123,4 +123,4 @@ Things to do
     generation in the documentation?
 -   Sort out filesystem permissions so that anyone in group `eximdev`
     can make updates? *This should work*
--   Sort out website to auto-update from git
+-   Sort out website to auto-update from git (this is done via nm4's cronjob)
