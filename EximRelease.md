@@ -42,9 +42,9 @@ Release Steps
     `doc-txt/OptionLists.txt` files are up-to-date
 -   Tag git for new release - tag format is `exim` hyphen *version
     number with underscores* - ie `exim-4_72`. You must also have git
-    sign the tag with your exim PGP id - ie `-u you@exim.org` for
+    sign the tag with your exim PGP id - ie `git tag -u you@exim.org` for
     the tarball to be built correctly.
--   Ensure git tree (with tags) is pushed to central repo
+-   Ensure git tree (with tags) is pushed to central repo: `git push --follow-tags`
 -   Build documentation and packages:-
     -   ensure `exim-website` and `exim` git repos checked out within
         same directory
@@ -59,7 +59,7 @@ Release Steps
 -   cd into the pkgs directory and sign the tarballs with your key:
     `EXIM_KEY=you@exim.org ../../release-process/scripts/sign_exim_packages.sh`.
 -   put tarballs and signatures up for distribution - in
-    `/srv/ftp/pub/exim/exim4/test/`
+    `/srv/ftp/pub/exim/exim4/test/` for RCs or `/srv/ftp/pub/exim/exim4/` for full release
 -   unpack PDF documentation from distro tarball into `/srv/www/vhosts/www.exim.org` and update `exim-pdf-current` symlink **This needs automating**
 -   ditto the HTML documentation
 -   write announcement including changes and cryptographic checksums
