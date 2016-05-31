@@ -117,13 +117,13 @@ of the manual, or to configuration options.
     1652) - [accept\_8bitmime]. Setting accept\_8bitmime allows Exim to
     accept 8 bit messages, and is on by default, since version 4.80. Exim doesn't do
     anything special with such messages. You might want to switch this off if you know that you're sending messages to systems that can't handle 8bitmime, but these appear to be rare.
-
-But does not support:
 -   DSN. "Simple Mail Transfer Protocol (SMTP) Service Extension for
     Delivery Status Notifications" (RFC 3461). Note that Exim will issue
     delivery delay and failure notifications, but does not support this
     extension - which allows clients to say when and how notifications
     should be issued.
+
+But does not support:
 -   BURL. "Message Submission BURL Extension" (RFC 4468)
 -   CHUNKING. "“SMTP Service Extensions for Transmission of Large and
     Binary Messages" (RFC 3030)
