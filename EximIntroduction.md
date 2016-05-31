@@ -119,9 +119,8 @@ of the manual, or to configuration options.
     anything special with such messages. You might want to switch this off if you know that you're sending messages to systems that can't handle 8bitmime, but these appear to be rare.
 -   DSN. "Simple Mail Transfer Protocol (SMTP) Service Extension for
     Delivery Status Notifications" (RFC 3461). Note that Exim will issue
-    delivery delay and failure notifications, but does not support this
-    extension - which allows clients to say when and how notifications
-    should be issued.
+    delivery delay and failure notifications normally, this extension allows 
+    clients to say when and how notifications should be issued.
 
 But does not support:
 -   BURL. "Message Submission BURL Extension" (RFC 4468)
