@@ -134,8 +134,7 @@ Immediately after the "begin acl" line insert:
             condition = ${if exists{$spool_directory/blocked_IPs}}
             condition = ${lookup{$sender_host_address}iplsearch\
                                 {$spool_directory/blocked_IPs}{0}{1}}
-            dnslists = zz.countries.nerd.dk!=6.7.8.9
-    # this list never gives this code, so just $dnslist_text is set to country code
+            acl = setdnslisttext
             continue = ${run{SHELL -c 'echo \\\"$sender_host_addressMASKW\\\" \
                >>$spool_directory/blocked_IPs; \
                \N{\N IPNOTIF \N}\N | $exim_path -f root WARNTO'}}
@@ -163,7 +162,7 @@ Immediately after the "begin acl" line insert:
             condition = ${if exists{$spool_directory/blocked_IPs}}
             condition = ${lookup{$sender_host_address}iplsearch\
                                 {$spool_directory/blocked_IPs}{0}{1}}
-            dnslists = zz.countries.nerd.dk!=6.7.8.9
+            acl = setdnslisttext
             continue = ${run{SHELL -c 'echo \\\"$sender_host_addressMASKW\\\" \
                >>$spool_directory/blocked_IPs; \
                \N{\N IPNOTIF \N}\N | $exim_path -f root WARNTO'}}
@@ -186,7 +185,7 @@ Immediately after the "begin acl" line insert:
             condition = ${if exists{$spool_directory/blocked_IPs}}
             condition = ${lookup{$sender_host_address}iplsearch\
                                 {$spool_directory/blocked_IPs}{0}{1}}
-            dnslists = zz.countries.nerd.dk!=6.7.8.9
+            acl = setdnslisttext
             continue = ${run{SHELL -c 'echo \\\"$sender_host_addressMASKW\\\" \
                >>$spool_directory/blocked_IPs; \
                \N{\N IPNOTIF \N}\N | $exim_path -f root WARNTO'}}
@@ -201,6 +200,11 @@ Immediately after the "begin acl" line insert:
             condition = ${lookup{$sender_host_address}iplsearch\
                          {/var/..$spool_directory/blocked_IPs}{1}{0}}
             # Another path to the same file in order to circumvent lookup caching.
+    
+      accept
+    
+    setdnslisttext:
+      accept dnslists = zz.countries.nerd.dk
     
       accept
    
