@@ -45,7 +45,6 @@ Compatibility with Other Software
 Quota
 ---------------------------------
 -   [Check Quota at RCPT Time](Checking-quota-at-RCPT-time)
--   [Howto use exim with filesystem quotas](EximAndFilesytemQuotas)
 
 Other Howto
 -----------
