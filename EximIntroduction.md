@@ -119,13 +119,14 @@ of the manual, or to configuration options.
     anything special with such messages. You might want to switch this off if you know that you're sending messages to systems that can't handle 8bitmime, but these appear to be rare.
 -   DSN. "Simple Mail Transfer Protocol (SMTP) Service Extension for
     Delivery Status Notifications" (RFC 3461). Note that Exim will issue
-    delivery delay and failure notifications normally, this extension allows 
+    delivery delay and failure notifications normally; this extension allows 
     clients to say when and how notifications should be issued.
 
 But does not support:
 -   BURL. "Message Submission BURL Extension" (RFC 4468)
 -   CHUNKING. "“SMTP Service Extensions for Transmission of Large and
-    Binary Messages" (RFC 3030)
+    Binary Messages" (RFC 3030)  [up until release 4.87.  If all goes
+    well, CHUNKING support will appear in the next release]
 -   BINARYMIME. "SMTP Service Extensions for Transmission of Large and
     Binary Messages" (RFC 3030)
 -   ENHANCEDSTATUSCODES. "SMTP Extension for Returning Enhanced Error
@@ -133,6 +134,10 @@ But does not support:
     construct smtp replies with rfc1893 enhanced error codes, but it
     doesn't have any way of automatically generating them, and it won't
     advertise ENHANCEDSTATUSCODES in the reply to EHLO.
+
+### Other SMTP extensions supported
+-   SMTPUTF8
+-   PRDR
 
 Availability
 ------------
