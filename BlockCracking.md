@@ -97,12 +97,11 @@ with four paragraphs:
 Insert into beginning of config:
 
     acl_smtp_connect = acl_check_connect
+    acl_smtp_helo = acl_check_helo
     acl_smtp_auth = acl_check_auth
     acl_smtp_mail = acl_check_mail
     acl_smtp_quit = acl_check_quit
     acl_smtp_notquit = acl_check_notquit
-    auth_advertise_hosts = ${if eq{$sender_helo_name}{ylmf-pc}{}{*}}
-                           # Cutwail/PushDo bot often bruteforces passwords
     IPNOTIF = echo Subject: blocked $sender_host_address $dnslist_text \
       ${sg{${lookup dnsdb{>, defer_never,ptr=$sender_host_address}}}{\N[^\w.,-]\N}{}}; \
       echo; echo for bruteforce auth cracking attempt.; 
@@ -200,6 +199,18 @@ Immediately after the "begin acl" line insert:
             condition = ${lookup{$sender_host_address}iplsearch\
                          {/var/..$spool_directory/blocked_IPs}{1}{0}}
             # Another path to the same file in order to circumvent lookup caching.
+    
+      accept
+    
+    acl_check_helo:
+      drop  message = Cutwail/PushDo bot blacklisted
+            condition = ${if eq{$sender_helo_name}{ylmf-pc}}
+      acl = setdnslisttext
+      continue = ${run{SHELL -c 'echo \\\"$sender_host_addressMASKW\\\" \
+         >>$spool_directory/blocked_IPs; \
+         \N{\N IPNOTIF \N}\N | $exim_path -f root WARNTO'}}
+      # if this bot is dropped at helo, it repeats multiple times,
+      # but if dropped at connect, it tries only twice
     
       accept
     
