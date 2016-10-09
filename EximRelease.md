@@ -15,7 +15,7 @@ Each Feature/Bug Fix
     `src` and `doc` subdirectories -- to ensure a single checkin
     includes both the code and the documentation changes - even better
     if test suite changes can also be integrated.
--   Update the main documentation in 'exim-doc/doc-docbook/spec.xfpt'
+-   Update the main documentation in `exim-doc/doc-docbook/spec.xfpt`
 -   Add regression testcases for bugfixes, feature testcase for features
 -   If appropriate update `NewStuff` (in the `exim-doc/doc-txt`
     subdirectory).
