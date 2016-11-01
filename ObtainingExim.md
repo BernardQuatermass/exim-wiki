@@ -100,20 +100,20 @@ via
 
 #### stable
 
-Exim4 (version 4.63) is the default MTA for the current stable release
-of Debian GNU/Linux, Version 4.0, codenamed "etch".
+Exim4 (version 4.84) is the default MTA for the current stable release
+of Debian GNU/Linux, Version 8.6, codenamed "jessie".
 
 [Backports of Exim4](http://www.backports.org/debian/pool/main/e/exim4/)
-for the old stable release, sarge, are available.
+for the stable release, jessie, are available.
 
 To install the backported version, add the following line to your apt
 sources.list:
 
-deb [http://www.backports.org/debian](http://www.backports.org/debian)
-sarge-backports main
+deb [http://ftp.debian.org/debian](http://ftp-debian.org/debian)
+jessie-backports main
 
 You can read more information about [installing
-backports](http://www.backports.org/dokuwiki/doku.php?id=instructions).
+backports](http://www.backports.org/Instructions).
 
 #### testing/unstable
 
