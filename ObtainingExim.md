@@ -82,8 +82,7 @@ Binary packages (unsupported by Novell/SuSE) can be found
 
 ### Debian GNU/Linux
 
-Debian GNU/Linux ships packages for Exim 3 (called exim), and Exim 4
-(called exim4). However, using Exim 3 for new installs is deprecated.
+Debian GNU/Linux ships packages for Exim 4 (called exim4). 
 
 There are two variations:
 [exim4ddaemonllight](http://packages.debian.org/exim4-daemon-light), or
