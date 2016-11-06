@@ -45,6 +45,13 @@ Mailing List
 Development issues are normally discussed on the exim-dev
 [EximMailingLists](EximMailingLists)
 
+Build Farm
+----------
+
+If you want to support the developers in spotting regressions introduced during development,
+especially on less-common platforms. please consider operating a
+[buildfarm](http://buildfarm.exim.org/cgi-bin/show_status.pl) animal.
+
 Exim Release Process
 --------------------
 
