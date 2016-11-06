@@ -18,7 +18,7 @@ On this wiki ...
     -   [[HowTo's|HowTo]] for all sorts of situations
     -   Debian users should check the [[Debian-specific documentation|DebianExim4]]
 -   [[Exim Security|EximSecurity]]
--   [[Testing Exim|TestingExim]]
+-   [[Testing an Exim installation|TestingExim]]
 -   [[Exim Development|EximDevelopment]]
 -   [[Release Policy|EximReleasePolicy]]
 -   [[Upgrading from Exim 3|Exim3Status]]
