@@ -42,6 +42,7 @@ Release Steps
     src/src/globals.c if needed.
 -   Check that the `NewStuff` and `ChangeLog` and
     `doc-txt/OptionLists.txt` files are up-to-date
+-   Check if test/configure needs commit
 -   Tag git for new release - tag format is `exim` hyphen *version
     number with underscores* - ie `exim-4_72`. You must also have git
     sign the tag with your exim PGP id - ie `git tag -u you@exim.org` for
