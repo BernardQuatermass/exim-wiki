@@ -114,6 +114,7 @@ RC Steps
 --------
 -   Basically same as for release, except no update of website and
     ChangeLog/NewStuff distro on ftp site
+-   Tag has form exim-4_72_RC3
 -   Files should be placed in `test` subdirectory rather than in main
     distribution directory
 
