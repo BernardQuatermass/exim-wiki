@@ -17,6 +17,8 @@ Writing a patch runs somewhere in the middle of this list and might not happen
 by the person coordinating the rest of the process.  That's fine.  **DO NOT
 PUSH A SECURITY CRITICAL PATCH TO PUBLIC GIT.**
 
+We have set up a gitolite repository <ssh://git@git.exim.org/> to limit access to changes.
+
 We assume that the person sending notifications has a PGP key in the strong
 set, so can communicate via email such that arbitrary recipients stand a
 reasonable chance of being able to verify identity.
