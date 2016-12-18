@@ -13,8 +13,8 @@ Note that a "remote code execution as Exim run-time user" vulnerability
 can be combined with a privilege escalation attack to become even more
 serious.
 
--   CVE-2016-9963 fixed in 4.88 and in 4.87.1. For details please read <doc/doc-txt/cve-2016-9963>
-file
+-   CVE-2016-9963 fixed in 4.88 and in 4.87.1. For details please read the "doc/doc-txt/cve-2016-9963"
+file which comes along with the sources.
 
 -   CVE-2016-1531
 
