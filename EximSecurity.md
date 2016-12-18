@@ -13,6 +13,11 @@ Note that a "remote code execution as Exim run-time user" vulnerability
 can be combined with a privilege escalation attack to become even more
 serious.
 
+-   CVE-2016-9963 fixed in 4.88 and in 4.87.1. For details please read <doc/doc-txt/cve-2016-9963>
+file
+
+-   CVE-2016-1531
+
 -   CVE-2015-0235 is a **glibc** bug, affecting multiple applications on platforms which use glibc for their system C library; this was a problem with `gethostbyname()` functions.  The security advisory referenced Exim as an exploit vector for remote access.  The fix is to update glibc; workarounds include disabling configuration directives which enable the HELO checking which exposes the vulnerability.  See <https://lists.exim.org/lurker/message/20150127.200135.056f32f2.en.html> for our advisory on this.
 -   CVE-2014-2972 fixed in 4.83: mathematical comparison functions were
     expanding args twice. Impact: local code execution if specific
