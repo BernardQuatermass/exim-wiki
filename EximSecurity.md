@@ -14,7 +14,7 @@ can be combined with a privilege escalation attack to become even more
 serious.
 
 -   CVE-2016-9963 fixed in 4.88 and in 4.87.1. If several conditions are met, Exim
-may leak the private DKIM key to the main log and if even more conditions are met, to the sender of the message. For details please read [CVE-2016-9963](https://exim.org/static/doc/CVE-2016-9963.txt) If you use a distro package of Exim, it may be fixed even for older releases.
+may leak the private DKIM key to the main log and if even more conditions are met, to the sender of the message. For details please read [CVE-2016-9963](https://exim.org/static/doc/CVE-2016-9963.txt). If you use a distro package of Exim, you may find it has been fixed even for older-numbered releases.
 
 -   CVE-2016-1531 fixed in 4.86.2. If Exim loads the Perl interpreter during startup, a privilege escalation was possible. For details please read [CVE-2016-1531](https://exim.org/static/doc/CVE-2016-1531.txt). If you use a distro package of Exim, it may be fixed even for older releases.
 
