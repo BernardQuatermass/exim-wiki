@@ -14,9 +14,9 @@ can be combined with a privilege escalation attack to become even more
 serious.
 
 -   CVE-2016-9963 fixed in 4.88 and in 4.87.1. If several conditions are met, Exim
-may leak the private DKIM key to the main log and if even more conditions are met, to the sender of the message. For details please read [CVE-2016-9963.txt](https://exim.org/static/doc/CVE-2016-9963.txt)
+may leak the private DKIM key to the main log and if even more conditions are met, to the sender of the message. For details please read [CVE-2016-9963](https://exim.org/doc/static/CVE-2016-9963.txt) If you use a distro package of Exim the bug may be fixed even for older releases.
 
--   CVE-2016-1531
+-   CVE-2016-1531 fixed in 4.86.2. If Exim loads the Perl interpreter during startup, a privilege escalation was possible. For details please read [CVE-2016-1531](https://exim.org/doc/static/CVE-2016-1531.txt). If you use a distro package of Exim, the bug may be fixed even for older releases.
 
 -   CVE-2015-0235 is a **glibc** bug, affecting multiple applications on platforms which use glibc for their system C library; this was a problem with `gethostbyname()` functions.  The security advisory referenced Exim as an exploit vector for remote access.  The fix is to update glibc; workarounds include disabling configuration directives which enable the HELO checking which exposes the vulnerability.  See <https://lists.exim.org/lurker/message/20150127.200135.056f32f2.en.html> for our advisory on this.
 -   CVE-2014-2972 fixed in 4.83: mathematical comparison functions were
