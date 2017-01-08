@@ -25,7 +25,9 @@ The changes will be committed by `/etc/cron.daily/etckeeper` performing an autoc
 
 This assumes you're either tlsadmin, or using elevated privileges to act as tlsadmin (or this has moved to a dedicated service account which multiple people can access).  Recommend using `etckeeper` to make sure you have a clean base before making further changes ( `etckeeper commit -m "committing any recent changes"` ).
 
-Invoke as tlsadmin: `./bin/tls-renew register newsite.exim.org`
+Invoke as tlsadmin: `./bin/tls-renew register newsite.exim.org second-san-in-same-cert.exim.org`
+
+Supply as many domains as you want in one certificate.  The first one is canonical, will appear in the CN and must match the directories which we'll create in the srv hierarchy.
 
 The output will give you a pair of commands to `mkdir`/`chmod` the right directories, and tell you to edit the nginx configs to direct traffic there.  Edit the relevant website's config file, to include handling of `.well-known` via the new location; something like:
 
