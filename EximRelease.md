@@ -97,8 +97,8 @@ Release Steps
 -   Update [Wikipedia](http://en.wikipedia.org/wiki/Exim) version
     information, because we're nice like that
 -   add released version to list of bugzilla versions (Edit:Products/Exim/Edit_Versions/Add)
--   add next expected version to bugzilla milestones, and make that
-    default (Edit:Products/Exim/Edit_Milestones/Add)
+-   add next expected version to bugzilla milestones (Edit:Products/Exim/Edit_Milestones/Add),
+    and make that default (button on Edit:Products/Exim page)
 -   update the Topic on the #exim IRC channel on freenode
 -   if a Security release, then update [[EximSecurity]] with details.
 
