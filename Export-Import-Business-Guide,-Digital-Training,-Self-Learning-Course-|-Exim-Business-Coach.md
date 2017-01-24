@@ -5,7 +5,7 @@ www.eximtutor.com is assisting and online training you to touch core areas of me
 
 ![Exim Help Desk](http://www.eximtutor.com/images/eximhelpdesk.png)
 <br>
-[Exporters and Importers](http://www.eximtutor.com/start-to-export-htm/tips-to-start-new-export-business/)
+[Exporters and Importers - Tips](http://www.eximtutor.com/start-to-export-htm/tips-to-start-new-export-business/)
 ***
 
 
