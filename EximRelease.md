@@ -52,7 +52,7 @@ Release Steps
     -   ensure `exim-website` and `exim` git repos checked out within
         same directory
     -   `cd exim`
-    -   `release-process/scripts/mk_exim_release.pl 4.73` - use
+    -   `release-process/scripts/mk_exim_release 4.73` - use
         appropriate version number
     -   files produced into `exim-packaging-4.73/pkgs` directory
     -   also writes website documentation sources into
@@ -60,7 +60,7 @@ Release Steps
         git add/commit
 -   ideally have limited final test before full distribution
 -   cd into the pkgs directory and sign the tarballs with your key:
-    `EXIM_KEY=you@exim.org ../../release-process/scripts/sign_exim_packages.sh`.
+    `EXIM_KEY=you@exim.org ../../release-process/scripts/sign_exim_packages .` (note current-working-dir as arg)
 -   put tarballs and signatures up for distribution - in
     `/srv/ftp/pub/exim/exim4/test/` for RCs or `/srv/ftp/pub/exim/exim4/` for full release
     - For a full release also unpack ChangeLog and NewStuff to `/srv/ftp/pub/exim/exim4/` and make .gz versions **This needs automating**
