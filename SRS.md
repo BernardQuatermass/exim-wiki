@@ -22,6 +22,8 @@ in your `Local/Makefile`.
 Additional Documentation from
 [http://opsec.eu/src/srs/exim.html](http://opsec.eu/src/srs/exim.html):
 
+A no-library SRS implementation alternative is shown [here](https://bugs.exim.org/show_bug.cgi?id=1649).
+
 Configuring Exim
 ----------------
 
