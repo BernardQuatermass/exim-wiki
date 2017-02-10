@@ -11,7 +11,7 @@ The logbook of actions taken on the Exim central admin host is in the notes repo
 
 ## Monthly
 
-A crontab entry for Phil's uid invokes `tls-renew renew` on the 26th of each month.
+A crontab entry for `tlsadmin` invokes `tls-renew renew` on the 26th of each month.
 
 Assuming most people use the 1st of the month, or the 28th, or so, we pick 26 to be a little bit away.  Certificates last for three months, we renew monthly, if _one_ renewal is missed, we're fine.
 
@@ -23,9 +23,9 @@ The changes will be committed by `/etc/cron.daily/etckeeper` performing an autoc
 
 ## Adding a new web-host
 
-This assumes you're either tlsadmin, or using elevated privileges to act as tlsadmin (or this has moved to a dedicated service account which multiple people can access).  Recommend using `etckeeper` to make sure you have a clean base before making further changes ( `etckeeper commit -m "committing any recent changes"` ).
+This assumes you're the `tlsadmin` user.  Recommend using `etckeeper` to make sure you have a clean base before making further changes ( `etckeeper commit -m "committing any recent changes"` ).
 
-Invoke as tlsadmin: `./bin/tls-renew register newsite.exim.org second-hostname.exim.org`
+Invoke as `tlsadmin`: `./bin/tls-renew register newsite.exim.org second-hostname.exim.org`
 
 Supply as many domains as you want in one certificate.  The first one is canonical, will appear in the CN and must match the directories which we'll create in the srv hierarchy.  Use one `tls-renew` invocation per nginx vhost.
 
