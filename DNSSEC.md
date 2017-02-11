@@ -110,6 +110,8 @@ We currently sign using `ECDSAP256SHA256`; our sense of public DNS administrator
 2. [TLSA "3 1 1" + "2 1 1" recommendation](https://www.ietf.org/mail-archive/web/uta/current/msg01498.html)
 3. [DYI DANE CA notes](http://postfix.1071664.n5.nabble.com/WoSign-StartCom-CA-in-the-news-td86436.html#a86444)
 4. [TLSA RRs and key rotation (RFC 7671)](http://tools.ietf.org/html/rfc7671#section-8.1)
+5. [TLSA monitoring with OpenSSL 1.1.0 or later `s_client`](https://www.ietf.org/mail-archive/web/dane/current/msg08206.html)
+6. [OpenSSL 1.1.0 `s_client` manpage](https://www.openssl.org/docs/man1.1.0/apps/s_client.html)
 
 
 [DNSSEC]: https://en.wikipedia.org/wiki/Domain_Name_System_Security_Extensions "DNS Security Extensions"
