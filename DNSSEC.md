@@ -59,7 +59,7 @@ _Warning: opinions may follow._  Some open source resolvers which are known to w
   + from [ISC][]
   + written in C
 
-If you already have expertise in Bind, it's a fair choice, but for simplicity and maintenance by a postmaster who isn't a DNS admin already, we will nudge you towards [Unbound][] or [Knot-Resolver][].  As of early 2017 [Unbound][] has more history in solid production deployments with reliable DNSSEC, so is the safer choice.
+If you already have expertise in Bind, it's a fair choice, but for simplicity and maintenance by a postmaster who isn't a DNS admin already, we will nudge you towards [Unbound][] or [Knot-Resolver][].  As of early 2017 [Unbound][] has more history in solid production deployments with reliable DNSSEC, so is the safer choice.  [PowerDNS][] [documents that](https://doc.powerdns.com/md/recursor/dnssec/) validation is still experimental, as of 4.0.0.
 
 
 ### Known Platform Issues
