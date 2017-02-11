@@ -103,6 +103,70 @@ _letsencrypt-tlsa.exim.org. 900 IN      TLSA    2 1 1 60B87575447DCBA2A36B7D11AC
 
 We currently sign using `ECDSAP256SHA256`; our sense of public DNS administrator consensus seems to be that this is a reasonable short-term transition choice.  Cloudflare use it for their domains, so any resolver which breaks on it will cut off DNS resolution of large chunks of Internet.
 
+### Monitoring
+
+If you publish TLSA records for one or more MX hosts, monitoring that the TLSA records match the actual certificate chain of presented by the server is essential.  The OpenSSL 1.1.0 (or later) `s_client` command can be used to check the correctness of the MX host's TLSA records.  For example, to check that `hummus.csx.cam.ac.uk` matches at least one of its `2 1 1` records, run the below:
+```
+(sleep 5; printf "quit\r\n") |
+  openssl s_client -verify 9 -verify_return_error -brief -starttls smtp \
+    -connect hummus.csx.cam.ac.uk:25 \
+    -dane_tlsa_domain hummus.csx.cam.ac.uk \
+    -dane_tlsa_rrdata "2 1 1
+      0B9FA5A59EED715C26C1020C711B4F6EC42D58B0015E14337A39DAD3 01C5AFC3" \
+    -dane_tlsa_rrdata "2 1 1
+      60B87575447DCBA2A36B7D11AC09FB24A9DB406FEE12D2CC90180517 616E8A18" \
+    -dane_tlsa_rrdata "2 1 1
+      B111DD8A1C2091A89BD4FD60C57F0716CCE50FEEFF8137CDBEE0326E 02CF362B"
+echo "Exit Status: $?"
+```
+If all is well, the output will look like:
+```
+verify depth is 9
+CONNECTION ESTABLISHED
+Protocol version: TLSv1.2
+Ciphersuite: ECDHE-RSA-AES256-GCM-SHA384
+Peer certificate: CN = mx.exim.org
+Hash used: SHA512
+Verification: OK
+Verified peername: hummus.csx.cam.ac.uk
+DANE TLSA 2 1 1 ...ee12d2cc90180517616e8a18 matched TA certificate at depth 1
+Supported Elliptic Curve Point Formats: uncompressed:ansiX962_compressed_prime:ansiX962_compressed_char2
+Server Temp Key: ECDH, P-256, 256 bits
+250 HELP
+DONE
+Exit Status: 0
+```
+If we introduce errors into the TLSA records by changing the last hex digit of all three:
+```
+(sleep 5; printf "quit\r\n") |
+  openssl s_client -verify 9 -verify_return_error -brief -starttls smtp \
+    -connect hummus.csx.cam.ac.uk:25 \
+    -dane_tlsa_domain hummus.csx.cam.ac.uk \
+    -dane_tlsa_rrdata "2 1 1
+      0B9FA5A59EED715C26C1020C711B4F6EC42D58B0015E14337A39DAD3 01C5AFC4" \
+    -dane_tlsa_rrdata "2 1 1
+      60B87575447DCBA2A36B7D11AC09FB24A9DB406FEE12D2CC90180517 616E8A19" \
+    -dane_tlsa_rrdata "2 1 1
+      B111DD8A1C2091A89BD4FD60C57F0716CCE50FEEFF8137CDBEE0326E 02CF362C"
+echo "Exit Status: $?"
+```
+the output we get is instead:
+```
+verify depth is 9
+depth=1 C = US, O = Let's Encrypt, CN = Let's Encrypt Authority X3
+verify error:num=65:No matching DANE TLSA records
+140736473150400:error:1416F086:SSL routines:tls_process_server_certificate:certificate verify failed:../openssl/ssl/statem/statem_clnt.c:1245:
+Exit Status: 1
+```
+
+Note, OpenSSL will not do the DNS lookups to find the TLSA records.  For `hummus.csx.cam.ac.uk` these can, for example, be found via:
+```
+$ dig -t tlsa +noall +ans +nocl +nottl _25._tcp.hummus.csx.cam.ac.uk. | sed -ne 's/.*TLSA //p'
+2 1 1 0B9FA5A59EED715C26C1020C711B4F6EC42D58B0015E14337A39DAD3 01C5AFC3
+2 1 1 60B87575447DCBA2A36B7D11AC09FB24A9DB406FEE12D2CC90180517 616E8A18
+2 1 1 B111DD8A1C2091A89BD4FD60C57F0716CCE50FEEFF8137CDBEE0326E 02CF362B
+```
+A complete script to put it all together is an exercise for the reader...
 
 ### External References
 
