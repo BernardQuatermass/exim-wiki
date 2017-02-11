@@ -98,6 +98,13 @@ _letsencrypt-tlsa.exim.org. 900 IN      TLSA    2 1 1 60B87575447DCBA2A36B7D11AC
 
 We currently sign using `ECDSAP256SHA256`; our sense of public DNS administrator consensus seems to be that this is a reasonable short-term transition choice.  Cloudflare use it for their domains, so any resolver which breaks on it will cut off DNS resolution of large chunks of Internet.
 
+### External References
+[https://dane.sys4.de/common_mistakes Common Mistakes to avoid]
+[https://www.ietf.org/mail-archive/web/uta/current/msg01498.html TLSA "3 1 1" + "2 1 1" recommendation]
+[http://postfix.1071664.n5.nabble.com/WoSign-StartCom-CA-in-the-news-td86436.html#a86444 DYI DANE CA notes] 
+[http://tools.ietf.org/html/rfc7671#section-8.1 TLSA RRs and key rotation] 
+
+
 [DNSSEC]: https://en.wikipedia.org/wiki/Domain_Name_System_Security_Extensions "DNS Security Extensions"
 [PKIX]: https://en.wikipedia.org/wiki/X.509
 [Unbound]: https://www.unbound.net/
