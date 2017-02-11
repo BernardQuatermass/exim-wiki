@@ -12,7 +12,7 @@ Only approach 2 scales.  To achieve this, [DNSSEC][] is used.
 
 ### Exim and DNSSEC
 
-Exim understands the concept of DNSSEC but does not include DNSSEC validation logic itself; the developers feel that's too large an attack surface to be parsed from UDP inside a setuid root program, and that aspects such as algorithm support would just become stale.  So Exim defers validation to your DNS Resolver.
+Exim understands the concept of DNSSEC but does not include DNSSEC validation logic itself; the developers feel that's too large an attack surface to be parsed from UDP inside a setuid root program, and that aspects such as algorithm support would just become stale.  So Exim defers validation to your DNS Resolver.  This is safe provided you have a sufficiently secure network between Exim and the DNS resolver.  Running a local DNSSEC-validating caching resolver on the mail server itself is the most secure option, with `127.0.0.1` and/or `::1` as the only nameservers listed in `/etc/resolv.conf`.  Use of remote nameservers, especially on distant networks is liable to make DNSSEC validation subject to man-in-the-middle attack.
 
 For the "Exim as receiving server-side" setup, no integration with Exim is necessary.  You publish DNS records.
 
