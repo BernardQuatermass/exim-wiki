@@ -42,7 +42,7 @@ This will tell Exim to initialise the resolver library with the option saying to
 
 ### DNSSEC and Resolvers
 
-_Warning: opinions may follow._
+_Warning: opinions may follow._  Some open source resolvers which are known to work.
 
 * [Unbound][] is a DNSSEC-validating resolver which should work out of the box
   + from [NLnet Labs][]
@@ -51,6 +51,10 @@ _Warning: opinions may follow._
   + from [CZ-NIC Labs][]
   + the minimum version to use is `1.2.0`; earlier versions are known to have resolution problems which will break DANE for `@exim.org`
   + written in C and Lua
+* [PowerDNS Recursor][]
+  + from [PowerDNS.COM BV][PowerDNS], a Dutch company
+  + written in C, can embed Lua
+  + "As of 4.0.0, the PowerDNS Recursor has support for DNSSEC processing and experimental support for DNSSEC validation"
 * [Bind][] is the classic DNS platform, authoritative and recursive, but requires some configuration expertise to get DNSSEC working as a resolver-only platform
   + from [ISC][]
   + written in C
@@ -102,4 +106,6 @@ We currently sign using `ECDSAP256SHA256`; our sense of public DNS administrator
 [CZ-NIC Labs]: https://labs.nic.cz/en/
 [Bind]: https://www.isc.org/downloads/bind/
 [ISC]: https://www.isc.org/ "Internet Systems Consortium"
+[PowerDNS Recursor]: https://www.powerdns.com/recursor.html
+[PowerDNS]: https://www.powerdns.com/whatwedo.html
 [Let's Encrypt]: https://letsencrypt.org/ "Let’s Encrypt is a free, automated, and open Certificate Authority"
