@@ -12,7 +12,8 @@ Only approach 2 scales.  To achieve this, [DNSSEC][] is used.
 
 ### Exim and DNSSEC
 
-Exim understands the concept of DNSSEC but does not include DNSSEC validation logic itself; the developers feel that's too large an attack surface to be parsed from UDP inside a setuid root program, and that aspects such as algorithm support would just become stale.  So Exim defers validation to your DNS Resolver.  This is safe provided you have a sufficiently secure network between Exim and the DNS resolver.  Running a local DNSSEC-validating caching resolver on the mail server itself is the most secure option, with `127.0.0.1` and/or `::1` as the only nameservers listed in `/etc/resolv.conf`.  Use of remote nameservers, especially on distant networks is liable to make DNSSEC validation subject to man-in-the-middle attack.
+Exim understands the concept of DNSSEC but does not include DNSSEC validation logic itself; the developers feel that's too large an attack surface to be parsed from UDP inside a setuid root program, and that aspects such as algorithm support would just become stale.
+So Exim defers validation to your DNS Resolver (but see the next section).
 
 For the "Exim as receiving server-side" setup, no integration with Exim is necessary.  You publish DNS records.
 
@@ -41,6 +42,10 @@ This will tell Exim to initialise the resolver library with the option saying to
 
 
 ### DNSSEC and Resolvers
+
+Deferring DNSSEC validation to a resolver is safe provided you have a sufficiently secure network between Exim and the DNS resolver.
+Running a local DNSSEC-validating caching resolver on the mail server itself is the most secure option, with `127.0.0.1` and/or `::1` as the only nameservers listed in `/etc/resolv.conf`.
+Use of remote nameservers, especially on distant networks, is liable to make DNSSEC validation subject to man-in-the-middle attack.
 
 _Warning: opinions may follow._  Some open source resolvers which are known to work.
 
@@ -98,11 +103,13 @@ _letsencrypt-tlsa.exim.org. 900 IN      TLSA    2 1 1 60B87575447DCBA2A36B7D11AC
 
 We currently sign using `ECDSAP256SHA256`; our sense of public DNS administrator consensus seems to be that this is a reasonable short-term transition choice.  Cloudflare use it for their domains, so any resolver which breaks on it will cut off DNS resolution of large chunks of Internet.
 
+
 ### External References
-1. [https://dane.sys4.de/common_mistakes Common Mistakes to avoid]
-2. [https://www.ietf.org/mail-archive/web/uta/current/msg01498.html TLSA "3 1 1" + "2 1 1" recommendation]
-3. [http://postfix.1071664.n5.nabble.com/WoSign-StartCom-CA-in-the-news-td86436.html#a86444 DYI DANE CA notes] 
-4. [http://tools.ietf.org/html/rfc7671#section-8.1 TLSA RRs and key rotation] 
+
+1. [Common Mistakes to avoid](https://dane.sys4.de/common_mistakes)
+2. [TLSA "3 1 1" + "2 1 1" recommendation](https://www.ietf.org/mail-archive/web/uta/current/msg01498.html)
+3. [DYI DANE CA notes](http://postfix.1071664.n5.nabble.com/WoSign-StartCom-CA-in-the-news-td86436.html#a86444)
+4. [TLSA RRs and key rotation (RFC 7671)](http://tools.ietf.org/html/rfc7671#section-8.1)
 
 
 [DNSSEC]: https://en.wikipedia.org/wiki/Domain_Name_System_Security_Extensions "DNS Security Extensions"
