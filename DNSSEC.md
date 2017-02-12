@@ -1,13 +1,13 @@
 ### Background
 
-Verifying the identity of a remote server means having a "trusted" name which any [PKIX][] certificate can be compared to.  For federated services which use common servers, as in email delivery to MX, this is not simple.  Furthermore, using Certificate Authorities means that you can't filter out "Bad Actor" CAs, because some important business partner might be using certificates from that CA and "the mail must flow".  Thus CA selection becomes a race to the bottom where postmasters _must_ trust the known-to-be-untrustworthy.
+Verifying the identity of a remote server means having a "trusted" name which any [PKIX][] certificate can be compared to.  For services which employ DNS indirection via e.g. MX or SRV records, this is not simple.  Furthermore, using Certificate Authorities means that you can't filter out "Bad Actor" CAs, because some important business partner might be using certificates from that CA and "the mail must flow".  Thus CA selection becomes a race to the bottom where postmasters _must_ trust the known-to-be-untrustworthy.  See [SMTP Channel Security][] for more detail.
 
 Your choices boil down to:
 
 1. Manually manage trust identities, mapping domains to hosts and CAs to be used
 2. Put that data into DNS where it's under the control of the recipient domain, but have some way to trust DNS.
 
-Only approach 2 scales.  To achieve this, [DNSSEC][] is used.
+Only approach 2 scales.  To achieve this, [DNSSEC][] is used in conjunction with [Opportunistic DANE TLS][].
 
 
 ### Exim and DNSSEC
@@ -181,6 +181,8 @@ A complete script to put it all together is an exercise for the reader...
 
 [DNSSEC]: https://en.wikipedia.org/wiki/Domain_Name_System_Security_Extensions "DNS Security Extensions"
 [PKIX]: https://en.wikipedia.org/wiki/X.509
+[SMTP Channel Security]: https://tools.ietf.org/html/rfc7672#section-1.3
+[Opportunistic DANE TLS]: https://tools.ietf.org/html/rfc7672
 [Unbound]: https://www.unbound.net/
 [NLnet Labs]: https://www.nlnetlabs.nl/
 [Knot-Resolver]: https://www.knot-resolver.cz/
