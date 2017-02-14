@@ -51,6 +51,8 @@ Other Howto
 -   [Configuring SELinux Policy for Exim](EximAndSeLinux)
 -   [Troubleshooting Exim](TroubleShooting)
 -   [SSL Certificates](EximServerSslCertificate)
+-   [DNSSEC configuration](DNSSEC)
+-   [SOCKS5 Proxy outbound with SSH](SocksSSH)
 -   [Protect your privacy with Exim](ProtectYourPrivacy)
 -   [How to remove certain headers on ingress](IngressHeadersRemove)
 -   [Perl Script to Redeliver messages](Redeliver)
