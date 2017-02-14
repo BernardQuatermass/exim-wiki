@@ -4,6 +4,8 @@ This is when Exim's SOCKS5 support combines nicely with OpenSSH's `DynamicForwar
 
 This works both with manualroute and with dnslookup.  With dnslookup, it works even with functionality such as DANE.
 
+**Exim must have been built with `SUPPORT_SOCKS=yes` in `Local/Makefile`**
+
 ### OpenSSH configuration
 
 In `~/.ssh/config` something like this works well; this is a little more flexible than strictly needed, to show how you can set up patterns for multiple hosts and restrict options accordingly.
@@ -148,7 +150,6 @@ The logging of SOCKS details is currently (4.89) a little hidden.  Use `-d+trans
 The above hints at `authreq` being an allowed key in the `outbound-settings` file, to require authentication before sending.  Here are the Exim authenticators used with this setup:
 
 ```exim
-
 begin authenticators
 
 auth_cram:
