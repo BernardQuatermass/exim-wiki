@@ -6,6 +6,7 @@ This works both with manualroute and with dnslookup.  With dnslookup, it works e
 
 **Exim must have been built with `SUPPORT_SOCKS=yes` in `Local/Makefile`**
 
+
 ### OpenSSH configuration
 
 In `~/.ssh/config` something like this works well; this is a little more flexible than strictly needed, to show how you can set up patterns for multiple hosts and restrict options accordingly.
@@ -47,11 +48,16 @@ $ ssh -O stop hermes-socks
 
 From this you can see how you might construct variants to handle auto-master for you, etc.
 
-Be sure to pick a different value of `DynamicForward` for each remote host which you might be connected to at the same time.  Remember the value: you will need it for MTA configuration
+Be sure to pick a different value of `DynamicForward` for each remote host which you might be connected to at the same time.
+Remember the value: you will need it for MTA configuration.
+
+This value is the local port number on this host, to which clients can connect and speak SOCKS5 to get connected to some target with an outbound connection from the remote host, with the traffic routed over an SSH channel to get there.
+
 
 ### Exim
 
-You need a Router and a Transport; here we show _three_ routers
+You need a Router and a Transport; here we show _three_ routers for flexibility, but only one is needed.
+Selection between these is driven by entries in a configuration file, matching on sender.
 
 1. The first is **dnslookup** and handles all normal routing; it is used when the `DNSLOOKUP` key exists in the `outbound-settings` file
 2. The second handles all SOCKS cases
@@ -61,7 +67,9 @@ The reason for the split between 2 and 3 is that if you have shell login on the 
 
 If `DNSLOOKUP` exists, then only DNS-based routing will be used; to fallback to the smarthost, remove the `no_more` from that Router below.
 
-After that, you need an SMTP Transport.
+If there is an entry with `*` as a key in the `outbound-settings` file and no entry with `DNSLOOKUP` as the key, then only the second Router will ever be used.
+
+After the Routers, you need an SMTP Transport.
 
 Remember that in Exim, Transports are an unordered collection which are used by being referred to from a Router, whereas Routers are an ordered list.
 
@@ -144,6 +152,8 @@ This relies upon you having a local user who can ssh; you could also have this l
 If you kill the SSH session, the SOCKS proxy will disappear and mail will build up in the queue.  When you bring back the SSH link, tickle the Exim queue and the mail will flow out.
 
 The logging of SOCKS details is currently (4.89) a little hidden.  Use `-d+transport` to turn on debugging, including the `transport` area, to see connections fail, etc.
+
+If you have untrusted local users, then routing over a port which anyone can bind to is an issue.  You might invoke ssh as a privileged user and bind a privileged port, or you might ensure TLS and DANE are operational, to be immune to man-in-the-middle attacks.
 
 ### Bonus: authentication
 
