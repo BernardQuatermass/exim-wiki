@@ -85,8 +85,8 @@ dnslookup:
   driver = dnslookup
   domains = ! +local_domains
   transport = remote_smtp
-  address_data = ${lookup {DNSLOOKUP}lsearch*@{/etc/exim/outbound-settings}}
-  condition = ${extract{socks}{${lookup {DNSLOOKUP}lsearch*@{/etc/exim/outbound-settings}}}{yes}{no}}
+  address_data = ${lookup {DNSLOOKUP}lsearch{/etc/exim/outbound-settings}}
+  condition = ${extract{socks}{${lookup {DNSLOOKUP}lsearch{/etc/exim/outbound-settings}}}{yes}{no}}
   self = send
   ignore_target_hosts = <; 0.0.0.0 ; 127.0.0.0/8 ; ::1
   dnssec_request_domains = *
@@ -145,6 +145,7 @@ me@example.org:   host=localhost  port=26   socks=127.0.0.1/port=4221  helo=lapt
 #DNSLOOKUP:     socks=127.0.0.1/port=4211
 ```
 
+
 ### Comments
 
 This relies upon you having a local user who can ssh; you could also have this linkage as a system service using a passphraseless SSH key which has restrictions upon it on the remote server.
@@ -154,6 +155,9 @@ If you kill the SSH session, the SOCKS proxy will disappear and mail will build 
 The logging of SOCKS details is currently (4.89) a little hidden.  Use `-d+transport` to turn on debugging, including the `transport` area, to see connections fail, etc.
 
 If you have untrusted local users, then routing over a port which anyone can bind to is an issue.  You might invoke ssh as a privileged user and bind a privileged port, or you might ensure TLS and DANE are operational, to be immune to man-in-the-middle attacks.
+
+The first version of this wiki page used `lsearch*@` even with the `DNSLOOKUP` key, which was almost certainly a bug; we don't want a `*` entry to match for this case.  In Exim, `*@` specifies a variant of the lookup where if the initial lookup fails, we then try a lookup for `*@domain` and then for just `*`.
+
 
 ### Bonus: authentication
 
