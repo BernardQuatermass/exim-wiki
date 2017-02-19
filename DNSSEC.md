@@ -17,7 +17,8 @@ So Exim defers validation to your DNS Resolver (but see the next section).
 
 For the "Exim as receiving server-side" setup, no integration with Exim is necessary.  You publish DNS records.
 
-For the "Exim as client-side" setup, you need to tell Exim to try DANE.  Any DNS resolvers listed in `/etc/resolv.conf` need to be DNSSEC validating.
+For the "Exim as client-side" setup, you need to tell Exim to try DANE.
+Any DNS resolvers listed in `/etc/resolv.conf` need to be DNSSEC validating.
 
 The `remote_smtp` Transport should include:
 
@@ -70,7 +71,12 @@ If you already have expertise in Bind, it's a fair choice, but for simplicity an
 ### Known Platform Issues
 
 * On OpenBSD, DNS resolution has been replaced with a very clean library ("asr"), which unfortunately does not handle EDNS and so can't handle DNSSEC (at this time).
-  + Check the CAVEATS section of the `asr_run(3)` manual page to see if this is still true when you read this
+  + Check the CAVEATS section of the
+    [`asr_run(3)`](http://man.openbsd.org/OpenBSD-current/man3/asr_run.3)
+    manual page to see if this is still true when you read this.
+  + The caveat has been removed from "-current" but is still present in the
+    man-page for OpenBSD 6.0, which is the latest release (at time of writing)
+    so it seems that this may be resolved in the next release.
 
 
 ### `exim.org` Domain
@@ -101,11 +107,33 @@ _letsencrypt-tlsa.exim.org. 900 IN      TLSA    2 1 1 0B9FA5A59EED715C26C1020C71
 _letsencrypt-tlsa.exim.org. 900 IN      TLSA    2 1 1 60B87575447DCBA2A36B7D11AC09FB24A9DB406FEE12D2CC90180517 616E8A18
 ```
 
-We currently sign using `ECDSAP256SHA256`; our sense of public DNS administrator consensus seems to be that this is a reasonable short-term transition choice.  Cloudflare use it for their domains, so any resolver which breaks on it will cut off DNS resolution of large chunks of Internet.
+We currently sign using `ECDSAP256SHA256`; our sense of public DNS administrator consensus seems to be that this is a reasonable short-term transition choice.
+Cloudflare use it for their domains, so any resolver which breaks on it will cut off DNS resolution of large chunks of the Internet.
+
 
 ### Monitoring
 
-If you publish TLSA records for one or more MX hosts, monitoring that the TLSA records match the actual certificate chain of presented by the server is essential.  The OpenSSL 1.1.0 (or later) `s_client` command can be used to check the correctness of the MX host's TLSA records.  For example, to check that `hummus.csx.cam.ac.uk` matches at least one of its `2 1 1` records, run the below:
+If you publish TLSA records for one or more MX hosts, monitoring that the TLSA
+records match the actual certificate chain of presented by the server is
+essential.
+This should be integrated into your regular monitoring, which is beyond the
+scope of this Wiki page, but we can point towards tooling which might help if
+your monitoring does not natively support DANE-based TLS monitoring.
+
+#### smtpdane
+
+The [SMTP DANE testing tool][smtpdane-golang] is a Golang tool which can
+connect to an SMTP server and confirm that the certificate chain validates
+with DANE.
+It is written by one of the Exim maintainers and at time of writing is
+bare-bones functional and being actively maintained to become more useful.
+It is too early to have great confidence in this tool.
+
+#### OpenSSL
+
+The OpenSSL 1.1.0 (or later) `s_client` command can be used to check the correctness of the MX host's TLSA records.
+For example, to check that `hummus.csx.cam.ac.uk` matches at least one of its `2 1 1` records, run the below:
+
 ```
 (sleep 5; printf "quit\r\n") |
   openssl s_client -verify 9 -verify_return_error -brief -starttls smtp \
@@ -119,7 +147,9 @@ If you publish TLSA records for one or more MX hosts, monitoring that the TLSA r
       B111DD8A1C2091A89BD4FD60C57F0716CCE50FEEFF8137CDBEE0326E 02CF362B"
 echo "Exit Status: $?"
 ```
+
 If all is well, the output will look like:
+
 ```
 verify depth is 9
 CONNECTION ESTABLISHED
@@ -136,7 +166,9 @@ Server Temp Key: ECDH, P-256, 256 bits
 DONE
 Exit Status: 0
 ```
+
 If we introduce errors into the TLSA records by changing the last hex digit of all three:
+
 ```
 (sleep 5; printf "quit\r\n") |
   openssl s_client -verify 9 -verify_return_error -brief -starttls smtp \
@@ -150,7 +182,9 @@ If we introduce errors into the TLSA records by changing the last hex digit of a
       B111DD8A1C2091A89BD4FD60C57F0716CCE50FEEFF8137CDBEE0326E 02CF362C"
 echo "Exit Status: $?"
 ```
-the output we get is instead:
+
+then the output we get is instead:
+
 ```
 verify depth is 9
 depth=1 C = US, O = Let's Encrypt, CN = Let's Encrypt Authority X3
@@ -159,7 +193,9 @@ verify error:num=65:No matching DANE TLSA records
 Exit Status: 1
 ```
 
-Note, OpenSSL will not do the DNS lookups to find the TLSA records.  For `hummus.csx.cam.ac.uk` these can, for example, be found via:
+Note, OpenSSL will not do the DNS lookups to find the TLSA records.
+For `hummus.csx.cam.ac.uk` these can, for example, be found via:
+
 ```
 $ dig -t tlsa +noall +ans +nocl +nottl _25._tcp.hummus.csx.cam.ac.uk. |
      sed -ne 's/.*TLSA //p'
@@ -167,7 +203,9 @@ $ dig -t tlsa +noall +ans +nocl +nottl _25._tcp.hummus.csx.cam.ac.uk. |
 2 1 1 60B87575447DCBA2A36B7D11AC09FB24A9DB406FEE12D2CC90180517 616E8A18
 2 1 1 B111DD8A1C2091A89BD4FD60C57F0716CCE50FEEFF8137CDBEE0326E 02CF362B
 ```
-A complete script to put it all together is an exercise for the reader...
+
+A complete script to put it all together is an exercise for the reader.
+
 
 ### External References
 
@@ -177,18 +215,20 @@ A complete script to put it all together is an exercise for the reader...
 4. [TLSA RRs and key rotation (RFC 7671)](http://tools.ietf.org/html/rfc7671#section-8.1)
 5. [TLSA monitoring with OpenSSL 1.1.0 or later `s_client`](https://www.ietf.org/mail-archive/web/dane/current/msg08206.html)
 6. [OpenSSL 1.1.0 `s_client` manpage](https://www.openssl.org/docs/man1.1.0/apps/s_client.html)
+7. [Shumon Huque's DANE tools](https://www.huque.com/dane/)
 
 
-[DNSSEC]: https://en.wikipedia.org/wiki/Domain_Name_System_Security_Extensions "DNS Security Extensions"
-[PKIX]: https://en.wikipedia.org/wiki/X.509
-[SMTP Channel Security]: https://tools.ietf.org/html/rfc7672#section-1.3
-[Opportunistic DANE TLS]: https://tools.ietf.org/html/rfc7672
-[Unbound]: https://www.unbound.net/
-[NLnet Labs]: https://www.nlnetlabs.nl/
-[Knot-Resolver]: https://www.knot-resolver.cz/
-[CZ-NIC Labs]: https://labs.nic.cz/en/
 [Bind]: https://www.isc.org/downloads/bind/
+[CZ-NIC Labs]: https://labs.nic.cz/en/
+[DNSSEC]: https://en.wikipedia.org/wiki/Domain_Name_System_Security_Extensions "DNS Security Extensions"
 [ISC]: https://www.isc.org/ "Internet Systems Consortium"
+[Knot-Resolver]: https://www.knot-resolver.cz/
+[Let's Encrypt]: https://letsencrypt.org/ "Let’s Encrypt is a free, automated, and open Certificate Authority"
+[NLnet Labs]: https://www.nlnetlabs.nl/
+[Opportunistic DANE TLS]: https://tools.ietf.org/html/rfc7672
+[PKIX]: https://en.wikipedia.org/wiki/X.509
 [PowerDNS Recursor]: https://www.powerdns.com/recursor.html
 [PowerDNS]: https://www.powerdns.com/whatwedo.html
-[Let's Encrypt]: https://letsencrypt.org/ "Let’s Encrypt is a free, automated, and open Certificate Authority"
+[SMTP Channel Security]: https://tools.ietf.org/html/rfc7672#section-1.3
+[smtpdane-golang]: https://github.com/PennockTech/smtpdane "SMTP DANE testing tool"
+[Unbound]: https://www.unbound.net/
