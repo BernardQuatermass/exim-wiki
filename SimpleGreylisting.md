@@ -223,7 +223,7 @@ setting it up and using it are given below.
 
     greylist_mail:
       # Firstly,  accept if it was generated locally or by authenticated clients.
-      accept hosts = :
+      accept hosts = 127.0.0.1 : ::1
       accept authenticated = *
 
       # Secondly, there's _absolutely_ no point in greylisting mail from
