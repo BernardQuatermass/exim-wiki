@@ -369,6 +369,10 @@ HTML mail (MIME ACL):
           condition = ${if eq{$mime_content_type}{text/html} {1}}
           set acl_m_greylistreasons = Message appears to have HTML content, not just plain text.\n$acl_m_greylistreasons
 
+Greylist all senders other than local and authenticated:
+
+    warn set acl_m_greylistreasons = Sender is new to me\n$acl_m_greylistreasons
+
 And finally an example of how to *disable* greylisting based on some
 trigger. Put these *after* anything else which might set the
 `$acl_m_greylistreasons` variable:
@@ -385,9 +389,17 @@ The last thing you need to do in your Exim configuration is make it
 actually call the `acl_greylist` 'subroutine' given above. Having
 processed the mail and decided whether to set the
 `$acl_m_greylistreasons` variable, you can invoke the greylisting code
-by putting this at the end of your `acl_smtp_data` ACL:
+by putting this at the end of your `acl_smtp_data` ACL, but before the final **accept**:
 
     require acl = greylist_mail
+
+Example:
+
+    warn set acl_m_greylistreasons = Sender is new to me\n$acl_m_greylistreasons # or your chosen rules
+    require acl = greylist_mail                                                  # call the acl
+    accept                                                                       # default policy of the ACL
+
+When using Debian's split config, this will go in _/etc/exim4/conf.d/acl/40_exim4-config_check_data_.
 
 ### Tidying the database
 
