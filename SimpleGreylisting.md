@@ -173,8 +173,9 @@ You should also note that exim will need write access to the directory the DB is
 
 This is the ACL code which implements greylisting. You shouldn't have to
 look too hard at this; you can just paste it into your configuration
-file or include it with Exim's `.include` directive. Instructions on
-setting it up and using it are given below.
+file or include it with Exim's `.include` directive. Using .include is problematic when using Debian's split configuration file - you are advised to place it as a new separate file and let update-exim4.conf automatically pick it up and include it; for example call it _/etc/exim4/conf.d/acl/50_greylist_ and restart exim to have it automatically included.
+
+Instructions on setting it up and using it are given below.
 
     # $Id: acl-greylist-sqlite,v 1.3 2007/11/25 19:17:28 dwmw2 Exp $
 
