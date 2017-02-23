@@ -167,7 +167,7 @@ ensure that it's owned by the Exim user/group:
     EOF
     # chown exim.exim /var/db/mta-greylist.db
 
-You should also note that exim will need write access to the directory the DB is in, as sqlite will create a file called mate-greylist.db-journal alongside. On Debian and its children, the exim user is _Debian-exim_.
+You should also note that exim will need write access to the directory the DB is in, as sqlite will create a file called _mta-greylist.db-journal_ alongside. On Debian and its children, the exim user is _Debian-exim_ so update the `chown` command accordingly.
 
 ### Greylisting ACL 'subroutine'
 
