@@ -81,7 +81,7 @@ Contents of /etc/pam.d/exim
     session     required      /lib/security/$ISA/pam_limits.so
     session     required      /lib/security/$ISA/pam_unix.so
 
-This file **must** be readable by the `exim` group (the group your exim
+`/etc/shadow` and `/etc/pam.d/exim` **must** be readable by the `exim` group (the group your exim
 daemon runs as) otherwise you will get the error
 
     535 Incorrect authentication data (set_id='userid')
