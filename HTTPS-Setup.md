@@ -7,7 +7,7 @@ The logbook of actions taken on the Exim central admin host is in the notes repo
 * Certificate Authority: Let's Encrypt
 * Client tooling: [lego](https://github.com/xenolf/lego) (Let's Encrypt, Golang -> lego)
 * Web-server: nginx
-* Non-root account: Phil's, mostly labelled "tlsadmin" below.
+* Non-root account: originally Phil's, mostly labelled "tlsadmin" below; since switched to `tlsadmin`.
 
 ## Monthly
 
@@ -61,7 +61,7 @@ There are a few choices for handling challenges; for us, out of "taking down the
 
 We use Golang tooling because of Phil's personal bias, and to avoid having breakage when scripting libraries are updated.
 
-Because some webroots are straight tarball extractions which can be blown away (bugzilla) or automated in their construction, we use a parallel webroot setup just for `.well-known` handling.  The webroot directive for `lego` assumes that it can construct a path including `/.well-known/acme-challenge` so we make it an entire parallel tree, just mostly empty.  root owns most of it, Phil's usercode owns the `acme-challenge` directory.
+Because some webroots are straight tarball extractions which can be blown away (bugzilla) or automated in their construction, we use a parallel webroot setup just for `.well-known` handling.  The webroot directive for `lego` assumes that it can construct a path including `/.well-known/acme-challenge` so we make it an entire parallel tree, just mostly empty.  `root` owns most of it, `tlsadmin` owns the `acme-challenge` directory.
 
 The Let's Encrypt client tooling holds client id information, renewal state, etc, inside one directory.  That's normally `~/.lego` but we put it in `/etc/opt/lego` so that it's less tied to one user; a recursive chown can switch it.
 
