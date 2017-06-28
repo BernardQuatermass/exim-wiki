@@ -91,6 +91,7 @@ The purpose of the EBL blacklist is described on [http://msbl.org/ebl-purpose.ht
 The file specified in the MLDOMAINS macro - domains of legitimate mailing lists, add to it others known for you:
 
     groups.io
+    *.groups.io
     ^yahoogroups\.
     returns.groups.yahoo.com
     googlegroups.com
