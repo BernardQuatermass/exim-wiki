@@ -9,8 +9,8 @@ The purpose of the EBL blacklist is described on [http://msbl.org/ebl-purpose.ht
     begin acl
     rt:
       warn	set acl_m_rt = ${sg{${lc:${address:$header_Reply-To:}}}{\\+.*@}{@}}
-    	condition = ${if match{$acl_m_rt}{@gmail.com}}
-    	set acl_m_rt = ${sg{${local_part:$acl_m_rt}}{\\.}{}}@gmail.com
+    	condition = ${if match{$acl_m_rt}{@g(oogle)?mail.com}}
+    	set acl_m_rt = ${sg{${local_part:$acl_m_rt}}{\\.}{}}@${domain:$acl_m_rt}
     
       deny	condition = ${if def:acl_m_rt}
     	condition = ${lookup{${domain:$acl_m_rt}}nwildlsearch\
@@ -50,8 +50,8 @@ The purpose of the EBL blacklist is described on [http://msbl.org/ebl-purpose.ht
     		{${lookup dnsdb{defer_never,a=${domain:$acl_arg1}}}}}
     
       warn  set acl_m_ea = ${sg{${lc:$acl_arg1}}{\\+.*@}{@}}
-            condition = ${if match{$acl_m_ea}{@gmail.com}}
-            set acl_m_ea = ${sg{${local_part:$acl_m_ea}}{\\.}{}}@gmail.com
+            condition = ${if match{$acl_m_ea}{@g(oogle)?mail.com}}
+            set acl_m_ea = ${sg{${local_part:$acl_m_ea}}{\\.}{}}@${domain:$acl_m_ea}
     
       accept condition = ${lookup{${domain:$acl_m_ea}}nwildlsearch\
     			     {MLDOMAINS}{0}{1}}
