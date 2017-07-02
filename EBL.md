@@ -46,7 +46,7 @@ The purpose of the EBL blacklist is described on [http://msbl.org/ebl-purpose.ht
       accept
     
     ea:
-      accept condition = ${if eqi{$sender_address}{${address:$header_Reply-To:}}}
+      accept condition = ${if eqi{$sender_address}{$acl_arg1}}
     
       accept condition = ${if eq{}\
     		{${lookup dnsdb{defer_never,mxh=${domain:$acl_arg1}}}}}
