@@ -8,6 +8,8 @@ The purpose of the EBL blacklist is described on [http://msbl.org/ebl-purpose.ht
     acl_not_smtp_mime = acl_check_notsmtpmime
     begin acl
     rt:
+      accept condition = ${if eqi{$sender_address}{${address:$header_Reply-To:}}}
+    
       warn	set acl_m_rt = ${sg{${lc:${address:$header_Reply-To:}}}{\\+.*@}{@}}
     	condition = ${if match{$acl_m_rt}{@g(oogle)?mail.com}}
     	set acl_m_rt = ${sg{${local_part:$acl_m_rt}}{\\.}{}}@${domain:$acl_m_rt}
@@ -44,6 +46,8 @@ The purpose of the EBL blacklist is described on [http://msbl.org/ebl-purpose.ht
       accept
     
     ea:
+      accept condition = ${if eqi{$sender_address}{${address:$header_Reply-To:}}}
+    
       accept condition = ${if eq{}\
     		{${lookup dnsdb{defer_never,mxh=${domain:$acl_arg1}}}}}
     	condition = ${if eq{}\
