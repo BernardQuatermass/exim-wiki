@@ -8,37 +8,27 @@ The purpose of the EBL blacklist is described on [http://msbl.org/ebl-purpose.ht
     acl_not_smtp_mime = acl_check_notsmtpmime
     begin acl
     rt:
-      accept condition = ${if eqi{$sender_address}{${address:$rheader_Reply-To:}}}
-    
-      warn	set acl_m_rt = ${sg{${lc:${address:$rheader_Reply-To:}}}{\\+.*@}{@}}
-    	condition = ${if match{$acl_m_rt}{@g(oogle)?mail.com}}
-    	set acl_m_rt = ${sg{${local_part:$acl_m_rt}}{\\.}{}}@${domain:$acl_m_rt}
-    
-      deny	condition = ${if def:acl_m_rt}
-    	condition = ${lookup{${domain:$acl_m_rt}}nwildlsearch\
-                         {MLDOMAINS}{0}{1}}
-    	dnslists = ebl.msbl.org/${sha1:$acl_m_rt}
-    	log_message = Reply-To: $header_Reply-To: in EBL: $dnslist_text \
-    		From: $header_From:, envelope-from $sender_address, \
-    		recipients=$recipients, Subject: $header_Subject:
-    	message = spam detected
-    		  # 419 (Nigerian) scams often sent by humans, do not tell them
-    		  # that the spam was detected with EBL http://msbl.org
+      deny  condition = ${if forany{${addresses:$rheader_Reply-To:}}\
+                                   {eq{${acl{ea}{$item}}}{caught}}}
+            log_message = Reply-To: $header_Reply-To: in EBL: $dnslist_text \
+                    From: $header_From:, envelope-from $sender_address, \
+                    recipients=$recipients, Subject: $header_Subject:
+            message = spam detected
+                      # 419 (Nigerian) scams often sent by humans, do not tell them
+                      # that the spam was detected with EBL http://msbl.org
     
       accept
     
     mimeea:
-      deny	condition = ${if match{$mime_content_type}{text}}
-            condition = ${lookup{$sender_address_domain}nwildlsearch\
-                         {MLDOMAINS}{0}{1}}
-    	mime_regex = \N(?s).*?([\w.+=-]+@\w[\w-]*\.[\w.-]+\w)\
-                              (.+?([\w.+=-]+@\w[\w-]*\.[\w.-]+\w))?\
-                              (.+?([\w.+=-]+@\w[\w-]*\.[\w.-]+\w))?\
-                              (.+?([\w.+=-]+@\w[\w-]*\.[\w.-]+\w))?\
-                              (.+?([\w.+=-]+@\w[\w-]*\.[\w.-]+\w))?
-    	condition = ${if forany{$regex1 :$regex3 :$regex5 :$regex7 :$regex9}\
+      deny  condition = ${if match{$mime_content_type}{text}}
+            mime_regex = \N(?s)([\w.+=-]+@\w[\w-]*\.[\w.-]+\w)\
+                           (.+?([\w.+=-]+@\w[\w-]*\.[\w.-]+\w))?\
+                           (.+?([\w.+=-]+@\w[\w-]*\.[\w.-]+\w))?\
+                           (.+?([\w.+=-]+@\w[\w-]*\.[\w.-]+\w))?\
+                           (.+?([\w.+=-]+@\w[\w-]*\.[\w.-]+\w))?
+            condition = ${if forany{$regex1 :$regex3 :$regex5 :$regex7 :$regex9}\
                                    {eq{${acl{ea}{$item}}}{caught}}}
-    	log_message = email address in body $acl_m_ea in EBL: $dnslist_text \
+            log_message = email address in body $acl_m_ea in EBL: $dnslist_text \
                     From: $header_From:, envelope-from $sender_address, \
                     recipients=$recipients, Subject: $header_Subject:
             message = spam detected
@@ -46,11 +36,14 @@ The purpose of the EBL blacklist is described on [http://msbl.org/ebl-purpose.ht
       accept
     
     ea:
-      accept condition = ${if eqi{$sender_address}{$acl_arg1}}
+      accept condition = ${if eqi{$acl_arg1}{$sender_address}}
+
+      accept condition = ${lookup{$sender_address_domain}nwildlsearch\
+                                 {MLDOMAINS}{0}{1}}
     
       accept condition = ${if eq{}\
     		{${lookup dnsdb{defer_never,mxh=${domain:$acl_arg1}}}}}
-    	condition = ${if eq{}\
+            condition = ${if eq{}\
     		{${lookup dnsdb{defer_never,a=${domain:$acl_arg1}}}}}
     
       warn  set acl_m_ea = ${sg{${lc:$acl_arg1}}{\\+.*@}{@}}
@@ -58,7 +51,7 @@ The purpose of the EBL blacklist is described on [http://msbl.org/ebl-purpose.ht
             set acl_m_ea = ${sg{${local_part:$acl_m_ea}}{\\.}{}}@${domain:$acl_m_ea}
     
       accept condition = ${lookup{${domain:$acl_m_ea}}nwildlsearch\
-    			     {MLDOMAINS}{0}{1}}
+                                 {MLDOMAINS}{0}{1}}
             dnslists = ebl.msbl.org/${sha1:$acl_m_ea}
             message = caught
     
