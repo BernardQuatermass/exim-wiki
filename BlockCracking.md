@@ -130,9 +130,10 @@ Immediately after the "begin acl" line insert:
       drop  message = blacklisted for bruteforce cracking attempt
             set acl_c_authnomail = ${eval10:0$acl_c_authnomail+1}
             condition = ${if >{$acl_c_authnomail}{4}}
-            condition = ${if exists{$spool_directory/blocked_IPs}}
-            condition = ${lookup{$sender_host_address}iplsearch\
-                                {$spool_directory/blocked_IPs}{0}{1}}
+            condition = ${if exists{$spool_directory/blocked_IPs}\
+                             {${lookup{$sender_host_address}iplsearch\
+                               {$spool_directory/blocked_IPs}{0}{1}}}\
+                             {1}}
             acl = setdnslisttext
             continue = ${run{SHELL -c 'echo \\\"$sender_host_addressMASKW\\\" \
                >>$spool_directory/blocked_IPs; \
@@ -158,9 +159,10 @@ Immediately after the "begin acl" line insert:
                                 {<{$acl_c_hashrate}{2}}\
                                }}
             ratelimit = 7 / 5m / strict / per_conn
-            condition = ${if exists{$spool_directory/blocked_IPs}}
-            condition = ${lookup{$sender_host_address}iplsearch\
-                                {$spool_directory/blocked_IPs}{0}{1}}
+            condition = ${if exists{$spool_directory/blocked_IPs}\
+                             {${lookup{$sender_host_address}iplsearch\
+                               {$spool_directory/blocked_IPs}{0}{1}}}\
+                             {1}}
             acl = setdnslisttext
             continue = ${run{SHELL -c 'echo \\\"$sender_host_addressMASKW\\\" \
                >>$spool_directory/blocked_IPs; \
@@ -181,9 +183,10 @@ Immediately after the "begin acl" line insert:
                                 {<{$acl_c_hashrate}{2}}\
                                }}
             ratelimit = 7 / 2h / strict / per_conn
-            condition = ${if exists{$spool_directory/blocked_IPs}}
-            condition = ${lookup{$sender_host_address}iplsearch\
-                                {$spool_directory/blocked_IPs}{0}{1}}
+            condition = ${if exists{$spool_directory/blocked_IPs}\
+                             {${lookup{$sender_host_address}iplsearch\
+                               {$spool_directory/blocked_IPs}{0}{1}}}\
+                             {1}}
             acl = setdnslisttext
             continue = ${run{SHELL -c 'echo \\\"$sender_host_addressMASKW\\\" \
                >>$spool_directory/blocked_IPs; \
