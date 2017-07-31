@@ -39,7 +39,7 @@ The purpose of the EBL blacklist is described on [http://msbl.org/ebl-purpose.ht
       accept condition = ${if eqi{$acl_arg1}{$sender_address}}
 
       accept condition = ${lookup{$sender_address_domain}nwildlsearch\
-                                 {MLDOMAINS}{0}{1}}
+                                 {MLDOMAINS}{1}{0}}
     
       accept condition = ${if eq{}\
     		{${lookup dnsdb{defer_never,mxh=${domain:$acl_arg1}}}}}
