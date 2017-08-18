@@ -2,21 +2,21 @@ It might be a little daunting, first looking at Exim, to know what's where. This
 
 ## Main Website
 
-This is [www.exim.org](http://www.exim.org) and contains online copies of the documentation and links to many more resources.
+This is [www.exim.org](https://www.exim.org) and contains online copies of the documentation and links to many more resources.
 
 ## Wiki
 
-In the past, this has been on [wiki.exim.org](http://wiki.exim.org/) as a Moin-Moin powered wiki.  We do not have the resources to adequately protect that from spammers and the install has fallen into a state of disrepair.  We are in the process of switching to Github for our wiki provisioning.
+In the past, this has been on [wiki.exim.org](http://wiki.exim.org/) as a Moin-Moin powered wiki.  We lacked the human resources to adequately protect that from spammers and the install had fallen into a state of disrepair.  We switched to Github for our wiki provisioning, which is presumably where you're reading this now.
 
 ## Bug-tracking
 
-This is hosted at [bugs.exim.org](http://bugs.exim.org/).
+This is hosted at [bugs.exim.org](https://bugs.exim.org/).
 
 ## Source Code
 
-The [master copy](http://git.exim.org/exim.git) and developer public trees are available at [git.exim.org](http://git.exim.org/).
+The [master copy](https://git.exim.org/exim.git) and developer public trees are available at [git.exim.org](https://git.exim.org/).
 
-We are setting up GitHub alongside exim.org, so that in the event of failure of the master site, an existing site with established reputation as a &ldquo;_legitimate_&rdquo; copy of the Exim code will be available for people to trust.
+We have set up GitHub alongside exim.org, so that in the event of failure of the master site, an existing site with established reputation as a &ldquo;_legitimate_&rdquo; copy of the Exim code will be available for people to trust.
 
 ## Discussion
 
