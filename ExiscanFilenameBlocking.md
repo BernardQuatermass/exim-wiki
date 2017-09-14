@@ -7,7 +7,7 @@ To do this, put the following in your `acl_smtp_mime`:
     deny
       message = Bad attachment filename ($mime_filename): $acl_m0
       set acl_m0 = ${lookup {$mime_filename} \
-                     nwildlsearch {/etc/exim/mime_regexes} }
+                     nwildlsearch {/etc/exim/mime_regexes}{1}{} }
       condition = ${if def:acl_m0 }
 
 The file `mime_regexes` contains entries like
