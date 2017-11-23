@@ -33,6 +33,7 @@ Greylisting
 -   [greylisting daemon using SQLite](http://greylstd.cmeerw.org)
 -   [Greylisting using MySQL and stored
     procedures](http://www.phcomp.co.uk/TechTutorial/HOWTOs/GreyListing.php)
+-   [ddgrey - dynamic and optionally distributed greylisting for exim4 (beta)](https://github.com/perericr/ddgrey)
 -   More implementations at [Spam
     Links](http://spamlinks.net/filter-server-greylist.htm#implement-exim)
 
