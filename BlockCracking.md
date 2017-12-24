@@ -45,6 +45,8 @@ Replace the paragraph with the line `accept  authenticated = *` with four paragr
       accept authenticated = *
             control = submission/domain=
 
+If you use Exim version 4.90 or higher then in the code above change `use_sender` to `use_sender,hold`
+
 If the line `hostlist   relay_from_hosts =`
 contains something besides `localhost` or `127.0.0.1`
 or this server's IP-address, i.e. your server is a relay for
