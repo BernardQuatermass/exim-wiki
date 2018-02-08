@@ -34,7 +34,7 @@ Release triggers
 -   We aim for at least one release every six months, and if we have
     been idle then we just release with what we have.
 -   If there is a bug-fix for a security-impacting problem, then:
-    -   We will obtain a CVE number
+    -   We will obtain a CVE number: https://cveform.mitre.org/
     -   We will discuss with OS packagers the severity of the issue
     -   If the problem permits privilege escalation from untrusted local
         users to any user, it will warrant urgent release
