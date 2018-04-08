@@ -43,21 +43,22 @@ Release Steps
 -   Check that the `NewStuff` and `ChangeLog` and
     `doc-txt/OptionLists.txt` files are up-to-date
 -   Check if test/configure needs commit
+-   For sanity doing RCs, set shell variables eg. "maj=79 rc=4"
 -   Tag git for new release - tag format is `exim` hyphen *version
-    number with underscores* - ie `exim-4_79`. You must also have git
+    number with underscores* - eg `exim-4_79`. You must also have git
     sign the tag with your exim PGP id - ie `git tag -u you@exim.org` for
     the tarball to be built correctly.
-    + For an RC: `git tag -s -m 'Exim 4.79 RC1' exim-4_79_RC1`
+    + For an RC: `git tag -s -m "Exim 4.${maj} RC${rc}" exim-4_${maj}_RC${rc}`
 -   Ensure git tree (with tags) is pushed to central repo: `git push --follow-tags`
 -   Build documentation and packages:-
     -   ensure `exim-website` and `exim` git repos checked out within
         same directory; if not first RC for this release, clean the previous website docbook files out
     -   `cd exim`
-    -   `release-process/scripts/mk_exim_release 4.79_RC1` - use
+    -   `release-process/scripts/mk_exim_release 4.${maj}_RC${rc}` - use
         appropriate version number
-    -   files produced into `exim-packaging-4.79_RC1/pkgs` directory
+    -   files produced into `exim-packaging-4.${maj}_RC${rc}/pkgs` directory
     -   also writes website documentation sources into
-        `exim-website/docbook/4.79/` - for a full release this should be
+        `exim-website/docbook/4.${maj}/` - for a full release this should be
         git add/commit
 -   Ideally have limited final test before full distribution
 -   Sign the tarballs: `release-process/scripts/sign_exim_packages`
