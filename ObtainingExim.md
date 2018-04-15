@@ -5,7 +5,7 @@ Source Distributions
 --------------------
 
 The primary source distribution is from the main *exim.org* site. See
-[https://downloads.exim.org/exim4/](https://downloads.exim.org/exim4/)/ for the
+[https://downloads.exim.org/exim4/](https://downloads.exim.org/exim4/) for the
 source packages, which are always accompanied by detached GPG
 Signatures.
 
