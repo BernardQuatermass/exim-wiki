@@ -64,11 +64,13 @@ Release Steps
 -   Sign the tarballs: `release-process/scripts/sign_exim_packages`
     (If git configuration `user.signingkey` does not identify the PGP key to
     use, then you must specify `EXIM_KEY` in environ).
--   put tarballs and signatures up for distribution - in
-    `/srv/ftp/pub/exim/exim4/test/` for RCs or `/srv/ftp/pub/exim/exim4/` for full release
-    - For a full release also unpack ChangeLog and NewStuff to `/srv/ftp/pub/exim/exim4/` and make `.gz` versions **This needs automating**
--   unpack PDF documentation from distro tarball into `/srv/www/vhosts/www.exim.org`, the exim-pdf-current link is done during (auto) update of the website
--   the HTML docs are done by the (auto) update of the website
+-   put tarballs and signatures up for distribution
+    -   for RCs in `/srv/ftp/pub/exim/exim4/test/`
+    -   for full release
+        - Move last release files in the `old` subdirectory
+        - new files to `/srv/ftp/pub/exim/exim4/`
+        - also unpack ChangeLog and NewStuff to `/srv/ftp/pub/exim/exim4/` and make `.gz` versions **This needs automating**
+        -   unpack PDF documentation from distro tarball into `/srv/www/vhosts/www.exim.org`; the HTML docs and the exim-pdf-current link is done during (auto) update of the website
 -   Write announcement including changes and cryptographic checksums
     -   SHA256 checksums only for now; 4.80 was the last to use both
         SHA1 and SHA256. We'll add SHA-3 when it's available.
@@ -91,7 +93,6 @@ Release Steps
 -   ChangeLog/NewStuff distro on ftp site - in
     `/srv/ftp/pub/exim/exim4/`
     -   `.gz` files too, but not `.bz2`; `gzip -9k`
--   Move last release files in the `old` subdirectory.
 -   _Remaining steps only for full releases_
 -   Update wiki - at least the [ObtainingExim](ObtainingExim) page
     (link others here too)
