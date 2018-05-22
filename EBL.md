@@ -71,6 +71,8 @@ The purpose of the EBL blacklist is described on [http://msbl.org/ebl-purpose.ht
 
 ... (possible other checks before the first "accept")
 
+      accept condition = ${if def:header_List-ID:}
+    
       require acl = mimeea
 
 ... (the first "accept" if any)
