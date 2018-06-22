@@ -32,21 +32,21 @@ make sure authentication is only enabled on an encrypted connection.
 This is due to the fact that passwords would otherwise be sent in clear
 text:
 
-    auth_advertise_hosts = ${if eq{$tls_cipher}{}{}{*}}
+    auth_advertise_hosts = ${if eq{$tls_cipher}{}{false}{true}}
 
 Naturally, you will need to set up an appropriate encryption
 certificate. For example:
 
     tls_advertise_hosts = *
-    tls_certificate     = /etc/ssl/certs/smtp-with-ca.pem
-    tls_privatekey      = /etc/ssl/private/smtp.pem
+    tls_certificate     = /etc/letsencrypt/live/example.com/fullchain.pem
+    tls_privatekey      = /etc/letsencrypt/live/example.com/privkey.pem
 
-In this case, /etc/ssl/certs/smtp-with-ca.pem contains the certificate
-for SMTP, signed by a Certification Authority, along with that
-Certification Authority's certificate. The file
-/etc/ssl/private/smtp.pem would then contain the private key; it must be
+In this case, /etc/letsencrypt/live/example.com/fullchain.pem contains the certificate
+for SMTP, signed by LetsEncrypt, including the full chain of certificates as needed. The file
+/etc/letsencrypt/live/example.com/privkey.pem contains the private key; it must be
 readable by Exim (typically by making it group-readable by the
-`Debian-exim` group, on Debian systems).
+`Debian-exim` group, on Debian systems).  You should also investigate using the tls_dhparam
+configuration option to avoid using common primes.
 
 Finally, add the following authenticators:
 
@@ -71,7 +71,7 @@ Finally, add the following authenticators:
       server_condition           = "\
             ${if exists{CONFDIR/passwd}\
               {${lookup{$auth2}lsearch{CONFDIR/passwd}\
-                {${if crypteq{$auth3}{\\\{md5\\\}${extract{1}{:}{$value}{$value}fail}}\
+                {${if crypteq{$auth3}{${extract{1}{:}{$value}{$value}fail}}\
                   {true}{false} }}\
                 {${if pam{$auth2:${sg{$auth3}{:}{::}} }\
                   {true}{false}} } }}\
@@ -95,7 +95,7 @@ Finally, add the following authenticators:
       server_condition           = "\
             ${if exists{CONFDIR/passwd}\
               {${lookup{$1}lsearch{CONFDIR/passwd}\
-                {${if crypteq{$auth2}{\\\{md5\\\}${extract{1}{:}{$value}{$value}fail}}\
+                {${if crypteq{$auth2}{${extract{1}{:}{$value}{$value}fail}}\
                   {true}{false} }}\
                 {${if pam{$auth1:${sg{$auth2}{:}{::}} }\
                   {true}{false}} } }}\
@@ -122,14 +122,14 @@ authenticators. You might like to use the following as a template:
     # MTA without using their system password (found in /etc/shadow).
     #
     # Each line of this file should contain a "user:password:comment" field,
-    # where the password is encrypted using MD5 and encoded as a hexadecimal
-    # string.  Please note that this format is NOT the same as is used by
-    # /etc/shadow!  You can disable a user from ever sending (authenticated)
-    # messages by using "*" as the password.
+    # where the password is encrypted and encoded using standard crypt(3)
+    # functions--the same format as is used in /etc/shadow.  You can disable
+    # a user from ever sending (authenticated) messages by using "*" as the
+    # password.
     #
-    # You can use the following Perl command line to generate the password:
+    # You can use the following command line to generate the password:
     #
-    #  perl -MDigest::MD5=md5_hex -e 'print md5_hex($ARGV[0]),"\n"' password
+    #  mkpasswd -m sha-512 'password'
     #
     # (replace "password" with your password, of course).
 
@@ -143,19 +143,15 @@ authenticators. You might like to use the following as a template:
     #   Local users   #
     ###################
 
-    #test:68772f0946d616e78f18452f84e39da7:Test#Password#01a
+    #test:$6$VyTxt8CLk28oO576$.Og/ufsD5YLa57tpSS5Bm6y/brXLzt7mTXMP3mGmRpGgFs/MDfRhG7CIZlqoQ8aThkAV.ZfsFgYrjL1xvizgA/:Test#Password#01a
 
-The easiest way to generate a password is to use the Digest::MD5 package
-with Perl:
+The easiest way to generate a password is to use the standard `mkpasswd` program
+available on most Linux systems:
 
-    perl -MDigest::MD5=md5_hex -e 'print md5_hex($ARGV[0]),"\n"' password
+    mkpasswd -m sha-512 'password'
 
 Simply replace *password* with your password.
 
-Please note that the Perl `md5_base64` function is *not* compatible with
-Exim's `crypteq`: the former generates a 22-character string, the latter
-expects a 24-character string (ie, it expects two additional characters,
-`==`, on the end of the string).
 
 Conclusion
 ----------
@@ -165,8 +161,8 @@ PAM system password databases, in that order, for authenticated SMTP.
 The main reason for writing this document is the number of hours the
 author spent debugging the authenticators before discovering (a) the
 `-d+expand` command line argument and (b) the need for `\\\{md5\\\}`
-instead of `\{md5\}` in the `crypteq` function! --
-[JohnZaitseff](JohnZaitseff)
+instead of `\{md5\}` in the `crypteq` function (as used in a previous
+version of this document)! -- [JohnZaitseff](JohnZaitseff)
 
 * * * * *
 
