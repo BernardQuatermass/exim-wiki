@@ -146,7 +146,7 @@ authenticators. You might like to use the following as a template:
     #test:$6$VyTxt8CLk28oO576$.Og/ufsD5YLa57tpSS5Bm6y/brXLzt7mTXMP3mGmRpGgFs/MDfRhG7CIZlqoQ8aThkAV.ZfsFgYrjL1xvizgA/:Test#Password#01a
 
 The easiest way to generate a password is to use the standard `mkpasswd` program
-available on most Linux systems:
+available on most Linux systems (as part of the `whois` package on Debian and Ubuntu):
 
     mkpasswd -m sha-512 'password'
 
