@@ -103,6 +103,14 @@ instead of
 
     server_condition = ${if saslauthd{{$1}{$2}}{1}{0}}
 
+For virtual mailbox hosting with /etc/default/saslauthd:MECHANISMS="sasldb", with the LOGIN authenticator, and your login names are of the format username@example.com, you will need to extract the domain part and pass it in as the "realm" parameter as follows:
+
+    server_condition = ${if saslauthd{{${local_part:$auth1}}{$auth2}{}{${domain:$auth1}}}{1}{0}}
+
+You can test the username and password on the server shell with e.g.
+
+    testsaslauthd -u username -r example.com -p secret
+
 *(May be this is a good idea in other situations too or should be
 generally added to the upper Exim config?)*
 
