@@ -107,6 +107,11 @@ For virtual mailbox hosting with /etc/default/saslauthd:MECHANISMS="sasldb", wit
 
     server_condition = ${if saslauthd{{${local_part:$auth1}}{$auth2}{}{${domain:$auth1}}}{1}{0}}
 
+This comes from a comment in the source code:
+
+    // From the source code comment in expand.c
+    ${if saslauthd {{username}{password}{service}{realm}}  {yes}{no}}
+
 You can test the username and password on the server shell with e.g.
 
     testsaslauthd -u username -r example.com -p secret
