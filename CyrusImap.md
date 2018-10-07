@@ -69,6 +69,8 @@ Define cyrus\_ltcp (cyrus local tcp) transport in transports section.
       hosts = localhost
       allow_localhost
 
+(Note, be cautious about localhost if your server has IPv6, if LMTP is only listening on IP4, you MUST specify hosts = 127.0.0.1 instead of localhost, unless you have set it up otherwise.  On my new server localhost resolves to ::1).
+
 It will deliver messages to lmtp port at localhost using lmtp protocol.
 If your /etc/services files does not define lmtp service (2003/tcp) then
 add the following line to the file
