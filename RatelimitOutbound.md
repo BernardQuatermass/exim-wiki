@@ -21,4 +21,4 @@ So: split the use of **ratelimit** into a read-only test, and an update.
 
 
 ## Version three
-Resource-constrained sites may feel that the processing done by the queue-runners hitting the ratelimit test is excessive.  If there are only a small number of classes of limit needed, consider diverting the mails to an alternate named queue (4.88 and later), one per class.  Instead of a queue-runner, for each holding queue run a cronjob script which moves a defined-size batch of mails back to the main queue for delivery.
+Resource-constrained sites may feel that the processing done by the queue-runners hitting the ratelimit test is excessive.  If there are only a small number of classes of limit needed, consider diverting the mails to an alternate named queue (4.88 and later), one per class.  Instead of a queue-runner, for each holding queue run a cronjob script which moves a defined-size batch of mails back to the main queue for delivery.  Just move the files (there should be two per mail) from one directory to another.
