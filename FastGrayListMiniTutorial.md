@@ -115,7 +115,7 @@ First section of the config file.
                                 WHERE id = $acl_m9 \
                                     AND type='AUTO'
         GREYLIST_CLEAN      = DELETE FROM greylist \
-                                WHERE (record_expires < SUBTIME(NOW(),GREYLIST_CLEAR_LIFETIME)) \
+                                WHERE (record_expires < SUBTIME(NOW(),'GREYLIST_CLEAR_LIFETIME')) \
                                      AND (type='AUTO')
         GREYLIST_LOG        = INSERT INTO GREYLIST_LOG_TABLE (listid, timestamp, kind) \
                                 VALUES ($acl_m9, now(), '$acl_m8')   
