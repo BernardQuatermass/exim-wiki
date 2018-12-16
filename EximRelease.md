@@ -45,23 +45,23 @@ Release Steps
 -   Check if test/configure needs commit
 -   For sanity doing RCs, set shell variables eg. "maj=79 rc=4"
 -   Tag git for new release - tag format is `exim` hyphen *version
-    number with underscores* - eg `exim-4_79`. You must also have git
+    number with dots* - eg `exim-4.92`. You must also have git
     sign the tag with your exim PGP id - ie `git tag -u you@exim.org` for
     the tarball to be built correctly.
-    + For an RC: `git tag -s -m "Exim 4.${maj} RC${rc}" exim-4_${maj}_RC${rc}`
+    + For an RC: `git tag -s -m "Exim 4.${maj} RC${rc}" exim-4.${maj}-RC${rc}`
 -   Ensure git tree (with tags) is pushed to central repo: `git push --follow-tags`
 -   Build documentation and packages:-
     -   ensure `exim-website` and `exim` git repos checked out within
         same directory; if not first RC for this release, clean the previous website docbook files out
     -   `cd exim`
-    -   `release-process/scripts/mk_exim_release 4.${maj}_RC${rc}` - use
+    -   `release-process/scripts/mk_exim_release 4.${maj}-RC${rc} /tmp/exim-pkgs` - use
         appropriate version number
-    -   files produced into `exim-packaging-4.${maj}_RC${rc}/pkgs` directory
+    -   files produced into `/tmp/exim-pkgs` directory
     -   also writes website documentation sources into
         `exim-website/docbook/4.${maj}/` - for a full release this should be
         git add/commit
 -   Ideally have limited final test before full distribution
--   Sign the tarballs: `release-process/scripts/sign_exim_packages`
+-   Sign the tarballs: `release-process/scripts/sign_exim_packages /tmp/exim-pkgs`
     (If git configuration `user.signingkey` does not identify the PGP key to
     use, then you must specify `EXIM_KEY` in environ).
 -   put tarballs and signatures up for distribution
@@ -77,8 +77,6 @@ Release Steps
         `./release-process/scripts/stats_for_email`
     -   mail should be signed by a key with an @exim.org uid, that has
         been signed by the other Exim Maintainers.
-    -   mail **must** be sent PGP/inline, as PGP/MIME will be rejected
-        by the mailing-list software (is this still true?).
     -   note that hummus requires authentication for any mail sent with
         a sender in the @exim.org domain
 -   Pimp the release or RC on social media
@@ -110,7 +108,7 @@ RC Steps
 -   This should be inline above
 -   Basically same as for release, except no update of website and
     ChangeLog/NewStuff distro on ftp site
--   Tag has form exim-4_79_RC3
+-   Tag has form exim-4.92-RC3
 -   Files should be placed in `test` subdirectory rather than in main
     distribution directory
 
