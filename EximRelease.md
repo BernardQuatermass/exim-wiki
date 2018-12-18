@@ -52,9 +52,9 @@ Release Steps
 -   Ensure git tree (with tags) is pushed to central repo: `git push --follow-tags`
 -   Build documentation and packages:-
     -   ensure `exim-website` is checked out to a known location,
-	ideally into the same directory, where `exim` is located.
+	ideally into the same directory where `exim` is located.
 
-        same directory; if not first RC for this release, clean the previous website docbook files out
+    -   if not first RC for this release, clean the previous website docbook files out
     -   `cd exim`
     -   `release-process/scripts/mk_exim_release 4.${maj}-RC${rc} /tmp/exim-pkgs` - use
         appropriate version number
