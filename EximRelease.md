@@ -42,7 +42,7 @@ Release Steps
     src/src/globals.c if needed.
 -   Check that the `NewStuff` and `ChangeLog` and
     `doc-txt/OptionLists.txt` files are up-to-date
--   Check if test/configure needs commit
+-   Check if test/configure needs commit (run `autoreconf` in `test/`)
 -   For sanity doing RCs, set shell variables eg. "maj=79 rc=4"
 -   Tag git for new release - tag format is `exim` hyphen *version
     number with dots* - eg `exim-4.92`. You must also have git
@@ -51,7 +51,9 @@ Release Steps
     + For an RC: `git tag -s -m "Exim 4.${maj} RC${rc}" exim-4.${maj}-RC${rc}`
 -   Ensure git tree (with tags) is pushed to central repo: `git push --follow-tags`
 -   Build documentation and packages:-
-    -   ensure `exim-website` and `exim` git repos checked out within
+    -   ensure `exim-website` is checked out to a known location,
+	ideally into the same directory, where `exim` is located.
+
         same directory; if not first RC for this release, clean the previous website docbook files out
     -   `cd exim`
     -   `release-process/scripts/mk_exim_release 4.${maj}-RC${rc} /tmp/exim-pkgs` - use
@@ -74,7 +76,7 @@ Release Steps
 -   Write announcement including changes and cryptographic checksums
     -   SHA256 checksums only for now; 4.80 was the last to use both
         SHA1 and SHA256. We'll add SHA-3 when it's available.
-        `./release-process/scripts/stats_for_email`
+        `./release-process/scripts/stats_for_email /tmp/exim-pkgs`
     -   mail should be signed by a key with an @exim.org uid, that has
         been signed by the other Exim Maintainers.
     -   note that hummus requires authentication for any mail sent with
