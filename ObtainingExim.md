@@ -147,6 +147,12 @@ Just install with poldek -i exim
 You can use urpmi to install it ( for mandrake 10.2 and higher ) urpmi
 exim
 
+### Arch Linux
+
+    pacman -S exim
+
+See [https://wiki.archlinux.org/index.php/Exim](https://wiki.archlinux.org/index.php/Exim)
+
 Documentation
 -------------
 
