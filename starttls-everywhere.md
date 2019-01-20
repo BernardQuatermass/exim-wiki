@@ -4,11 +4,15 @@ The idea is that you preload your site with security information for sites you m
 
 The policy file currently has a declared lifetime of a couple of weeks, so you need to download a fresh version more often than that.
 
+Client side:
 Assuming you have a good file (it comes with a signature, so you can verify that) you can tell if
 - your connection is being intercepted and STARTTLS-stripped, to force you to talk unencrypted
 - your connection is being diverted to an intercepting server unable to present you a verifiable certificate
 
 The MX-host checking is somewhat less useful; an adversary could manipulate the PTR responses about as easily as the MX responses.
+
+Server side:
+If your servers meets all the requirements, you can ask the EFF to add your domains to the policy file they distribute.
 ---
 Currently the policy file is fairly small; 37kB of JSON.  The obvious way of using it for Exim would be to pull it apart
 using some putative JSON utility into a set of flat files suitable for Exim lookups.  I've not done that yet.
