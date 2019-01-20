@@ -14,7 +14,7 @@ The MX-host checking is somewhat less useful; an adversary could manipulate the 
 Server side:
 If your servers meets all the requirements, you can ask the EFF to add your domains to the policy file they distribute.
 ---
-Currently the policy file is fairly small; 37kB of JSON.  The obvious way of using it for Exim would be to pull it apart
+Currently the policy file is fairly small; 37kB of JSON.  The obvious way of using it for Exim (client side) would be to pull it apart
 using some putative JSON utility into a set of flat files suitable for Exim lookups.  I've not done that yet.
 
 What I have done is add (for a future Exim version, probably 4.93) a JSON lookup expansion for Exim.  Here's how it can be used to impliment starttls-everywhere directly against the downloaded JSON policy file:
