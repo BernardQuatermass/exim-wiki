@@ -7,6 +7,7 @@ The policy file currently has a declared lifetime of a couple of weeks, so you n
 Assuming you have a good file (it comes with a signature, so you can verify that) you can tell if
 - your connection is being intercepted and STARTTLS-stripped, to force you to talk unencrypted
 - your connection is being diverted to an intercepting server unable to present you a verifiable certificate
+
 The MX-host checking is somewhat less useful; an adversary could manipulate the PTR responses about as easily as the MX responses.
 ---
 Currently the policy file is fairly small; 37kB of JSON.  The obvious way of using it for Exim would be to pull it apart
