@@ -94,7 +94,7 @@ starttls_mxs:
                 logwrite =      NOTE: $host_address does not match required-MX list \
                                         for $domain per starttls-everywhere
                 message =       noconnect
-  accept        acl =           log_deliv
+  accept
 ~~~
 - In every router that sends mails offsite, set address_data to the value returned by the starttls_policy ACL. I add it as a tagged-element here because I use address_data for other information as well, but YMMV:
 ~~~
