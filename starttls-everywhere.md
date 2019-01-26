@@ -52,46 +52,40 @@ starttls_policy:
                 # If expired, tls not required
   accept        acl =           starttls_expired
                 logwrite =      WARNING: starttls-everywhere policy file has expired
-  accept        set acl_m_al =  ${extract json{policy-alias}{$acl_m_st}}
+  accept        set acl_m_al =  ${extract jsons{policy-alias}{$acl_m_st}}
                 condition =     ${if !def:acl_m_al}
                 message =       $acl_m_st
-  accept        message =       ${lookup {policy-aliases : ${sg {$acl_m_al} {\N^"(.*)"$\N} {\$1}}} \
-                                    json {STARTTLS_EVERYWHERE}}
+  accept        message =       ${lookup {policy-aliases : $acl_m_al} json {STARTTLS_EVERYWHERE}}
 
 # arg1: policy record  arg2: nonempty-warn
 # Return empty or "*"
 starttls_require:
   accept        condition =     ${if !def:acl_arg1}
-  accept        set acl_m_mo =  ${extract json {mode}{$acl_arg1}}
+  accept        set acl_m_mo =  ${extract jsons {mode}{$acl_arg1}}
                 condition =     ${if def:acl_arg2}
-                condition =     ${if eq {\"testing\"}  {$acl_m_mo}}
+                condition =     ${if eq {testing}  {$acl_m_mo}}
                 logwrite =      WARNING: TLS required but not acheived for $domain
-  accept        condition =     ${if !eq {\"enforcing\"}{$acl_m_mo}}
+  accept        condition =     ${if !eq {enforcing}{$acl_m_mo}}
   accept        message =       *
-                logwrite =      NOTE: TLS resuired for $domain per starttls_everywhere
+                logwrite =      NOTE: TLS required for $domain per starttls_everywhere
 
-# check one name against list of REs
-arg1: hostname  arg2: pattern-list
+# check one policy mx againt list of rDNS names
+# arg1: mxs  arg2: names
 mx_chk:
-  accept        condition =     ${if forany {$acl_arg2} {match {$acl_arg1}{$item}}}
+                # convert mxs to RE
+  accept        ${if eq {.}{${l_1:$acl_arg1}} {$acl_arg1\$}{^$acl_arg1\$}}
+                condition =     ${if forany {$acl_arg2} {match {$acl_arg1}{$item}}}
 
 starttls_mxs_chk:
   accept        condition =     ${if !eq {tcp:connect}{$event_name}}
   accept        set acl_m_po =  ${extract {st}{$address_data}}
                 condition =     ${if !def:acl_m_po}
-  accept        condition =     ${if !eq {\"enforcing\"}{${extract json {mode}{$acl_m_po}}}}
-                # mxs list from json policy record
-  accept        set acl_m_mx =  ${extract json {mxs}{$acl_m_po}}
-                # strip [] json array wrap
-                set acl_m_mx =  ${sg {$acl_m_mx} {^.(.*).\$} {\$1}}
-                # strip "" json string wrap from each element
-                set acl_m_mx =  ${map {<, $acl_m_mx} {${sg {$item} {^.(.*).\$} {\$1}}}}
-                # convert each element to an RE
-                set acl_m_mx =  ${map {<, $acl_m_mx} {${if eq {.}{${l_1:$item}} {$item\$}{^$item\$}}}}
-                set acl_m_mx =  ${sg {$acl_m_mx} {\N\.\N} {\N\\.\N}}
-                # check the rDNS list of names for this IP against the list of REs
-                condition =     ${if forany {${lookup dnsdb {ptr=$host_address}}} \
-                                    {acl {{mx_chk} {$item}{<, $acl_m_mx}}}}
+  accept        condition =     ${if !eq {enforcing}{${extract jsons {mode}{$acl_m_po}}}}
+                # rDNS name(s) for the target IP
+  accept        set acl_m_dn =  ${lookup dnsdb {ptr=$host_address}}
+                # check the list of mxs from the policy record against the names
+                condition =     ${if forany_jsons {${extract json {mxs}{$acl_m_po}}} \
+                                    {acl (mx_chk) ($item) {$acl_m_dn}}}
 
 starttls_mxs:
   accept        !acl =          starttls_mxs_chk
@@ -100,7 +94,7 @@ starttls_mxs:
                 message =       noconnect
   accept
 ~~~
-- In every router that sends mails offsite, set address_data to the value returned by the starttls_policy ACL. I add it as a tagged-element here because I use address_data for other information as well, but YMMV:
+- In every router that sends mails offsite, set address_data to include the value returned by the starttls_policy ACL. I add it as a tagged-element here because I use address_data for other information as well, but YMMV:
 ~~~
 dnslookup:
   driver =              dnslookup
