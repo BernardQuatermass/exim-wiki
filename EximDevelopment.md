@@ -32,6 +32,8 @@ processes.
 Further information on using Git for Exim Development can be found in
 [EximGit](EximGit)
 
+Coding style [here](Exim-coding-style)
+
 Bug Tracking
 ------------
 
