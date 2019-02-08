@@ -2,20 +2,20 @@ Wireshark can, with enough info (the cipher keys), decode TLS.
 
 - TLS 1.2 using an RSA key: add the private-key PEM-format file to the **RSA Keys** list
 - TLS 1.2 (any key, including ECDHE): from the debug ouput grab a line with either
-~~~
+
 RSA Session-ID: Master-Key:
-~~~
+
 with two long hex numbers, or
-~~~
+
 CLIENT_RANDOM
-~~~
+
 with two long hex numbers. Put that into a file and give the filename as the **(Pre)-Master-Secret log filename**.
 - TLS 1.3: from the debug ouput grab five lines:
-~~~
+
 SERVER_HANDSHAKE_TRAFFIC_SECRET
 EXPORTER_SECRET
 SERVER_TRAFFIC_SECRET_0
 CLIENT_HANDSHAKE_TRAFFIC_SECRET
 CLIENT_TRAFFIC_SECRET_0
-~~~
+
 each with a long hex number. File as above.
