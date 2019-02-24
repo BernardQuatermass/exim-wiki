@@ -25,7 +25,7 @@ information, to set up your systems access.
 4.  A Github account-name, if you have one, to be linked to the Exim
     group.
 
-5.  Any Twitter and Google+ account-names you want associated with Exim
+5.  Any social media account-names you want associated with Exim
     and shared to other developers; any communication preferences for
     off-list contact.
 

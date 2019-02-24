@@ -87,9 +87,9 @@ Release Steps
         follow `exim-users` because of the volume but who are interested
         in trying out Release Candidates to help out
     -   Tweet it. Try using an `#Exim` hashtag.
-    -   Try the [Google+ Exim](https://plus.google.com/b/101257968735428844827/) page --
-        hopefully Google have shared admin rights by the time someone
-        other than Phil does a release
+    -   Consider other social media; bias towards our audience, which is
+        computer-literate folks who run systems for themselves or employers in
+        a federated communication system.  Eg, Mastodon?
 -   ChangeLog/NewStuff distro on ftp site - in
     `/srv/ftp/pub/exim/exim4/`
     -   `.gz` files too, but not `.bz2`; `gzip -9k`
