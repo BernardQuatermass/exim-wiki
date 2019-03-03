@@ -6,10 +6,13 @@ We use two types of login data user can use: user@domain or just simple uid.
 Make sure you have all the requried fields in sql table, such as:
 domain\_name, local\_part, user\_id.
 
-To prevent bug (auth when user supply empty password) we use condition
-to check if it's not empty. It's also strongly advised to use
-quote\_mysql function, which is not used in example below.
+To prevent bug (auth when user supply empty password) we use a condition to check if it's not empty.
 
+### SQL Injection
+<strong>It's also strongly advised to use
+quote\_mysql function, <em>which is not used in example below</em></strong>&mdash;documented at <strong>end</strong> of [&sect;&thinsp;22 in the manual](https://www.exim.org/exim-html-4.92/doc/html/spec_html/ch-file_and_database_lookups.html#SECID72).
+
+```
     plain:
      driver = plaintext
      public_name = PLAIN
@@ -117,3 +120,4 @@ Create SQL commands
       server_condition      = ${if pam{$1:${sg{$2}{:}{::} }}{yes}{no}}
     .endif
       server_set_id = $1
+```
