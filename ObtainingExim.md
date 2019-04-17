@@ -82,7 +82,7 @@ Binary packages (unsupported by Novell/SuSE) can be found
 
 ### Debian GNU/Linux
 
-Debian GNU/Linux ships packages for Exim 4 (called exim4). 
+Debian GNU/Linux ships packages for Exim 4 (called exim4).
 
 There are two variations:
 [exim4ddaemonllight](http://packages.debian.org/exim4-daemon-light), or
@@ -99,20 +99,17 @@ via
 
 #### stable
 
-Exim4 (version 4.84) is the default MTA for the current stable release
-of Debian GNU/Linux, Version 8.6, codenamed "jessie".
+Exim4 (version 4.89) is the default MTA for the current stable release
+of Debian GNU/Linux, Version 9.x, codenamed "stretch".
 
-[Backports of Exim4](http://www.backports.org/debian/pool/main/e/exim4/)
-for the stable release, jessie, are available.
+Exim4 (version 4.92) is available in the backports section for the
+current stable release.
 
-To install the backported version, add the following line to your apt
-sources.list:
-
-deb [http://ftp.debian.org/debian](http://ftp-debian.org/debian)
-jessie-backports main
+To install the backported version, consult the Debian documentation
+about integrating backports.
 
 You can read more information about [installing
-backports](http://www.backports.org/Instructions).
+backports](https://backports.debian.org/Instructions).
 
 #### testing/unstable
 
@@ -121,7 +118,7 @@ Just apt the packages from the repository.
 
 #### experimental
 
-The very latest Release of Exim4 is freqently available from the
+The very latest Release of Exim4 is frequently available from the
 experimental distribution.
 
 ### Gentoo
