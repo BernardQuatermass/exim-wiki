@@ -105,11 +105,9 @@ of Debian GNU/Linux, Version 9.x, codenamed "stretch".
 Exim4 (version 4.92) is available in the backports section for the
 current stable release.
 
-To install the backported version, consult the Debian documentation
-about integrating backports.
+To install the backported version, consult the [Debian documentation]
+(https://backports.debian.org/Instructions) about integrating backports.
 
-You can read more information about [installing
-backports](https://backports.debian.org/Instructions).
 
 #### testing/unstable
 
