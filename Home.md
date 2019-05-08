@@ -10,7 +10,7 @@ where to find mailing-lists, source code, bug-tracking, etc.
 
 On this wiki ...
 ================
--   [[Frequently asked questions|FAQ]]
+-   [[Frequently asked questions|FAQ]] (Location of suggestions, tricks and shortcuts)
 -   Exim [[Introduction and feature list|EximIntroduction]]
 -   How to [[download and install|ObtainingExim]] Exim
 -   [[What's new|ChangeLog]] and change logs.
