@@ -6,6 +6,12 @@ Much consideration of Exim's security is given in
 of [The Exim Specification](http://www.exim.org/exim-html-current/doc/html/spec_html/index.html).
  This includes suggested hardening steps.
 
+Reporting
+---------
+
+Please email reports of security issues to security@exim.org
+Encryption keys for the Exim developers are available at https://downloads.exim.org/Exim-Maintainers-Keyring.asc
+
 Vulnerability History
 ---------------------
 
