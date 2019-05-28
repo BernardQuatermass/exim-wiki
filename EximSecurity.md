@@ -10,7 +10,8 @@ Reporting
 ---------
 
 Please email reports of security issues to security@exim.org
-Encryption keys for the Exim developers are available at https://downloads.exim.org/Exim-Maintainers-Keyring.asc
+
+Encryption keys for the Exim developers are [available here](https://downloads.exim.org/Exim-Maintainers-Keyring.asc).
 
 Vulnerability History
 ---------------------
