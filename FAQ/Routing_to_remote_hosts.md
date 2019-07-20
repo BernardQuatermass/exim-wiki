@@ -21,5 +21,5 @@ Routing to remote hosts
 - [Q0318 - Exim won't route to a host with no MX record.](Q0318)
 - [Q0319 - I have some mails on my queues that are sticking around longer than the](Q0319)
 - [Q0320 - How can I arrange for all mail to](Q0320)
-- [Q0321 - How can I tell an Exim router to use only IPv4 or only IPv6 addresses](Q0321) also [How to force IPv4 connections for specific domains if IPv6 is enabled](../How-to-force-IPv4-connections-for-specific-domains-if-IPv6-is-enabled)
+- [Q0321 - How can I tell an Exim router to use only IPv4 or only IPv6 addresses](Q0321) also [How to force IPv4 connections for specific domains if IPv6 is enabled](How-to-force-IPv4-connections-for-specific-domains-if-IPv6-is-enabled)
 - [Q0322 - How can I reroute all messages bound for 192.168.10.0 and 10.0.0.0 to a](Q0322)
