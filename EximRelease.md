@@ -72,7 +72,12 @@ Release Steps
         - Move last release files in the `old` subdirectory
         - new files to `/srv/ftp/pub/exim/exim4/`
         - also unpack ChangeLog and NewStuff to `/srv/ftp/pub/exim/exim4/` and make `.gz` versions **This needs automating**
-        -   unpack PDF documentation from distro tarball into `/srv/www/vhosts/www.exim.org`; the HTML docs and the exim-pdf-current link is done during (auto) update of the website
+        -   unpack PDF documentation from distro tarball into `/srv/www/vhosts/www.exim.org`  eg :-
+~~~
+cd /srv/www/vhosts/www.exim.org;
+tar xvf /srv/ftp/pub/exim/exim4/exim-pdf-4.92.1.tar.gz
+~~~
+        - Don't do the HTML docs and the exim-pdf-current link; done during (auto) update of the website
 -   Write announcement including changes and cryptographic checksums
     -   SHA256 checksums only for now; 4.80 was the last to use both
         SHA1 and SHA256. We'll add SHA-3 when it's available.
