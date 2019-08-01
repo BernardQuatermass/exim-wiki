@@ -71,7 +71,9 @@ Release Steps
     -   for full release
         - Move last release files in the `old` subdirectory
         - new files to `/srv/ftp/pub/exim/exim4/`
-        - also unpack ChangeLog and NewStuff to `/srv/ftp/pub/exim/exim4/` and make `.gz` versions **This needs automating** :-
+        - Unpack PDF documentation from distro tarball into the website area :- `cd /srv/www/vhosts/www.exim.org && tar xvf /srv/ftp/pub/exim/exim4/exim-pdf-4.${maj}.tar.gz`
+        - Don't do the HTML docs and the exim-pdf-current link; done during (auto) update of the website
+        - Unpack ChangeLog and NewStuff to `/srv/ftp/pub/exim/exim4/` and make `.gz` versions **This needs automating** :-
 ~~~
 cd; f=/srv/ftp/pub/exim/exim4;
 tar -x -f $f/exim-4.${maj}.tar.xz exim-4.${maj}/doc/ChangeLog;
