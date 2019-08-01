@@ -85,8 +85,6 @@ gzip <ChangeLog >ChangeLog.gz. && mv -f ChangeLog.gz. ChangeLog.gz;
 gzip <NewStuff >NewStuff.gz. && mv -f NewStuff.gz. NewStuff.gz;
 ~~~
 
-        - Unpack PDF documentation from distro tarball into the website area :- `cd /srv/www/vhosts/www.exim.org && tar xvf /srv/ftp/pub/exim/exim4/exim-pdf-4.${maj}.tar.gz`
-        - Don't do the HTML docs and the exim-pdf-current link; done during (auto) update of the website
 -   Write announcement including changes and cryptographic checksums
     -   SHA256 checksums only for now; 4.80 was the last to use both
         SHA1 and SHA256. We'll add SHA-3 when it's available.
