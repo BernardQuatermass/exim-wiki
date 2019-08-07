@@ -374,3 +374,12 @@ or `restart`), in Exim config
     rfc1413_query_timeout = 2s
 
 [Lena](Lena)
+
+
+### Restricting logins to the user's "home country":
+
+Another approach to this, is to restrict the user's login ability to the user's "home country". With "home country", its meant to be the country from which the user residental adress is, did pay their webhosting bill from (country of credit card or bank account), or in case of free account, the country from which the user registred (IP Country) or from which country the user validated their phone number or similiar from.
+
+For this, you need to append the 2 letter country to their password, which can be done next time they login to webmail or webadmin, and then use a custom authenticator to append the user's 2 letter country to their password when they login over SMTP. Note that the same transformation also needs to be done on IMAP login.
+
+By "locking" the user's login to their home country, you drastically reduce the attack surface as logins which originate from the incorrect country will automatically have an invalid password, and thus fail authentication.
