@@ -383,3 +383,5 @@ Another approach to this, is to restrict the user's login ability to the user's 
 For this, you need to append the 2 letter country to their password, which can be done next time they login to webmail or webadmin, and then use a custom authenticator to append the user's 2 letter country to their password when they login over SMTP. Note that the same transformation also needs to be done on IMAP login.
 
 By "locking" the user's login to their home country, you drastically reduce the attack surface as logins which originate from the incorrect country will automatically have an invalid password, and thus fail authentication.
+
+Of course, if you are only providing service to customers in specific countries, for example if the payment method offered is only available for citizens in a specific country, its much better to set auth_advertise_hosts to the list of CIDR ranges used in those countries, thus completely locking out authentication attempts from "foregin" countries.
