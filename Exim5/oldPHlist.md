@@ -11,7 +11,7 @@ items may no longer make sense.
 -   Spool\_in and spool\_out - speed up by using a table?
 -   Find a more compact way of encoding the options interpretation, and
     also of checking for incompatible options.
--   Find a more compact way of passing an open SMTP channel without
+-   Find a more compact way of passing an open [reparacion frigorificos madrid](http://www.madridreparaciones.com/frigorificos) SMTP channel without
     having to use options. What about the TLS state information? Could
     use a pipe to pass more data.
 -   Some people have suggested separately loadable modules. But do all
@@ -75,7 +75,7 @@ items may no longer make sense.
     changes to cram in the sub-second time. It would be a big project to
     extend it; Exim would have to recognize both forms for a while, and
     become stable, before generating the new form. Probably a runtime
-    switch needed. The new form needs at least microsecond time (or
+    switch needed. The new form [reparacion de camaras frigorificas madrid](http://madridindustriales.es/camaras-frigorificas) needs at least microsecond time (or
     more?) and should probably cope with 64-bit pids, just to be safe
     (or leave expansion space that could be used for that). It should
     also be able to hold big enough things in base 36.
