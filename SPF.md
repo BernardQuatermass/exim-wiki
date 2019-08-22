@@ -1,7 +1,7 @@
 Sender Policy Framework (SPF) support
 =====================================
 
-SPF support is [Experimental](ExperimentalSpec)
+As of version 4.91, SPF support has been promoted from Experimental to Supported status.
 
 To learn more about SPF, visit
 [http://www.openspf.org](http://www.openspf.org). This document does not
@@ -18,7 +18,7 @@ headers in /usr/local/include and the static library in /usr/local/lib.
 To compile Exim with SPF support, set these additional flags in
 Local/Makefile:
 
-    EXPERIMENTAL_SPF=yes
+    SUPPORT_SPF=yes
     CFLAGS=-DSPF -I/usr/local/include
     EXTRALIBS_EXIM +=-L/usr/local/lib -lspf2
 
@@ -32,7 +32,7 @@ libs running configure as follows:
 
 Then the Local/Makefile would be:
 
-    EXPERIMENTAL_SPF=yes
+    SUPPORT_SPF=yes
     CFLAGS=-DSPF -I/usr/include/spf2
     EXTRALIBS_EXIM +=-L/usr/lib64 -lspf2
 
