@@ -20,6 +20,13 @@ Note that a "remote code execution as Exim run-time user" vulnerability
 can be combined with a privilege escalation attack to become even more
 serious.
 
+-   [CVE-2019-13917](https://exim.org/static/doc/security/CVE-2019-13917.txt) fixed in 4.92.1
+
+-   [CVE-2019-10149](https://exim.org/static/doc/security/CVE-2019-10149)
+    Current release (4.91 and up) are not vulnerable, fixes for older versions exist.)
+
+-   [CVE-2018-6789](https://exim.org/static/doc/security/CVE-2018-6789)
+
 -   CVE-2016-9963 fixed in 4.88 and in 4.87.1. If several conditions are met, Exim
 may leak the private DKIM key to the main log and if even more conditions are met, to the sender of the message. For details please read [CVE-2016-9963](https://exim.org/static/doc/CVE-2016-9963.txt). If you use a distro package of Exim, you may find it has been fixed even for older-numbered releases.
 
