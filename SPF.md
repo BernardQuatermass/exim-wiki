@@ -8,6 +8,8 @@ To learn more about SPF, visit
 explain the SPF fundamentals, you should read and understand the
 implications of deploying SPF on your system before doing so.
 
+SPF is specified in [https://tools.ietf.org/html/rfc7208](https://tools.ietf.org/html/rfc7208)/.
+
 SPF support is added via the libspf2 library. Visit
 
 > [http://www.libspf2.org](http://www.libspf2.org)/
@@ -53,7 +55,7 @@ condition should succeed. Valid strings are:
 | `fail`     | The SPF check failed, the sending host is NOT allowed to send mail for the domain in the envelope-from address. |
 | `softfail` | The SPF check failed, but the queried domain can't absolutely confirm that this is a forgery. |
 | `none`     | The queried domain does not publish SPF records. |
-| `neutral`  | The SPF check returned a "neutral" state. This means the queried domain has published a SPF record, but wants to allow outside servers to send mail under its domain as well. |
+| `neutral`  | The SPF check returned a "neutral" state. This means the queried domain has published a SPF record, but does neither allow nor object the sending host from sending mail under its domain. This should be treated like "none". |
 | `err_perm` | This indicates a syntax error in the SPF record of the queried domain. This should be treated like "none". |
 | `err_temp` | This indicates a temporary error during all processing, including Exim's SPF processing. You may defer messages when this occurs. |
 
@@ -81,7 +83,7 @@ non-approved relays to send mail from aol.com. This will result in a
 "neutral" state, while mail from genuine AOL servers will result in
 "pass". The example above takes this into account and treats "neutral"
 like "fail", but only for aol.com. Please note that this violates the
-SPF draft.
+SPF specification.
 
 When the spf condition has run, it sets up several expansion variables.
 
