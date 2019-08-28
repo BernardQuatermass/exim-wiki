@@ -8,7 +8,7 @@ To learn more about SPF, visit
 explain the SPF fundamentals, you should read and understand the
 implications of deploying SPF on your system before doing so.
 
-SPF is specified in [https://tools.ietf.org/html/rfc7208](https://tools.ietf.org/html/rfc7208)/.
+SPF is specified in [https://tools.ietf.org/html/rfc7208](https://tools.ietf.org/html/rfc7208).
 
 SPF support is added via the libspf2 library. Visit
 
