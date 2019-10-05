@@ -6,7 +6,7 @@ SRS can be configured using Exim's capability to embed the Perl interpreter. Thi
 
 1. Make sure that your Exim version comes with Perl support built in.
     ```
-    exim -bP macro _HAVE_PERL
+    $ exim -bP macro _HAVE_PERL
     ```
 1. Install the Perl module `Mail::SRS` using your favourite package manager.
 
