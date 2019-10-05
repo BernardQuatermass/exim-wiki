@@ -25,7 +25,7 @@ Additional Documentation from
 Alternative SRS implementations to the above:
 * [using native Exim expansions](https://bugs.exim.org/show_bug.cgi?id=1649)
 * [embedding Perl, with a Perl module call calls](https://github.com/Exim/exim/wiki/SRS-config-using-Perl-Mail::SRS)
-* [an external daemon]{https://github.com/roehling/postsrsd/blob/master/README.exim.md)
+* [an external daemon](https://github.com/roehling/postsrsd/blob/master/README.exim.md)
 
 Configuring Exim
 ----------------
