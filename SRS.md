@@ -22,7 +22,10 @@ in your `Local/Makefile`.
 Additional Documentation from
 [http://opsec.eu/src/srs/exim.html](http://opsec.eu/src/srs/exim.html):
 
-A no-library SRS implementation alternative is shown [here](https://bugs.exim.org/show_bug.cgi?id=1649).
+No-library SRS implementations are shown [here (using native Exim
+expansions)](https://bugs.exim.org/show_bug.cgi?id=1649)
+and [here (embedding
+Perl)](https://github.com/Exim/exim/wiki/SRS-config-using-Perl-Mail::SRS).
 
 Configuring Exim
 ----------------
