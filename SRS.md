@@ -19,13 +19,15 @@ to set
 
 in your `Local/Makefile`.
 
-Additional Documentation from
-[http://opsec.eu/src/srs/exim.html](http://opsec.eu/src/srs/exim.html):
 
 Alternative SRS implementations to the above:
 * [using native Exim expansions](https://bugs.exim.org/show_bug.cgi?id=1649)
 * [embedding Perl, with a Perl module call calls](https://github.com/Exim/exim/wiki/SRS-config-using-Perl-Mail::SRS)
 * [an external daemon](https://github.com/roehling/postsrsd/blob/master/README.exim.md)
+
+
+Additional Documentation from
+[http://opsec.eu/src/srs/exim.html](http://opsec.eu/src/srs/exim.html):
 
 Configuring Exim
 ----------------
