@@ -51,7 +51,7 @@ ssl_certificate         /etc/nginx/tls/lego/newsite.exim.org.crt;
 
 You will need to `service nginx configtest` and `service nginx reload` to pick up these changes.  Because config file editing is required, and the editing requires _judgement_ about per-vhost handling, the `tls-renew register` sub-command does not handle this.
 
-Recommend finishing off with: `etckeeper commit -m 'Set up HTTPS for newsite.exim.org'`
+Recommend finishing off with: `etckeeper commit 'Set up HTTPS for newsite.exim.org'`
 
 ## How it fits together
 
@@ -98,7 +98,7 @@ done
 
 vi /etc/nginx/sites-available/lists-exim-org.conf /etc/nginx/sites-available/bugs-exim-org.conf
 service nginx configtest
-etckeeper commit -m '[...]'
+etckeeper commit '[...]'
 service nginx reload
 ```
 
