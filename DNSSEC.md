@@ -125,10 +125,7 @@ your monitoring does not natively support DANE-based TLS monitoring.
 The [SMTP DANE testing tool][smtpdane-golang] is a Golang (1.8+) tool which can
 connect to an SMTP server and confirm that the certificate chain validates
 with DANE.
-It is written by one of the Exim maintainers and at time of writing is
-bare-bones functional and being actively maintained to become more useful.
-It is too early in its life to rely solely upon this tool.
-
+It is written by one of the Exim maintainers and has been stable for some time; it supports an optional Nagios compatible mode of operation, amongst others.
 [`go get go.pennock.tech/smtpdane`](https://go.pennock.tech/smtpdane/)
 
 #### OpenSSL
