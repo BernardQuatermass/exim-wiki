@@ -23,7 +23,7 @@ The changes will be committed by `/etc/cron.daily/etckeeper` performing an autoc
 
 ## Adding a new web-host
 
-This assumes you're the `tlsadmin` user.  Recommend using `etckeeper` to make sure you have a clean base before making further changes ( `etckeeper commit -m "committing any recent changes"` ).
+This assumes you're the `tlsadmin` user.  Recommend using `etckeeper` to make sure you have a clean base before making further changes ( `etckeeper commit "committing any recent changes"` ).
 
 Invoke as `tlsadmin`: `./bin/tls-renew register newsite.exim.org second-hostname.exim.org`
 
