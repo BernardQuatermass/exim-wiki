@@ -11,16 +11,21 @@ Add the following to the top of exim config (usually at /etc/exim/exim.conf) whe
 Add SRS macros below this as follows:
 ```
 .ifdef USE_SRS
-#  The SRS Secret that's been generated for signing SRS-rewritten addresses
+#  The SRS Secret that's been generated for signing SRS-rewritten addresses. 
+# **Please replace this with your own**
 SRS_SECRET      = myrandomsecretforsrs
+
 # The number of characters to extract from the computed hash and include within the SRS-rewritten address.
 # 10 plays well with most MTA's
 SRS_HASH_LENGTH = 10
+
 # The modulus at which the age (in days) wraps around. 0xfff = 4095 days = ~11 years
 SRS_AGE_MODULUS = 0xfff
+
 # The maximum age (in days) of a valid SRS-rewritten address. Messages arriving for addresses older than this 
 # will be rejected. 10 days is my setting, but feel free to change this.
 SRS_MAX_AGE     = 10
+
 #
 .endif
 ```
