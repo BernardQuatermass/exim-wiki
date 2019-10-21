@@ -34,48 +34,20 @@ SRS_MAX_AGE     = 10
 ```
 .ifdef USE_SRS
   # SRS CLEAN UP.ifdef USE_SRS
-# SRS0=HHH=TT=orig-domain=orig-local-part@domain-part
-  srs0_remote_forwarded_smtp:
-  driver             = smtp
-  max_rcpt           = 1
-  return_path        = SRS0\
-                        =${length {SRS_HASH_LENGTH} {${hmac{md5}{SRS_SECRET}{${lc:$acl_c_sender}}}}}\
-                        =${eval:$tod_epoch / 86400 & SRS_AGE_MODULUS}\
-                        =${lc:$acl_c_srsdom}\
-                        =${lc:$acl_c_srslcp}\
-                        @$original_domain
-  hosts_require_tls  = *
-  hosts_require_auth = *
-
-# SRS1=HHH=orig-local-part==HHH=TT=orig-domain-part=orig-local-part@domain-part
-  srs1_remote_forwarded_smtp:
-  driver             = smtp
-  max_rcpt           = 1
-  return_path        = SRS1\
-                        =${length {SRS_HASH_LENGTH} {${hmac{md5}{SRS_SECRET}{${lc:$return_path}}}}}\
-                        =${domain:$return_path}\
-                       ==${length {SRS_HASH_LENGTH} {${hmac{md5}{SRS_SECRET}{${lc:$acl_c_sender}}}}}\
-                        =${eval:$tod_epoch / 86400 & SRS_AGE_MODULUS}\
-                        =${lc:$acl_c_srsdom}\
-                        =${lc:$acl_c_srslcp}\
-                        @$original_domain
-  hosts_require_tls  = *
-  hosts_require_auth = *
-.endif
   require
-  set acl_c_srsdom = $sender_address_domain
-  set acl_c_srslcp = $sender_address_local_part
-  set acl_c_srslpr =
-  set acl_c_sender = $sender_address
-  set acl_c_srsrel = 0
+    set acl_c_srsdom = $sender_address_domain
+    set acl_c_srslcp = $sender_address_local_part
+    set acl_c_srslpr =
+    set acl_c_sender = $sender_address
+    set acl_c_srsrel = 0
       
   warn
-         condition = ${if match{$sender_address}{\N^(SRS|srs)(0|1)=\N}{yes}{no}}
-  set acl_c_srsrel = 1
-  set acl_c_srsdom = ${extract{4}{=}{$sender_address}}
-  set acl_c_srslpr = ${extract{5}{=}{$sender_address}}
-  set acl_c_srslcp = ${extract{1}{@}{$acl_c_srslpr}}
-  set acl_c_sender = $acl_c_srslcp@$acl_c_srsdom
+           condition = ${if match{$sender_address}{\N^(SRS|srs)(0|1)=\N}{yes}{no}}
+    set acl_c_srsrel = 1
+    set acl_c_srsdom = ${extract{4}{=}{$sender_address}}
+    set acl_c_srslpr = ${extract{5}{=}{$sender_address}}
+    set acl_c_srslcp = ${extract{1}{@}{$acl_c_srslpr}}
+    set acl_c_sender = $acl_c_srslcp@$acl_c_srsdom
 .endif
 
 ```
@@ -90,7 +62,7 @@ srs_inbound:
   driver =    redirect
   senders =   :
   domains =   +our_domains  # Modify this to match your own config
-  condition = ${if <{$acl_m_spam}{1}{yes}{no}}  # This acl is set for spam as I do not forward spam
+#  condition = ${if <{$acl_m_spam}{1}{yes}{no}}  # This acl is set for spam to NOT forward spam
   condition = ${if match{$sender_address}{\N=(SRS|srs)0=\N}{no}{yes}}
   condition = ${if match{$h_To:}{\N=(SRS|srs)0=\N}{no}{yes}}
   condition = ${if match {$local_part} {^(?i)SRS0=([^=]+)=([0-9]+)=([^=]*)=(.*)\$} \
