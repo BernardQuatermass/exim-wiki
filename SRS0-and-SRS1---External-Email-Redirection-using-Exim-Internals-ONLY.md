@@ -63,9 +63,9 @@ srs_inbound:
   senders =   :
   domains =   +our_domains  # Modify this to match your own config
 #  condition = ${if <{$acl_m_spam}{1}{yes}{no}}  # This acl is set for spam to NOT forward spam
-  condition = ${if match{$sender_address}{\N=(SRS|srs)0=\N}{no}{yes}}
+  condition = ${if match{$sender_address}{\N=(SRS|srs)(0|1)=\N}{no}{yes}}
   condition = ${if match{$h_To:}{\N=(SRS|srs)0=\N}{no}{yes}}
-  condition = ${if match {$local_part} {^(?i)SRS0=([^=]+)=([0-9]+)=([^=]*)=(.*)\$} \
+  condition = ${if match {$local_part} {^(?i)SRS(0|1)=([^=]+)=([0-9]+)=([^=]*)=(.*)\$} \
                    {${if and { \
                                  {<= {${eval:$tod_epoch/86400 - $2 & SRS_AGE_MODULUS}} {SRS_MAX_AGE} } \
                                  {eq {$1} {${length {SRS_HASH_LENGTH} {${hmac {md5} {SRS_SECRET} {${lc:$4@$3}}}}}}} \
@@ -74,7 +74,7 @@ srs_inbound:
                    {false}}
 
   data =    ${sg {$local_part} \
-                 {^(?i)SRS0=[^=]+=[^=]+=([^=]*)=(.*)\$} \
+                 {^(?i)SRS(0|1)=[^=]+=[^=]+=([^=]*)=(.*)\$} \
                  {\$2@\$1}}
 
 ####
@@ -83,7 +83,7 @@ srs_inbound_failure:
   senders =   :
   domains =   +our_domains   # Modify to match your config
   condition = ${if match {$local_part} \
-                         {^(?i)SRS0=([^=]+)=([^=]+)=([^=]*)=(.*)\$} \
+                         {^(?i)SRS(0|1)=([^=]+)=([^=]+)=([^=]*)=(.*)\$} \
                 }
   allow_fail
   data =    :fail: Invalid SRS recipient address
