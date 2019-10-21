@@ -33,6 +33,7 @@ Signed Emails
 -   [Batv - Block Bounce Spam (Without Library)](SignEmails)
 -   [Srs0 - External Email Redirection (Without
     Library)](GatewayEmails)
+-   [SRS0 and SRS1 using only exim](https://github.com/Exim/exim/wiki/SRS0-and-SRS1---External-Email-Redirection-using-Exim-Internals-ONLY)
 
 Performance
 -----------
