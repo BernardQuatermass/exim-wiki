@@ -33,7 +33,7 @@ SRS_MAX_AGE     = 10
 ### Set Variables at the start of the acl_smtp_rcpt section of acl's
 ```
 .ifdef USE_SRS
-  # SRS CLEAN UP.ifdef USE_SRS
+  # SRS CLEAN UP
   require
     set acl_c_srsdom = $sender_address_domain
     set acl_c_srslcp = $sender_address_local_part
