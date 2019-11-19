@@ -29,7 +29,7 @@ There are [Git repositories](EximDevelopment#SourceAccess).
 Latest Version
 --------------
 
-From 2019-02-10, the latest version of Exim is 4.92.
+From 2019-09-29, the latest version of Exim is 4.92.3.
 
 The popular exiscan-acl patch code has been incorporated into Exim from
 version 4.50 onwards. The distributors' patch for dynamically loadable
