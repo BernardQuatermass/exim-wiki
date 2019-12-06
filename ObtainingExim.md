@@ -78,32 +78,29 @@ Linux](http://www.whiteboxlinux.org) etc.
 ### SuSE/Novell SUSE Distributions
 
 Binary packages (unsupported by Novell/SuSE) can be found
-[here](http://software.opensuse.org/download/server:/mail/)\_.
+[here](http://software.opensuse.org/download/server:/mail/).
 
 ### Debian GNU/Linux
 
 Debian GNU/Linux ships packages for Exim 4 (called exim4).
 
 There are two variations:
-[exim4ddaemonllight](http://packages.debian.org/exim4-daemon-light), or
-[exim4ddaemonhheavy](http://packages.debian.org/exim4-daemon-heavy)
+[exim4-daemon-light](https://packages.debian.org/exim4-daemon-light), or
+[exim4-daemon-heavy](https://packages.debian.org/exim4-daemon-heavy)
 which differ in the compiled-in feature set.
 
 Information about the Exim 4 Package, including update hints, can be
 found in /usr/share/doc/exim4-base/README.Debian.html, or on the Web in
-[http://pkg-exim4.alioth.debian.org/README/README.Debian.etch.html](http://pkg-exim4.alioth.debian.org/README/README.Debian.etch.html).
+[https://salsa.debian.org/exim-team/exim4/tree/master/debian](https://salsa.debian.org/exim-team/exim4/tree/master/debian).
 
 There is a dedicated mailing list for exim on Debian. You can subscribe
 via
-[http://lists.alioth.debian.org/mailman/listinfo/pkg-exim4-users](http://lists.alioth.debian.org/mailman/listinfo/pkg-exim4-users)
+[https://alioth-lists.debian.net/cgi-bin/mailman/listinfo/pkg-exim4-users](https://alioth-lists.debian.net/cgi-bin/mailman/listinfo/pkg-exim4-users)
 
 #### stable
 
-Exim4 (version 4.89) is the default MTA for the current stable release
-of Debian GNU/Linux, Version 9.x, codenamed "stretch".
-
-Exim4 (version 4.92) is available in the backports section for the
-current stable release.
+Exim4 (version 4.92) is the default MTA for the current stable release
+of Debian GNU/Linux, Version 10.x, codenamed "buster".
 
 To install the backported version, consult the
 [Debian documentation](https://backports.debian.org/Instructions) about integrating backports.
