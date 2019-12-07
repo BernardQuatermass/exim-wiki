@@ -75,7 +75,7 @@ Removing Bad Mail
 
 Run Mail queue
 
-    runq -qqff&
+    runq -qqff
 
 Who is having large number of emails?
 
