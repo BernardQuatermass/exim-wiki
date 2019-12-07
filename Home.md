@@ -40,7 +40,7 @@ See also
 
 Wiki Conversion
 ===============
-This wiki was converted from the old one hosted on exim.org.  There may be 
+This wiki was converted from the old one hosted on exim.org.  There may be
 some issues with the conversion - please fix up any formatting or linking problems you discover.
 
 Participate - Learning about Wikis
@@ -50,28 +50,27 @@ that you would like to contribute? You can edit these pages and create
 new pages as long as you have a [GitHub](http://github.com/) login. This allows you to share your tricks with everyone else just
 like they shared their tricks with you.
 
-Some SSH tricks for Exim
+Some tricks for Exim
 ==================================
 Removing Bad Mail
 
-    for i in `exiqgrep -i -f nobody`; do exim -Mrm $i; done >> Removes Nobody Mail
+    # remove mail from nobody
+    exiqgrep -i -f nobody | xargs exim -Mrm
 
-    for i in `exiqgrep -i -o 259200`; do exim -Mrm $i; done >> Removes Mail older than 3 Days
+    # remove mails older than 3 days
+    exiqgrep -i -o 259200 | xargs exim -Mrm
 
-    for i in `exiqgrep -i -f “^<>$”`; do exim -Mrm $i; done >> Removes Mail with weird Characters (Spam)
+    # remove mail with weird characters (spam)
+    exiqgrep -i -f “^<>$” | xargs exim -Mrm
 
-Delete mails from a particular domain
+    # delete mails from a particular domain
+    exiqgrep -i -f domain.com | xargs exim -Mrm
 
-    for i in `exiqgrep -i -f domain.com`; do exim -Mrm $i; done
+    # delete mails to a particular domain
+    exiqgrep -i -r domain.com | xargs exim -Mrm
 
-
-Delete mails to a particular domain
-
-    for i in `exiqgrep -i -r domain.com`; do exim -Mrm $i; done
-
-Flush the entire Mail queue
-
-    for i in `exiqgrep -i -f `; do exim -Mrm $i; done
+    # flush (purge) the entire Mail queue
+    exiqgrep -i -f | xargs exim -Mrm
     exim -bp | exiqgrep -i | xargs exim -Mrm
 
 Run Mail queue
@@ -82,7 +81,6 @@ Who is having large number of emails?
 
     exim -bp | exiqsumm
 
-
 To check message header
 
     exim -Mvh messageid
@@ -91,11 +89,10 @@ To check message content
 
     exim -Mvb messageid
 
-
 Exim Pros
 
 Many plugins available.
-	
+
 Exim Cons
 
 Cryptic templates.
