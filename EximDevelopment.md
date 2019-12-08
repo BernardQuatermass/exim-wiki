@@ -16,11 +16,11 @@ Exim has a git repository at:
 
 There is a web interface to this, giving change and source visibility
 at:
--   [http://git.exim.org/exim.git](http://git.exim.org/exim.git)
+-   [https://git.exim.org/exim.git](https://git.exim.org/exim.git)
 
-Exim developers may push trees into their own workspace on tahini -
+Exim developers may push trees into their own workspace on hummus -
 these can be seen with the web interface at
--   [http://git.exim.org](http://git.exim.org)/
+-   [https://git.exim.org](https://git.exim.org)/
 
 Individual developer repos will start with `users/`*username*/
 
@@ -38,7 +38,7 @@ Bug Tracking
 ------------
 
 There is a bugzilla instance at
-[http://bugs.exim.org](http://bugs.exim.org)/ - see
+[https://bugs.exim.org](https://bugs.exim.org)/ - see
 [BugZilla](BugZilla)
 
 Mailing List
@@ -52,7 +52,7 @@ Build Farm
 
 If you want to support the developers in spotting regressions introduced during development,
 especially on less-common platforms. please consider operating a
-[buildfarm](http://buildfarm.exim.org/cgi-bin/show_status.pl) animal.
+[buildfarm](https://buildfarm.exim.org/cgi-bin/show_status.pl) animal.
 
 Exim Release Process
 --------------------
