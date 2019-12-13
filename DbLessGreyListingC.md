@@ -54,7 +54,7 @@ did it.
     make clean all deinstall reinstall
 
 After that a directory for example
-`/usr/ports/mail/exim/work/exim-4.76/build-FreeBSD-i386` contains files
+`/usr/ports/mail/exim/work/exim-4.93/build-FreeBSD-i386` contains files
 needed for the next step, so don't do `make clean` after reinstall.
 -   Restore your versions of scripts such as
     `/usr/local/etc/periodic/daily/460.exim-mail-rejects` and
@@ -63,15 +63,17 @@ needed for the next step, so don't do `make clean` after reinstall.
 Dynamically linked module
 -------------------------
 
-Download attached source of the module: [exim-ext-grey.c](attachments/exim-ext-grey.c.txt)
+Download source of the module: [exim-ext-grey.c](http://lena.kiev.ua/exim-ext-grey.c.txt) ,
 save it for example in the `/root` directory and compile placing the
 binary for example in `/root/bin` :
 
     gcc -O2 -Wall -Werror -shared -fPIC -g \
-    -I/usr/ports/mail/exim/work/exim-4.76/build-FreeBSD-i386 \
+    -I/usr/ports/mail/exim/work/exim-4.93/build-FreeBSD-i386 \
     -L/usr/local/lib \
     -o /root/bin/exim-ext-grey.so /root/exim-ext-grey.c
     strip /root/bin/exim-ext-grey.so
+
+Latest module version (0.4) supports both Exim 4.93 and older Exim versions. Module version 0.3 supported only older Exim versions.
 
 Edit your Exim config file
 --------------------------
