@@ -1,0 +1,89 @@
+
+MailScanner and Exim with multiple queues
+=========================================
+
+Author: Heiko Schlittermann <hs@schlittermann.de>
+Date: 2019-10-XX
+
+Abstract
+--------
+
+Newer (since 4.92 I believe) Exim MTA are able to process messages on
+multiple queues. This gives us a new approach for MailScanner
+integration.
+
+Message flow in a two-queue Exim setup with MailScanner
+-------------------------------------------------------
+
+- Excactly one Exim daemon is running (exim -bd -q3m)
+- Messages are accepted via SMTP on port 25
+- Incoming messages are placed in the queue named "incoming"
+  (and logged as Q=incoming in the common mainlog)
+- MailScanner picks the messages and moves them to the
+  default queue if done
+
+   SMTP> :25 ---> [ Exim Listener (-bd) ]
+                    |
+                    v
+                   Queue "mailscanner"   ($spool_dir/mailscanner/input)
+                   via MAIL ACL
+                    |
+                    |
+                    v
+                  [ MailScanner ]
+                    |
+                    |
+                    |
+                    v
+                   Queue "default"    ($spool_dir/input)
+                    |
+                    v
+                  [ Exim Queuerunner (-q3m) ]
+                    |
+                    |
+                    v
+
+
+Exim setup
+----------
+
+We use Exim's "named queues" feature and start Exim in "combined" mode
+(one daemon as listener, forking queue runners from time to time).
+
+Tools:
+
+- Exim now understands a -qG<queue-name> command line option for
+  queue operations
+
+- Exipick now understands --queue <queue-name> command line option
+  (since 4.93+fixes)
+
+    ,---[ exim4.conf ]--------------------
+    | CONFDIR = /etc/exim4
+    |
+    | # Use the MAIL ACL to place incoming messages into a non-default queue
+    | acl_smtp_mail = acl_check_mail
+    |
+    | begin acl
+    |
+    | acl_check_mail:
+    |
+    |   …
+    |
+    |   # When accepting the message, we deliver it to the "mailscanner" queue (not "input"!)
+    |   accept queue   = mailscanner
+    |          control = queue_only
+    :
+    :
+
+MailScanner setup
+-----------------
+
+    ,---[ Mailscanner.conf ]----------------------------
+    | # Main configuration file for the MailScanner E-Mail Virus Scanner
+    | …
+    | Incoming Queue Dir = /var/spool/exim4/mailscanner/input
+    |
+    | # Set location of outgoing mail queue.
+    | # This can also be the filename of a ruleset.
+    | Outgoing Queue Dir = /var/spool/exim4/input
