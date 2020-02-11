@@ -17,8 +17,8 @@ Message flow in a two-queue Exim setup with MailScanner
 
 - Excactly one Exim daemon is running (exim -bd -q3m)
 - Messages are accepted via SMTP on port 25
-- Incoming messages are placed in the queue named "incoming"
-  (and logged as Q=incoming in the common mainlog)
+- Incoming messages are placed in the queue named "mailscanner"
+  (and logged as Q=mailscanner in the common mainlog)
 - MailScanner picks the messages and moves them to the
   default queue if done
 
