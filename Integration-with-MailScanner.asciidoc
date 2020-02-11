@@ -1,9 +1,9 @@
+:Author: Heiko Schlittermann <hs@schlittermann.de>
+:Date: 2019-10-XX
 
-MailScanner and Exim with multiple queues
-=========================================
 
-Author: Heiko Schlittermann <hs@schlittermann.de>
-Date: 2019-10-XX
+https://www.mailscanner.info/[MailScanner] and Exim with multiple queues
+========================================================================
 
 Abstract
 --------
