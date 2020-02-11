@@ -2,7 +2,7 @@
 
 This configuration makes Exim search for a certificate based on the SNI.
 
-First, it ensures that $tls_sni is a valid domain name by constructing an arbitrary email address and getting the domain name from it.
+First, it ensures that _$tls_sni_ is a valid domain name by constructing an arbitrary email address and getting the domain name from it.
 
 Then, it strips the SNI down to its 2nd level domain (e.g. smtp.example.com to example.com) and uses this value to search for a certificate.
 
