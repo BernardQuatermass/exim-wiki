@@ -8,7 +8,7 @@ Debian exim 4 packages by default is quite different from what you might
 expect.
 -   [Debian exim 4 users mailing
     list](http://lists.alioth.debian.org/mailman/listinfo/pkg-exim4-users)
--   [Debian exim 4 home page.](http://pkg-exim4.alioth.debian.org)
+-   [Debian exim 4 wiki page.](https://wiki.debian.org/Exim)
 -   There is `/usr/share/doc/exim4-base/README.Debian` on your system
     (in text and/or html form depending on your package version), giving
     a short introduction to the specialities of the Debian exim 4
