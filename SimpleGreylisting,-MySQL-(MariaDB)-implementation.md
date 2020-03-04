@@ -107,7 +107,6 @@ Edit exim.conf and add:
             condition       = ${if eq {$acl_m_greyexpiry}{} {1}}
 
     # OK, we've dealt with the "new" messages. Now we deal with messages which _were_ already in the database...
-
     # If the message was already listed but its time hasn't yet expired, keep rejecting it
       defer
             condition       = ${if > {$acl_m_greyexpiry}{$tod_epoch}}
