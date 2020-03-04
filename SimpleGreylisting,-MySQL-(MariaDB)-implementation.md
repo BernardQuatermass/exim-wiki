@@ -50,7 +50,7 @@ Edit exim.conf and add:
             hosts           = +relay_from_hosts : +wl_hosts
 
     # Accept if message was sent by authenticated clients
-    #  accept
+      accept
            authenticated   = *
 
     # Accept mail from hosts which are known to resend their mail.
