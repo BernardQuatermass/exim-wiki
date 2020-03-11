@@ -6,7 +6,7 @@ Source Distributions
 
 The primary source distribution is from the main *exim.org* site. See
 [https://downloads.exim.org/exim4/](https://downloads.exim.org/exim4/) for the
-source packages, which are always accompanied by detached GPG
+source packages, which are always accompanied by detached OpenPGP (aka "PGP", "GPG")
 Signatures.
 
 You can find a list of all the current [www mirror
@@ -14,8 +14,11 @@ sites](http://www.exim.org/mirmon/www_mirrors.html), and the [ftp mirror
 sites](http://www.exim.org/mirmon/ftp_mirrors.html) and their status
 
 There are a number of [EximMirrorSites](EximMirrorSites) which also
-carry source packages. Please ensure that the packages are signed and
+carry source packages. Please ensure that the packages are correctly signed and
 are for the current version.
+
+All releases are PGP-signed by an OpenPGP key with a uid in the `@exim.org` domain.  All valid keys can be retrieved via WKD from `exim.org`:  `gpg --auto-key-locate clear,nodefault,wkd --locate-keys PERSON@exim.org`  
+or from [the Maintainers Keyring](https://downloads.exim.org/Exim-Maintainers-Keyring.asc)
 
 Once you've downloaded the source code, see
 [InstallingExim](InstallingExim) for help on building and installing
