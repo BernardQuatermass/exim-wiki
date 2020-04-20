@@ -11,6 +11,24 @@ To rate-limit outbound messages requires an assemblage of facilities.  You will 
 
 You will also need to be starting queue-runners at some reasonable frequency.
 
+---
+Putting the above requirements for the config together, an example:  
+**ACL**
+
+    #args  1:recipient  2:destination-class  3:rate-count  4:rate-time
+    check_for_rate:
+     deny   ratelimit = $acl_arg3 / $acl_arg4 / per_cmd / outbound_$acl_arg2
+            message = :defer:
+     accept message = $acl_arg1
+
+**Router**
+
+    ratelim:
+     driver =  redirect
+     verify =  false
+     domains = awkwarddomain.com
+     data =    ${acl {check_for_rate} {$local_part@$domain}{$domain}{15}{1h}}
+
 ## Version two
 The above isn't good if your preferred queue-runners use **-qq** mode; you get double-counting, and there's no programmatic visibility of the queue-run phases with which to fix it.
 
