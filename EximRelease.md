@@ -54,7 +54,7 @@ Release Steps
     -   ensure `exim-website` is checked out to a known location,
 	ideally into the same directory where `exim` is located.
 
-    -   if not first RC for this release, clean the previous website docbook files out
+    -   if not first RC for this release, clean the previous website docbook files out: `rm -f ../exim-website/docbook/4.${maj}/*`
     -   `cd exim`
     -   `release-process/scripts/mk_exim_release 4.${maj}-RC${rc} /tmp/exim-pkgs` - use
         appropriate version number
