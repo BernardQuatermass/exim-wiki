@@ -63,7 +63,7 @@ Release Steps
         `exim-website/docbook/4.${maj}/` - for a full release this should be
         git add/commit
 -   Ideally have limited final test before full distribution
--   Sign the tarballs: `release-process/scripts/sign_exim_packages /tmp/exim-pkgs`
+-   (should be already done, by mk_exim_release) Sign the tarballs: `release-process/scripts/sign_exim_packages /tmp/exim-pkgs`
     (If git configuration `user.signingkey` does not identify the PGP key to
     use, then you must specify `EXIM_KEY` in environ).
 -   put tarballs and signatures up for distribution
