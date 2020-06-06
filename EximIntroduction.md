@@ -17,7 +17,7 @@ where a single main binary controls all the facilities of the MTA. This
 monolithic design is considered by some to be inherently less secure and
 slower, but despite this, Exim's security record is much better than
 Sendmail and comparable with [Qmail](http://www.wikipedia.com/wiki/Qmail) and
-[Postfix](http://www.wikipedia.com/wiki/Postfix), as is its speed. In advanced areas
+[Postfix](<https://en.wikipedia.org/wiki/Postfix_(software)>), as is its speed. In advanced areas
 such as queue handling, address routing and testing, it exhibits
 excellent performance. -- [Wikipedia](http://www.wikipedia.com/wiki/Main_Page)
 [Exim](http://www.wikipedia.com/wiki/Exim)
