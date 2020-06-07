@@ -35,15 +35,15 @@ Start of Development Cycle
 Release Steps
 -------------
 -   Ensure test suite runs
+-   For sanity doing RCs, set shell variables eg. "maj=79 rc=4"
 -   For a full release:
     - Check version number in source and version number in documentation match new release version
     - Update the documentation date (2 instances near version number) in both spec and filter doc sources
     - Update the **version_copyright** string in src/src/globals.c if needed.
-    - Check for modify dates on all source files, and update copyright year in the file header comment: `vi $(git log --name-status exim-4.93..master | awk '/^M/{print $2}' | grep -v '^test/' | sort -u)`
+    - Check for modify dates on all source files, and update copyright year in the file header comment: `vi $(git log --name-status exim-4.${maj}..master | awk '/^M/{print $2}' | grep -v '^test/' | sort -u)`
 -   Check that the `NewStuff` and `ChangeLog` and
     `doc-txt/OptionLists.txt` files are up-to-date
 -   Check if test/configure needs commit (run `autoreconf` in `test/`)
--   For sanity doing RCs, set shell variables eg. "maj=79 rc=4"
 -   Tag git for new release - tag format is `exim` hyphen *version
     number with dots* - eg `exim-4.92`. You must also have git
     sign the tag with your exim PGP id - ie `git tag -u you@exim.org` for
