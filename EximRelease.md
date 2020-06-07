@@ -49,7 +49,6 @@ Release Steps
     sign the tag with your exim PGP id - ie `git tag -u you@exim.org` for
     the tarball to be built correctly.
     + For an RC: `git tag -s -m "Exim 4.${maj} RC${rc}" exim-4.${maj}-RC${rc}`
--   Ensure git tree (with tags) is pushed to central repo: `git push --follow-tags`
 -   Build documentation and packages:-
     -   ensure `exim-website` is checked out to a known location,
 	ideally into the same directory where `exim` is located.
@@ -85,6 +84,7 @@ gzip <ChangeLog >ChangeLog.gz. && mv -f ChangeLog.gz. ChangeLog.gz;
 gzip <NewStuff >NewStuff.gz. && mv -f NewStuff.gz. NewStuff.gz;
 ~~~
 
+-   Ensure git tree (with tags) is pushed to central repo: `git push --follow-tags`
 -   Write announcement including changes and cryptographic checksums
     -   SHA256 checksums only for now; 4.80 was the last to use both
         SHA1 and SHA256. We'll add SHA-3 when it's available.
