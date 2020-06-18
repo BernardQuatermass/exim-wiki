@@ -1,4 +1,4 @@
-starttls-everywhere is a stopgap until a host can do DANE.  Organised by the EFF, there's a website at https://starttls-everywhere.org/
+starttls-everywhere is a stopgap until a host can do DANE.  Organised by the EFF, there's a website at https://starttls-everywhere.org/ .  As of April 2020 the EFF has moved the project into a winding-down phase.
 
 The idea is that you preload your site with security information for sites you may need to send mail to, and check this information any time to connect to them.  There's a file to download with a set of records, which you lookup using the email recipient domain as an index.  If the domain is listed it must talk TLS, it must have a verifiable certificate, and you should talk to it at an MX host matching one of the patterns given.
 
