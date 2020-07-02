@@ -192,7 +192,7 @@ Instructions on setting it up and using it are given below.
     # longer permitted to mix "tainted" text which comes from the message 
     # itself, with the filename. Thus, you now have to set
     #
-    # sqlite_dbfile = /var/spool/exim/db/greylist.db
+    # sqlite_dbfile = /var/db/mta-greylist.db
     #
     # ... in the main configuration because it can't be specified within
     # the ACL in this file any more.
