@@ -92,3 +92,4 @@ Add an explicit check in the SMTP driver:
         # <regular configuration here>
         hosts_require_tls = server.example.com
         tls_verify_certificates = /etc/ssl/certs/server.pem
+        tls_verify_hosts = server.example.com
