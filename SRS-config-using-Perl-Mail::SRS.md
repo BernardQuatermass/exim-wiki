@@ -29,7 +29,7 @@ local domains.
                 sub srs { $srs->forward(shift, 'SRS_DOMAIN') }  \
                 sub unsrs { $srs->reverse(shift) }
     ```
-1. We define the two conditions as macros to ease the following configuration:
+1. Define two conditions as macros to ease the following configuration:
     - sender domain has SPF
       ```
       SENDER_HAS_SPF = !eq{none}{${lookup{$sender_address}spf{0.0.0.0}}}
