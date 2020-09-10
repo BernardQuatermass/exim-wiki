@@ -74,6 +74,7 @@ same with a domain not protected by SPF:
 ```
 $ exim -v -f 'foo@<spf-protected-domain>' rcpt@example.com
 $ exim -v -f 'foo@<non-spf-protected-domain>' rcpt@example.com
+$ exim -v -f '<>' rcpt@example.com
 ```
 
 ## Test incoming
