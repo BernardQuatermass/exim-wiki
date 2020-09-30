@@ -53,14 +53,18 @@ over unencrypted connections so we use it)
     PLAIN:
        driver = plaintext
        server_prompts = :
-       server_condition = "${if pam{$auth2:$auth3}{yes}{no}}"
+       # Check password in $3 for user in $2
+       server_condition = "${if pam{$auth2:${sg{$auth3}{:}{::}}}}"
        server_set_id = $auth2
 
     LOGIN:
        driver = plaintext
-       server_prompts = "Username:: : Password::"
-       server_condition = "${if pam{$auth1:$auth2}{yes}{no}}"
+       server_prompts = Username:: : Password::
+       # Check password in $2 for user in $1
+       server_condition = "${if pam{$auth1:${sg{$auth2}{:}{::}}}}"
        server_set_id = $auth1
+
+(Any colons in the password need to be doubled or such passwords cannot be verified because the colons are interpreted as list separators.)
 
 Also I have exim run as group exim this group needs read access on
 
