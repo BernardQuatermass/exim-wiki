@@ -11,7 +11,7 @@ items may no longer make sense.
 -   Spool\_in and spool\_out - speed up by using a table?
 -   Find a more compact way of encoding the options interpretation, and
     also of checking for incompatible options.
--   Find a more compact way of passing an open [reparacion frigorificos madrid](http://www.madridreparaciones.com/frigorificos) SMTP channel without
+-   Find a more compact way of passing an open SMTP channel without
     having to use options. What about the TLS state information? Could
     use a pipe to pass more data.
 -   Some people have suggested separately loadable modules. But do all
