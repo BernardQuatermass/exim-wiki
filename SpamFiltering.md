@@ -55,13 +55,16 @@ External Sites with Good Spam Filtering Info
     Cambridge](http://www-uxsup.csx.cam.ac.uk/~fanf2/hermes/doc/talks/2005-02-eximconf/paper.html)
 -   [Spam Assassin](http://www.spamassassin.org)
 -   [Spam Probe](http://spamprobe.sourceforge.net/)
--   [Dynamic IP address filtering](http://tanaya.net/DynaStop/)
+-   <strike>[Dynamic IP address filtering](http://tanaya.net/DynaStop/)</strike>, see [archived
+    version](http://web.archive.org/web/20130816221540/http://dynastop.tanaya.net/)
 -   [Spam Assassin
     Basics](http://blog.webhosting.uk.com/2006/09/26/spam-assassin-basics/)
     for CPanel users
--   [ACL snippets](http://tehran.lain.pl/exim-snippets.html)
+-   <strike>[ACL snippets](http://tehran.lain.pl/exim-snippets.html)</strike>, see [archived
+    version](http://web.archive.org/web/20100626015552/http://tehran.lain.pl/exim-snippets.html)
 -   [dlfunc functions for Exim](http://www.ols.es/exim/dlext/)
--   [More ACL snippets](http://www.ols.es/exim/acl/)
+-   <strike>[More ACL snippets](http://www.ols.es/exim/acl/)</strike>, see [archived
+    version](http://web.archive.org/web/20161026081026/http://www.ols.es/exim/acl/)
 
 External Sites with ${dlfunc{file}{function}{\<arg\>}{\<arg\>}...}
 ===================================================================
