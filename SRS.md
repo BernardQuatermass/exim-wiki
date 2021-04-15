@@ -1,7 +1,15 @@
 Sender Rewriting Scheme (SRS)
 =============================
 
-SRS support is [Experimental](ExperimentalSpec)
+As of 4.94 there is native support in Exim for SRS.  See the main documentation.
+The remainder of this page describes the older "libsrs_alt" implementation, which remains Experimental
+and will likely be removed in a future release.
+
+
+***
+
+
+Libsrs_alt SRS support is [Experimental](ExperimentalSpec)
 
 Exiscan currently includes SRS support via Miles Wilton's libsrs\_alt
 library. The current version of the supported library is 1.0.
