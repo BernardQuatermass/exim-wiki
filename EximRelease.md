@@ -113,6 +113,7 @@ gzip <NewStuff >NewStuff.gz. && mv -f NewStuff.gz. NewStuff.gz;
     -   add released version to list of bugzilla versions (Edit:Products/Exim/Edit_Versions/Add)
     -   add next expected version to bugzilla milestones (Edit:Products/Exim/Edit_Milestones/Add),
     and make that default (button on Edit:Products/Exim page)
+    -   update the Topic on the #exim IRC channel on Libera Chat
     -   update the Topic on the #exim IRC channel on freenode
     -   if a Security release, then update [[EximSecurity]] with details.
 
