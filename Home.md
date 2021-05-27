@@ -35,6 +35,7 @@ See also
     -   before posting, be sure to read the [[Mailing List Policies|MailingListPolicies]]
         and [[Mailing List Etiquette|MailingListEtiquette]] - be nice on the support
         lists!
+-   IRC channel on irc.libera.chat (SSL, port 6697) #exim
 
 * * * * *
 
