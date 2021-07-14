@@ -69,23 +69,23 @@ The purpose of the EBL blacklist is described on [http://msbl.org/ebl-purpose.ht
     
     acl_check_mime:
 
-... (possible other checks before the first "accept")
+      #... (possible other checks before the first "accept")
 
       accept condition = ${if def:header_List-ID:}
     
       require acl = mimeea
 
-... (the first "accept" if any)
+      #... (the first "accept" if any)
 
       accept
     
     acl_check_data:
 
-... (other checks before the first "accept")
+      #... (other checks before the first "accept")
 
       require acl = rt
 
-... (the first "accept")
+      #... (the first "accept")
 
 This code checks only dropboxes - email addresses (in Reply-To: and body) which differ from the email address in "From:". You can check also email addresses in "From:" (for that change `addresses:$rheader_Reply-To:` to `addresses:$rheader_From:,$rheader_Reply-To:` and delete the first `accept` line after `ea:`), but that'll increase rate of requests to EBL.
 
