@@ -15,7 +15,7 @@ On this wiki ...
 -   How to [[download and install|ObtainingExim]] Exim
 -   [[What's new|ChangeLog]] and change logs.
 -   [[Configuring Exim|ConfiguringExim]]
-    -   [[HowTo's|HowTo]] for all sorts of situations
+    -   [[HowTos|HowTo]] for all sorts of situations
     -   Debian users should check the [[Debian-specific documentation|DebianExim4]]
 -   [[Exim Security|EximSecurity]]
 -   [[DNSSEC|DNSSEC]]: DANE, DNSSEC, Exim, Resolvers, exim.org and so forth
