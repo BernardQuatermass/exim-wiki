@@ -7,7 +7,7 @@ Exiscan and Virus Control Docs.
 SMTP Time Scanning
 ------------------
 -   [Exim Docs on
-    Exiscan](http://www.exim.org/exim-html-4.63/doc/html/spec_html/ch40.html)
+    Exiscan](http://www.exim.org/exim-html-current/doc/html/spec_html/ch-content_scanning_at_acl_time.html)
 -   [Exiscan Examples](ExiscanExamples)
 -   [FAQ about Content Scanning](ContentScanningFrequentQuestions)
 -   [Filename blocking](ExiscanFilenameBlocking)
