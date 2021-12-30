@@ -9,13 +9,13 @@ The Perl module [Mail::Exim::Blacklist::Attachments](https://metacpan.org/dist/M
 
 ```
 acl_check_mime:
- 
+
   warn
     condition = ${if and{{def:mime_filename} \
       {!match{${lc:$mime_filename}}{\N\.((json|xml)\.gz|zip)$\N}} \
       {eq{${perl{check_filename}{$mime_filename}}}{blacklisted}}}}
     set acl_m_blacklisted = yes
- 
+
   warn
     condition = ${if match{${lc:$mime_filename}}{\N\. *(jar|zip)$\N}}
     decode = default
@@ -26,13 +26,21 @@ acl_check_mime:
 
 # Mail::Exim::Blacklist::Geolocation
 
-The Perl module [Mail::Exim::Blacklist::Geolocation](https://metacpan.org/dist/Mail-Exim-Blacklist-Geolocation) maps IP addresses to two-letter country codes such as "DE", "FR" and "US". SpamAssassin can use these country codes to filter junk e-mail.
+The Perl module [Mail::Exim::Blacklist::Geolocation](https://metacpan.org/dist/Mail-Exim-Blacklist-Geolocation) maps IP addresses to [two-letter country codes](https://en.wikipedia.org/wiki/ISO_3166-2) such as "DE", "FR" and "US". SpamAssassin can use these country codes to filter junk e-mail.
 
 ```
 acl_check_rcpt:
- 
+
   warn
     domains = +local_domains : +relay_to_domains
     set acl_m_country_code = ${perl{country_code}{$sender_host_address}}
     add_header = X-Sender-Host-Country: $acl_m_country_code
+```
+
+```
+bayes_ignore_header X-Sender-Host-Country
+header UNCOMMON_COUNTRY X-Sender-Host-Country !~ /^(?:DE|FR|US)/ [if-unset: US]
+describe UNCOMMON_COUNTRY Message is sent from non-whitelisted country
+tflags UNCOMMON_COUNTRY noautolearn
+score UNCOMMON_COUNTRY 0.1
 ```
