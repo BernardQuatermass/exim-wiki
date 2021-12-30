@@ -26,7 +26,7 @@ acl_check_mime:
 
 # Mail::Exim::Blacklist::Geolocation
 
-The Perl module [Mail::Exim::Blacklist::Geolocation](https://metacpan.org/dist/Mail-Exim-Blacklist-Geolocation) maps IP addresses to [two-letter country codes](https://en.wikipedia.org/wiki/ISO_3166-2) such as "DE", "FR" and "US". SpamAssassin can use these country codes to filter junk e-mail.
+The Perl module [Mail::Exim::Blacklist::Geolocation](https://metacpan.org/dist/Mail-Exim-Blacklist-Geolocation) maps IP addresses to [two-letter country codes](https://en.wikipedia.org/wiki/ISO_3166-2) such as "DE", "FR" and "US". SpamAssassin can use these country codes to filter junk email.
 
 ```
 acl_check_rcpt:
