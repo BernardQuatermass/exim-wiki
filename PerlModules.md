@@ -13,14 +13,14 @@ acl_check_mime:
   warn
     condition = ${if and{{def:mime_filename} \
       {!match{${lc:$mime_filename}}{\N\.((json|xml)\.gz|zip)$\N}} \
-      {eq{${perl{check_filename}{$mime_filename}}}{blacklisted}}}}
+      {eq{${perl{check_filename}{$mime_filename}}}{blocked}}}}
     set acl_m_blocked = yes
 
   warn
     condition = ${if match{${lc:$mime_filename}}{\N\. *(jar|zip)$\N}}
     decode = default
     condition = ${if eq{${perl{check_zip}{$mime_decoded_filename}}} \
-                       {blacklisted}}
+                       {blocked}}
     set acl_m_blocked = yes
 ```
 
