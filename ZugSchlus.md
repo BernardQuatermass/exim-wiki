@@ -13,7 +13,7 @@ nickname for most of my network related activities since 2000.
 I am a [DebianDeveloper](DebianDeveloper) since 2001 and am currently
 (2006/03) responsible for the [Exim 4
 packages](http://pkg-exim4.alioth.debian.org) in [Debian
-GNU/Linux](http://www.debian.org/). [reparacion de secadoras madrid](http://madridindustriales.es/secadoras) Exim 4 is Debian's default MTA since
+GNU/Linux](http://www.debian.org/). Exim 4 is Debian's default MTA since
 Debian 3.1, codename sarge. On this Wiki you can find information about
 the Debian Exim 4 packages [here.](DebianExim4)
 
@@ -29,4 +29,3 @@ following ways:
 -   on ICQ (252520118).
 -   My E-Mail address is
     [[mh+eximwiki@zugschlus.de](mailto:mh+eximwiki@zugschlus.de)](mailto:mh+eximwiki@zugschlus.de).
-[reparación de secadoras madrid](http://www.madridreparaciones.com/secadoras)
