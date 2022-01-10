@@ -11,7 +11,7 @@ SMTP Time Scanning
 -   [Exiscan Examples](ExiscanExamples)
 -   [FAQ about Content Scanning](ContentScanningFrequentQuestions)
 -   [Filename blocking](ExiscanFilenameBlocking)
-    - [[with Perl|PerlModules#maileximblacklistattachments]]
+    - [[with Perl|PerlModules#maileximaclattachments]]
 -   [Content blocking](ExiscanContentBlocking)
 -   [Email Client Bugs blocking](ExiscanBugBlocking)
 -   [Non-daemon AV scanners](ExiscanGenericAVScanner) using generic
