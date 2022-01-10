@@ -1,11 +1,11 @@
 A list of Perl modules for use with Exim's [embedded Perl interpreter](https://www.exim.org/exim-html-current/doc/html/spec_html/ch-embedded_perl.html).
 
-* [Mail::Exim::Blacklist::Attachments](#maileximblacklistattachments)
-* [Mail::Exim::Blacklist::Geolocation](#maileximblacklistgeolocation)
+* [Mail::Exim::ACL::Attachments](#maileximblacklistattachments)
+* [Mail::Exim::ACL::Geolocation](#maileximblacklistgeolocation)
 
-# Mail::Exim::Blacklist::Attachments
+# Mail::Exim::ACL::Attachments
 
-The Perl module [Mail::Exim::Blacklist::Attachments](https://metacpan.org/dist/Mail-Exim-Blacklist-Attachments) checks email attachments and Zip archives for blocked filenames. The module rejects filenames that are [blocked by Outlook](https://support.microsoft.com/en-us/office/blocked-attachments-in-outlook-434752e1-02d3-4e90-9124-8b81e49a8519), that belong to macro-enabled [Office documents](https://en.wikipedia.org/wiki/List_of_Microsoft_Office_filename_extensions) or that are [associated with 7-Zip](https://en.wikipedia.org/wiki/7-Zip).
+The Perl module [Mail::Exim::ACL::Attachments](https://metacpan.org/dist/Mail-Exim-ACL-Attachments) checks email attachments and Zip archives for blocked filenames. The module rejects filenames that are [blocked by Outlook](https://support.microsoft.com/en-us/office/blocked-attachments-in-outlook-434752e1-02d3-4e90-9124-8b81e49a8519), that belong to macro-enabled [Office documents](https://en.wikipedia.org/wiki/List_of_Microsoft_Office_filename_extensions) or that are [associated with 7-Zip](https://en.wikipedia.org/wiki/7-Zip).
 
 ```
 acl_check_mime:
@@ -24,9 +24,9 @@ acl_check_mime:
     set acl_m_blocked = yes
 ```
 
-# Mail::Exim::Blacklist::Geolocation
+# Mail::Exim::ACL::Geolocation
 
-The Perl module [Mail::Exim::Blacklist::Geolocation](https://metacpan.org/dist/Mail-Exim-Blacklist-Geolocation) maps IP addresses to [two-letter country codes](https://en.wikipedia.org/wiki/ISO_3166-2) such as "DE", "FR" and "US". SpamAssassin can use these country codes to filter junk email.
+The Perl module [Mail::Exim::ACL::Geolocation](https://metacpan.org/dist/Mail-Exim-ACL-Geolocation) maps IP addresses to [two-letter country codes](https://en.wikipedia.org/wiki/ISO_3166-2) such as "DE", "FR" and "US". SpamAssassin can use these country codes to filter junk email.
 
 ```
 acl_check_rcpt:
