@@ -5,7 +5,7 @@ A list of Perl modules for use with Exim's [embedded Perl interpreter](https://w
 
 # Mail::Exim::ACL::Attachments
 
-The Perl module [Mail::Exim::ACL::Attachments](https://metacpan.org/dist/Mail-Exim-ACL-Attachments) checks email attachments and Zip archives for blocked filenames. The module identifies filenames that are [blocked by Outlook](https://support.microsoft.com/en-us/office/blocked-attachments-in-outlook-434752e1-02d3-4e90-9124-8b81e49a8519), that belong to macro-enabled [Office documents](https://en.wikipedia.org/wiki/List_of_Microsoft_Office_filename_extensions) or that are [associated with 7-Zip](https://en.wikipedia.org/wiki/7-Zip).
+The Perl module [Mail::Exim::ACL::Attachments](https://metacpan.org/dist/Mail-Exim-ACL-Attachments) checks email attachments and Zip archives for blocked filenames. The module identifies filenames that are [blocked by Outlook](https://support.microsoft.com/en-us/office/blocked-attachments-in-outlook-434752e1-02d3-4e90-9124-8b81e49a8519), that belong to macro-enabled [Office documents](https://en.wikipedia.org/wiki/List_of_Microsoft_Office_filename_extensions) or that are associated with [7-Zip](https://en.wikipedia.org/wiki/7-Zip).
 
 ```
 acl_check_mime:
