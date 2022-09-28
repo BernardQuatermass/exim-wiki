@@ -105,7 +105,10 @@ etc/exim4/exim4.conf.template. I added this:
     plain_server:
      driver = plaintext
      public_name = PLAIN
-     server_condition = ${run{/bin/bash -c "echo -e '$auth2\n$auth3' | /usr/local/bin/pwauth"}{1}{0}}
+     server_condition = ${and {\
+       {!match{$auth2$auth3}{[\x27\r\n]}}\
+       {bool{${run{/bin/bash -c "echo -e '$auth2\n$auth3' | /usr/local/bin/pwauth"}{1}{0}}}}\
+                         }}
      server_set_id = $auth2
      server_prompts = :
      .ifndef AUTH_SERVER_ALLOW_NOTLS_PASSWORDS
@@ -115,7 +118,10 @@ etc/exim4/exim4.conf.template. I added this:
     login_server:
      driver = plaintext
      public_name = LOGIN
-     server_condition = ${run{/bin/bash -c "(echo -n '$auth1' | head -n 1 ; echo -n '$auth2' | head -n 1) | /usr/local/bin/pwauth"}{1}{0}}
+     server_condition = ${and {\
+       {!match{$auth1$auth2}{[\x27\r\n]}}\
+       {bool{${run{/bin/bash -c "echo -e '$auth1\n$auth2' | /usr/local/bin/pwauth"}{1}{0}}}}\
+                         }}
      server_set_id = $auth1
      server_prompts = <| Username: | Password:
      .ifndef AUTH_SERVER_ALLOW_NOTLS_PASSWORDS
