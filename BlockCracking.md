@@ -104,7 +104,7 @@ Insert into beginning of config:
     acl_smtp_mail = acl_check_mail
     acl_smtp_quit = acl_check_quit
     acl_smtp_notquit = acl_check_notquit
-    IPNOTIF = echo Subject: blocked $sender_host_address $dnslist_text \
+    IPNOTIF = echo Subject: blocked $sender_host_address $acl_c_country \
       ${sg{${lookup dnsdb{>, defer_never,ptr=$sender_host_address}}}{\N[^\w.,-]\N}{}}; \
       echo; echo for bruteforce auth cracking attempt.; 
     WRONG_RCPT_LIMIT = 100
@@ -220,7 +220,8 @@ Immediately after the "begin acl" line insert:
       accept
     
     setdnslisttext:
-      accept dnslists = zz.countries.nerd.dk
+      accept dnslists = all.ascc.dnsbl.bit.nl
+             set acl_c_country = ${if match{$dnslist_text}{ CC=(\\S+) }{$1}}
     
       accept
    
