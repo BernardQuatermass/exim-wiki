@@ -3,7 +3,7 @@ Nowadays users' passwords often are stolen (with drive-by exploits, Windows malw
 
 This code also blocks brute force password cracking via SMTP (it's not as important but a little useful).
 
-Replace the paragraph with the line `accept  authenticated = *` with four paragraphs:
+Replace the paragraph with the line `accept  authenticated = *` in the `acl_check_rcpt`-ACL with four paragraphs:
 
       drop  authenticated = *
             set acl_m_user = ${sg{$authenticated_id}{\N[^\w.=@-]\N}{}}
