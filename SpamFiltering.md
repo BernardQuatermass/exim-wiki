@@ -35,6 +35,7 @@ Greylisting
 -   [Greylisting using MySQL and stored
     procedures](http://www.phcomp.co.uk/TechTutorial/HOWTOs/GreyListing.php)
 -   [ddgrey - dynamic and optionally distributed greylisting for exim4 (beta)](https://github.com/perericr/ddgrey)
+-   [Greylisting using only Exim’s builtin 'seen' functionality](Greylisting-using-only-Exim%E2%80%99s-builtin-'seen'-functionality)
 -   More implementations at <strike>[Spam
     Links](http://spamlinks.net/filter-server-greylist.htm#implement-exim)</strike>, see [archived version](https://web.archive.org/web/20140209085322/http://spamlinks.net/filter-server-greylist.htm)
 
