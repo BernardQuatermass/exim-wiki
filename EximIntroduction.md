@@ -110,7 +110,7 @@ of the manual, or to configuration options.
 -   SIZE. "SMTP Service Extension for Message Size Declaration" (RFC
     1870) - on by default.
 -   SMTP AUTH. "SMTP Service Extension for Authentication" (RFC 2554) -
-    [auth\_advertise\_hosts
+    [auth\_advertise\_hosts]
 -   START-TLS. “SMTP Service Extension for Secure SMTP over TLS” (RFC
     3207) - [tls\_advertise\_hosts]
 -   8BITMIME. "SMTP Service Extension for 8bit MIME Transport" (RFC
