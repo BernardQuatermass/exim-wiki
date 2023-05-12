@@ -1,0 +1,3 @@
+To feed received messages to Dovecot for final delivery, there are two ways:
+- Use a pipe transport.  This is detailed in [the Dovecot wiki](https://wiki.dovecot.org/LDA/Exim).  Note however that tainted values cannot be used on commandlines
+- Use LMTP.  For LMTP via a Unix-domain socket to a local Dovecot, use the lmtp transport; for LMTP over an IP socket (so Dovecot can be remote or local) use the smtp transport with protocol=lmtp.  Dovecot docs [here]( https://doc.dovecot.org/configuration_manual/protocols/lmtp_server/).  This performs better the pipe option, as it does not need to start a fresh dovecot-lda process for every message.
