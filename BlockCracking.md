@@ -33,11 +33,12 @@ Replace the paragraph with the line `accept  authenticated = *` in the `acl_chec
             ratelimit = WRONG_RCPT_LIMIT / PERIOD / per_rcpt / user-$acl_m_user
             set acl_c_blocked = 1
             set acl_c_spoolfree = $spool_space
-            continue = ${run{SHELL -c "echo $acl_m_user:$acl_c_spoolfree \
+            set $acl_m_shargs = echo $acl_m_user:$acl_c_spoolfree \
                >>$spool_directory/blocked_authenticated_users; \
-               \N{\N echo Subject: user $acl_m_user blocked; echo; echo because \
+               { echo Subject: user $acl_m_user blocked; echo; echo because \
                has sent mail to WRONG_RCPT_LIMIT invalid recipients during PERIOD.; \
-               \N}\N | $exim_path -f root WARNTO"}}
+               } | $exim_path -f root WARNTO"}}
+            continue = $run{SHELL -c "$acl_m_shargs
             control = freeze/no_tell
             control = submission/domain=
             add_header = X-Authenticated-As: $acl_m_user
@@ -84,11 +85,12 @@ with four paragraphs:
             ratelimit = WRONG_RCPT_LIMIT / PERIOD / per_rcpt / relayuser-$acl_m_user
             set acl_c_blocked = 1
             set acl_c_spoolfree = $spool_space
-            continue = ${run{SHELL -c 'echo \\\"$acl_m_userMASKL\\\":$acl_c_spoolfree \
+            set acl_m_shargs = echo \\\"$acl_m_userMASKL\\\":$acl_c_spoolfree \
                >>$spool_directory/blocked_relay_users; \
-               \N{\N echo Subject: relay user $acl_m_user blocked; echo; echo \
+               { echo Subject: relay user $acl_m_user blocked; echo; echo \
                because has sent mail to WRONG_RCPT_LIMIT invalid recipients during PERIOD.; \
-               \N}\N | $exim_path -f root WARNTO'}}
+               } | $exim_path -f root WARNTO
+            continue = ${run{SHELL -c '$acl_m_shargs'}}
             control = freeze/no_tell
             control = submission/domain=
             add_header = X-Relayed-From: $acl_m_user
@@ -137,9 +139,10 @@ Immediately after the "begin acl" line insert:
                                {$spool_directory/blocked_IPs}{0}{1}}}\
                              {1}}
             acl = setdnslisttext
-            continue = ${run{SHELL -c 'echo \\\"$sender_host_addressMASKW\\\" \
+            set acl_m_shargs = echo \\\"$sender_host_addressMASKW\\\" \
                >>$spool_directory/blocked_IPs; \
-               \N{\N IPNOTIF \N}\N | $exim_path -f root WARNTO'}}
+               { IPNOTIF } | $exim_path -f root WARNTO
+            continue = ${run{SHELL -c '$acl_m_shargs'}}
 
       drop  message = blacklisted for bruteforce cracking attempt
             condition = ${if >{$acl_c_authnomail}{4}}
@@ -166,9 +169,10 @@ Immediately after the "begin acl" line insert:
                                {$spool_directory/blocked_IPs}{0}{1}}}\
                              {1}}
             acl = setdnslisttext
-            continue = ${run{SHELL -c 'echo \\\"$sender_host_addressMASKW\\\" \
+            set acl_m_shargs = echo \\\"$sender_host_addressMASKW\\\" \
                >>$spool_directory/blocked_IPs; \
-               \N{\N IPNOTIF \N}\N | $exim_path -f root WARNTO'}}
+               { IPNOTIF } | $exim_path -f root WARNTO'
+            continue = ${run{SHELL -c '$acl_m_shargs'}}
     
     acl_check_notquit:
       warn  condition = $authentication_failed
@@ -190,9 +194,10 @@ Immediately after the "begin acl" line insert:
                                {$spool_directory/blocked_IPs}{0}{1}}}\
                              {1}}
             acl = setdnslisttext
-            continue = ${run{SHELL -c 'echo \\\"$sender_host_addressMASKW\\\" \
+            set acl_m_shargs = echo \\\"$sender_host_addressMASKW\\\" \
                >>$spool_directory/blocked_IPs; \
-               \N{\N IPNOTIF \N}\N | $exim_path -f root WARNTO'}}
+               \N{\N IPNOTIF \N}\N | $exim_path -f root WARNTO
+            continue = ${run{SHELL -c '$acl_m_shargs'}}
     
     acl_check_mail:
       accept set acl_c_authnomail = 0
@@ -211,9 +216,10 @@ Immediately after the "begin acl" line insert:
       drop  message = Cutwail/PushDo bot blacklisted
             condition = ${if eq{$sender_helo_name}{ylmf-pc}}
       acl = setdnslisttext
-      continue = ${run{SHELL -c 'echo \\\"$sender_host_addressMASKW\\\" \
+      set acl_m_shargs = echo \\\"$sender_host_addressMASKW\\\" \
          >>$spool_directory/blocked_IPs; \
-         \N{\N IPNOTIF \N}\N | $exim_path -f root WARNTO'}}
+         { IPNOTIF } | $exim_path -f root WARNTO
+      continue = ${run{SHELL -c '$acl_m_shargs'}}
       # if this bot is dropped at helo, it repeats multiple times,
       # but if dropped at connect, it tries only twice
     
@@ -344,11 +350,12 @@ unique userid, and Exim version 4.82 or higher, then (untested):
     
       accept condition = ${if forany{<, $recipients}\
                                     {eq{${acl{recipient}{$item}}}{caught}}}
-            continue = ${run{SHELL -c "echo $acl_m_user:$spool_space \
+            set acl_m_shargs = echo $acl_m_user:$spool_space \
                >>$spool_directory/blocked_notsmtp_users; \
-               \N{\N echo Subject: local user $acl_m_user blocked; echo; echo because \
+               { echo Subject: local user $acl_m_user blocked; echo; echo because \
                has sent mail to WRONG_RCPT_LIMIT invalid recipients during PERIOD.; \
-               \N}\N | $exim_path -f root WARNTO"}}
+               } | $exim_path -f root WARNTO
+            continue = ${run{SHELL -c "$acl_m_shargs"}}
             control = freeze/no_tell
             add_header = X-Username: $acl_m_user
     
