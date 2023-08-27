@@ -33,12 +33,12 @@ Replace the paragraph with the line `accept  authenticated = *` in the `acl_chec
             ratelimit = WRONG_RCPT_LIMIT / PERIOD / per_rcpt / user-$acl_m_user
             set acl_c_blocked = 1
             set acl_c_spoolfree = $spool_space
-            set $acl_m_shargs = echo $acl_m_user:$acl_c_spoolfree \
+            set acl_m_shargs = echo $acl_m_user:$acl_c_spoolfree \
                >>$spool_directory/blocked_authenticated_users; \
                { echo Subject: user $acl_m_user blocked; echo; echo because \
                has sent mail to WRONG_RCPT_LIMIT invalid recipients during PERIOD.; \
                } | $exim_path -f root WARNTO"}}
-            continue = $run{SHELL -c "$acl_m_shargs
+            continue = ${run{SHELL -c "$acl_m_shargs}}
             control = freeze/no_tell
             control = submission/domain=
             add_header = X-Authenticated-As: $acl_m_user
