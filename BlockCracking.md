@@ -207,7 +207,7 @@ Immediately after the "begin acl" line insert:
                       auth (username+password) cracking attempt
             condition = ${if exists{$spool_directory/blocked_IPs}}
             condition = ${lookup{$sender_host_address}iplsearch\
-                         {/var/..$spool_directory/blocked_IPs}{1}{0}}
+                         {$spool_directory/blocked_IPs}{1}{0}}
             # Another path to the same file in order to circumvent lookup caching.
     
       accept
