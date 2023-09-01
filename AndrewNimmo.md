@@ -1,5 +1,7 @@
 # Andrew Nimmo
 
+Freelance Tech // Development // Integration // Monitoring // Maintenance // Systems
+
 I've been building and using Exim-based email systems since 1996. I can provide practical expertise on building, hosting and maintaining secure email solutions for small and large organisations, or for personal use.
 
 * [Contact form](https://andrew.nimmo.dev/go/github.com/exim)
@@ -7,6 +9,3 @@ I've been building and using Exim-based email systems since 1996. I can provide 
 * [Twitter](https://twitter.com/andrewnimmo)
 * Location: Based in Barcelona, available throughout EU and UK.
 * Tags: `consultant` `maintenance` `monitoring` `integration`
-
-
-![avatar-github_com___exim](https://user-images.githubusercontent.com/100512/220090985-1aeeac99-d56e-4973-96cb-2fc746d08c76.png)
