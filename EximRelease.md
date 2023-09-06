@@ -31,6 +31,15 @@ Start of Development Cycle
 -   Remove all changebars from documentation *except the sample* (around
     `SECID1`) - basically strip all `.new` and `.wen` tags and remove
     `&new()` enclosures
+-   If a 4.next branch was running during the RC stages of the just-done release,
+    merge it back to the mainline and drop it from the buildfarm
+
+When starting run-up to a release
+---------------------------------
+-   Reset the 4.next branch to the current master checkin
+-   Add 4.next to the buildfarm
+-   (ongoing) commits you want to record but not have in this release go to 4.next
+    (for example, new features once you've declared feature-freeze for the release)
 
 Release Steps
 -------------
