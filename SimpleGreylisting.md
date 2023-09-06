@@ -293,12 +293,12 @@ Instructions on setting it up and using it are given below.
       # where the 5 minute timeout is set ($tod_epoch + 300), should you wish
       # to change it.
       warn  condition = ${if eq {$acl_m_greyexpiry}{} {1}}
-    	set acl_m_dontcare = ${lookup sqlite {INSERT INTO greylist \
-                                        VALUES ( '${quote_sqlite:$acl_m_greyident}', \
-    						 '${eval10:$tod_epoch+300}', \
-                                                 '${quote_sqlite:$sender_host_address}', \
-    						 '${quote_sqlite:$sender_helo_name}' );}}
-    
+            set acl_m_dontcare = ${lookup sqlite {INSERT INTO greylist \
+                                 VALUES ( '${quote_sqlite:$acl_m_greyident}', \
+                                 '${eval10:$tod_epoch+300}', \
+                                 '${quote_sqlite:$sender_host_address}', \
+                                 '${quote_sqlite:$sender_helo_name}' );}}
+
       # Be paranoid, and check if the insertion succeeded (by doing another lookup).
       # Otherwise, if there's a database error we might end up deferring for ever.
       defer condition = ${if eq {$acl_m_greyexpiry}{} {1}}
