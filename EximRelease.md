@@ -1,7 +1,7 @@
 Exim Release Process
 ====================
 
-An aide memoir etc - currently just trying to ensure we have all of this
+An aide-memoire etc - currently just trying to ensure we have all of this
 stuff captured...
 
 We follow [EximReleasePolicy](EximReleasePolicy) for releases.
@@ -37,7 +37,8 @@ Start of Development Cycle
 When starting run-up to a release
 ---------------------------------
 -   Reset the 4.next branch to the current master checkin
--   Add 4.next to the buildfarm
+-   Add 4.next to the buildfarm (exim-build-farm-server git tree; htdocs/branches_of_interest.txt).
+    Check that krot (buildfarm server) is up to date
 -   (ongoing) commits you want to record but not have in this release go to 4.next
     (for example, new features once you've declared feature-freeze for the release)
 
