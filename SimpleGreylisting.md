@@ -294,9 +294,9 @@ Instructions on setting it up and using it are given below.
       # to change it.
       warn  condition = ${if eq {$acl_m_greyexpiry}{} {1}}
     	set acl_m_dontcare = ${lookup sqlite {INSERT INTO greylist \
-    					VALUES ( '$acl_m_greyident', \
+                                        VALUES ( '${quote_sqlite:$acl_m_greyident}', \
     						 '${eval10:$tod_epoch+300}', \
-    						 '$sender_host_address', \
+                                                 '${quote_sqlite:$sender_host_address}', \
     						 '${quote_sqlite:$sender_helo_name}' );}}
     
       # Be paranoid, and check if the insertion succeeded (by doing another lookup).
