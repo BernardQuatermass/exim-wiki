@@ -77,6 +77,8 @@ Release Steps
     use, then you must specify `EXIM_KEY` in environ).
 -   put tarballs and signatures up for distribution
     -   for RCs in `/srv/ftp/pub/exim/exim4/test/`
+        - for the initial RC, clear that dir first
+        - for subsequent ones, clear the '00' files first
     -   for full release
         - Move last release files in the `old` subdirectory
         - new files to `/srv/ftp/pub/exim/exim4/`
