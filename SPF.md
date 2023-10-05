@@ -56,8 +56,8 @@ condition should succeed. Valid strings are:
 | `softfail` | The SPF check failed, but the queried domain can't absolutely confirm that this is a forgery. |
 | `none`     | The queried domain does not publish SPF records. |
 | `neutral`  | The SPF check returned a "neutral" state. This means the queried domain has published a SPF record, but does neither allow nor object the sending host from sending mail under its domain. This should be treated like "none". |
-| `err_perm` | This indicates a syntax error in the SPF record of the queried domain. This should be treated like "none". |
-| `err_temp` | This indicates a temporary error during all processing, including Exim's SPF processing. You may defer messages when this occurs. |
+| `permerror` | This indicates a syntax error in the SPF record of the queried domain. This should be treated like "none". |
+| `temperror` | This indicates a temporary error during all processing, including Exim's SPF processing. You may defer messages when this occurs. |
 
 You can prefix each string with an exclamation mark to invert is
 meaning, for example "!fail" will match all results but "fail". The
