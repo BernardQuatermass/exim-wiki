@@ -98,6 +98,7 @@ gzip <NewStuff >NewStuff.gz. && mv -f NewStuff.gz. NewStuff.gz;
 -   Ensure git tree (with tags) is pushed to central repo: `git push --follow-tags`
 -   Push the exim-website git also
 -   Write announcement including changes and cryptographic checksums
+    - to `exim-announce@lists.exim.org` and `exim-users@lists.exim.org`
     -   SHA256 checksums only for now; 4.80 was the last to use both
         SHA1 and SHA256. We'll add SHA-3 when it's available.
         `./release-process/scripts/stats_for_email /tmp/exim-pkgs`
