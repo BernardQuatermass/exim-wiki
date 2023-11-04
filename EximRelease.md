@@ -44,33 +44,32 @@ When starting run-up to a release
 
 Release Steps
 -------------
+-   Checkout the "master" git branch
 -   Ensure test suite runs
 -   For sanity doing RCs, set shell variables eg. "maj=79 rc=4"
+    + For full release, "maj=78 oldmaj=79"
 -   For a full release:
     - Check version number in source and version number in documentation match new release version
-    - Update the **copyyear** date (2 instances near version number) in both spec and filter doc sources
+    - Update the **copyyear** date (2 instances near version number) in doc/doc-docbook/spec.xfpt and doc/doc-docbook/filter.xfpt
     - Update the **version_copyright** string in src/src/globals.c if needed.
-    - Check for modify dates on all source files, and update copyright year in the file header comment: `vi $(git log --name-status exim-4.${maj}..master | awk '/^M/{print $2}' | grep -v '^test/' | sort -u)`
--   Check that the `NewStuff` and `ChangeLog` and
-    `doc-txt/OptionLists.txt` files are up-to-date
+    - Check for modify dates on all source files, and update copyright year in the file header comment: `vi $(git log --name-status exim-4.${oldmaj}..master | awk '/^M/{print $2}' | grep -v '^test/' | sort -u)`
+-   Check that the `NewStuff` and `ChangeLog` and `doc-txt/OptionLists.txt` files are up-to-date
 -   Check if test/configure needs commit (run `autoreconf` in `test/`)
 -   Tag git for new release - tag format is `exim` hyphen *version
     number with dots* - eg `exim-4.92`. You must also have git
     sign the tag with your exim PGP id - ie `git tag -u you@exim.org` for
     the tarball to be built correctly.
+    + u/s for me; used `git tag -s -m "Exim 4.${maj}" exim-4.${maj}`
     + For an RC: `git tag -s -m "Exim 4.${maj} RC${rc}" exim-4.${maj}-RC${rc}`
 -   Build documentation and packages:-
-    -   ensure `exim-website` is checked out to a known location,
-	ideally into the same directory where `exim` is located.
-
+    -   ensure `exim-website` is checked out to a known location, ideally into the same directory where `exim` is located.
     -   if not first RC for this release, clean the previous website docbook files out: `rm -f ../exim-website/docbook/4.${maj}/*`
     -   `cd exim`
     -   `release-process/scripts/mk_exim_release 4.${maj}-RC${rc} /tmp/exim-pkgs` - use
         appropriate version number
     -   files produced into `/tmp/exim-pkgs` directory
-    -   also writes website documentation sources into
-        `exim-website/docbook/4.${maj}/` - for a full release this should be
-        git add/commit
+    -   also writes website documentation sources into `exim-website/docbook/4.${maj}/` - for a full release this should be
+        git add/commit: `git -C ../exim-website add docbook/4.${maj} && git -C ../exim-website commit -m "Add Exim 4,${maj}" docbook/4.${maj}`
 -   Ideally have limited final test before full distribution
 -   (should be already done, by mk_exim_release) Sign the tarballs: `release-process/scripts/sign_exim_packages /tmp/exim-pkgs`
     (If git configuration `user.signingkey` does not identify the PGP key to
@@ -97,6 +96,7 @@ gzip <NewStuff >NewStuff.gz. && mv -f NewStuff.gz. NewStuff.gz;
 ~~~
 
 -   Ensure git tree (with tags) is pushed to central repo: `git push --follow-tags`
+-   Push the exim-website git also
 -   Write announcement including changes and cryptographic checksums
     -   SHA256 checksums only for now; 4.80 was the last to use both
         SHA1 and SHA256. We'll add SHA-3 when it's available.
