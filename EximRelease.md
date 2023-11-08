@@ -70,6 +70,7 @@ Release Steps
     -   files produced into `/tmp/exim-pkgs` directory
     -   also writes website documentation sources into `exim-website/docbook/4.${maj}/` - for a full release this should be
         git add/commit: `git -C ../exim-website commit -m "Add Exim 4,${maj}" docbook/4.${maj}`
+    -   contact HS to get the website published
 -   Ideally have limited final test before full distribution
 -   (should be already done, by mk_exim_release) Sign the tarballs: `release-process/scripts/sign_exim_packages /tmp/exim-pkgs`
     (If git configuration `user.signingkey` does not identify the PGP key to
