@@ -48,6 +48,7 @@ Release Steps
 -   Ensure test suite runs
 -   For sanity doing RCs, set shell variables eg. "maj=79 rc=4"
     + For full release, "maj=78 oldmaj=79"
+    + For a security release "maj=78 min=1"
 -   For a full release:
     - Check version number in source and version number in documentation match new release version
     - Update the **copyyear** date (2 instances near version number) in doc/doc-docbook/spec.xfpt and doc/doc-docbook/filter.xfpt
