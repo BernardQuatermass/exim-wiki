@@ -46,6 +46,7 @@ Other Tricks
 ============
 -   [Ideas for how to use Exim filters on
     delivery](MailFilteringTips)
+-   [[Use addresses with limited validity|LimitedValidityAddresses]]
 
 External Sites with Good Spam Filtering Info
 ============================================
