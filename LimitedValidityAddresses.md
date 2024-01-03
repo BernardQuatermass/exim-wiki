@@ -27,4 +27,4 @@ Add the local_part_suffix and local_part_suffix_optional definitions to your loc
     condition  = ${if <{ ${sg{$local_part_suffix_v}{^\\+}{0}} }{$tod_logfile} {true}{false}}
 ```
 
-The sg function is used to replace the wildcard matched par in the local_part_suffix with a 0 character. The resulting numeric string is numerically compared to $tod_logfile. If the date provided in the address is smaller than today's date, the message is rejected.
+The sg function is used to replace the wildcard matched in the local_part_suffix with a 0 character. The resulting numeric string is numerically compared to $tod_logfile. If the date provided in the address is smaller than today's date, the message is rejected.
