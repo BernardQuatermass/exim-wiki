@@ -29,7 +29,8 @@ To set up exim like that, use (and modify) the following exim.conf:
     acl_smtp_data = accept_all
     # The actual access lists (accept all, for debugging purposes)
     begin acl
-    accept_all: accept
+    accept_all:
+      accept
     # The routers: Only one to send to the SMTP gateway
     begin routers
     send_to_gateway:
