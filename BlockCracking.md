@@ -226,8 +226,9 @@ Immediately after the "begin acl" line insert:
       accept
     
     setdnslisttext:
-      accept dnslists = all.ascc.dnsbl.bit.nl
-             set acl_c_country = ${if match{$dnslist_text}{ CC=(\\S+) }{$1}}
+      accept dnslists = origin.asn.cymru.com
+             set acl_c_country = ${if match{$dnslist_text}\
+                                         {\N^\S+ \| \S+ \| (\S+) \|\N}{$1}}
     
       accept
    
