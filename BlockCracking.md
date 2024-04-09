@@ -226,10 +226,10 @@ Immediately after the "begin acl" line insert:
       accept
     
     setdnslisttext:
-      accept dnslists = origin.asn.cymru.com
-             set acl_c_country = ${if match{$dnslist_text}\
-                                 {\N^.+?\|.+?\| (\S+) \|\N}{$1}}
-    
+      accept dnslists = origin.asn.spameatingmonkey.net
+             set acl_c_country = ${if match{$dnslist_text}{\N\| (\S+)$\N}{$1}}
+    # https://spameatingmonkey.com/services/SEM-ASN-ORIGIN
+
       accept
    
     hash:
