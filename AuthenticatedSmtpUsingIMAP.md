@@ -40,19 +40,24 @@ install it using cpan.
        my $host = shift;
        my $account = shift;
        my $password = shift;
+       my $server = undef;
+       my $result = 0; # (false?)
 
        # open a connection to the IMAP server
        if (! ($server = new Net::IMAP::Simple($host))) {
           return 0;
        }
 
-       # login, if success return 1 (true?) and 0 (false?)
+       # login, if success set result to 1 (true?)
        if ($server->login( $account, $password )) {
-          return 1;
-       } else {
-          return 0;
+          $result = 1;
        }
+
+       # always close connection to the IMAP server
        $server->close();
+
+       # return authentication result
+       return $result;
     }
 
 NB This code used to return '1', i.e. success, if the connection failed
